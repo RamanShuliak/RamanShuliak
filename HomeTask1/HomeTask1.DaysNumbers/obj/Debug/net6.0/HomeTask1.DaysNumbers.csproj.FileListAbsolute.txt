@@ -1,0 +1,15 @@
+C:\MyFiles\Programming\Repository\HomeTask1\HomeTask1.DaysNumbers\bin\Debug\net6.0\HomeTask1.DaysNumbers.exe
+C:\MyFiles\Programming\Repository\HomeTask1\HomeTask1.DaysNumbers\bin\Debug\net6.0\HomeTask1.DaysNumbers.deps.json
+C:\MyFiles\Programming\Repository\HomeTask1\HomeTask1.DaysNumbers\bin\Debug\net6.0\HomeTask1.DaysNumbers.runtimeconfig.json
+C:\MyFiles\Programming\Repository\HomeTask1\HomeTask1.DaysNumbers\bin\Debug\net6.0\HomeTask1.DaysNumbers.dll
+C:\MyFiles\Programming\Repository\HomeTask1\HomeTask1.DaysNumbers\bin\Debug\net6.0\HomeTask1.DaysNumbers.pdb
+C:\MyFiles\Programming\Repository\HomeTask1\HomeTask1.DaysNumbers\obj\Debug\net6.0\HomeTask1.DaysNumbers.csproj.AssemblyReference.cache
+C:\MyFiles\Programming\Repository\HomeTask1\HomeTask1.DaysNumbers\obj\Debug\net6.0\HomeTask1.DaysNumbers.GeneratedMSBuildEditorConfig.editorconfig
+C:\MyFiles\Programming\Repository\HomeTask1\HomeTask1.DaysNumbers\obj\Debug\net6.0\HomeTask1.DaysNumbers.AssemblyInfoInputs.cache
+C:\MyFiles\Programming\Repository\HomeTask1\HomeTask1.DaysNumbers\obj\Debug\net6.0\HomeTask1.DaysNumbers.AssemblyInfo.cs
+C:\MyFiles\Programming\Repository\HomeTask1\HomeTask1.DaysNumbers\obj\Debug\net6.0\HomeTask1.DaysNumbers.csproj.CoreCompileInputs.cache
+C:\MyFiles\Programming\Repository\HomeTask1\HomeTask1.DaysNumbers\obj\Debug\net6.0\HomeTask1.DaysNumbers.dll
+C:\MyFiles\Programming\Repository\HomeTask1\HomeTask1.DaysNumbers\obj\Debug\net6.0\refint\HomeTask1.DaysNumbers.dll
+C:\MyFiles\Programming\Repository\HomeTask1\HomeTask1.DaysNumbers\obj\Debug\net6.0\HomeTask1.DaysNumbers.pdb
+C:\MyFiles\Programming\Repository\HomeTask1\HomeTask1.DaysNumbers\obj\Debug\net6.0\HomeTask1.DaysNumbers.genruntimeconfig.cache
+C:\MyFiles\Programming\Repository\HomeTask1\HomeTask1.DaysNumbers\obj\Debug\net6.0\ref\HomeTask1.DaysNumbers.dll
