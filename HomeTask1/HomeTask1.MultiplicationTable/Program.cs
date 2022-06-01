@@ -6,8 +6,8 @@
         {
             Console.WriteLine("Pleas, enter the number");
             var UserNumber = Console.ReadLine();
-
-            if (!int.TryParse(UserNumber, out int UserNumberNew))
+            int UserNumberNew = 0;
+            if (!int.TryParse(UserNumber, out UserNumberNew))
             {
                 Console.WriteLine("Entered data is wrong because include symbols");
             }
