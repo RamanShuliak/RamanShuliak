@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\MyFiles\\Programming\\Repository\\HomeTask1\\HomeTask1.MultiplicationTable\\HomeTask1.MultiplicationTable.csproj",
+      "projectUniqueName": "D:\\Programming\\Repository\\RamanShuliak\\HomeTask1\\HomeTask1.MultiplicationTable\\HomeTask1.MultiplicationTable.csproj",
       "projectName": "HomeTask1.MultiplicationTable",
-      "projectPath": "C:\\MyFiles\\Programming\\Repository\\HomeTask1\\HomeTask1.MultiplicationTable\\HomeTask1.MultiplicationTable.csproj",
+      "projectPath": "D:\\Programming\\Repository\\RamanShuliak\\HomeTask1\\HomeTask1.MultiplicationTable\\HomeTask1.MultiplicationTable.csproj",
       "packagesPath": "C:\\Users\\shuli\\.nuget\\packages\\",
-      "outputPath": "C:\\MyFiles\\Programming\\Repository\\HomeTask1\\HomeTask1.MultiplicationTable\\obj\\",
+      "outputPath": "D:\\Programming\\Repository\\RamanShuliak\\HomeTask1\\HomeTask1.MultiplicationTable\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\shuli\\AppData\\Roaming\\NuGet\\NuGet.Config",

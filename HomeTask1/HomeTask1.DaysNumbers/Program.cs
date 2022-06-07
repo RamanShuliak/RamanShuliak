@@ -5,21 +5,21 @@
         static void Main(string[] args)
         {
             Console.WriteLine("Pleas, enter the number from 1 to 7 to select a day of week");
-            var DayNumber = Console.ReadLine();
-            int DayNumberNew = 0;
-            if (!int.TryParse(DayNumber, out DayNumberNew))
+            var dayNumber = Console.ReadLine();
+            int dayNumberNew = 0;
+            if (!int.TryParse(dayNumber, out dayNumberNew))
             {
                 Console.WriteLine("Entered data is wrong because include symbols");
             }
             else
             {
-                SelectDay(DayNumberNew);
+                SelectDay(dayNumberNew);
             }
      
         }
-        static void SelectDay(int DayNumberNew)
+        static void SelectDay(int dayNumberNew)
         {
-            switch (DayNumberNew)
+            switch (dayNumberNew)
             {
                 case 1:
                     Console.WriteLine("You select Monday");

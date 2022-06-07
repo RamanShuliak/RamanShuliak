@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\MyFiles\\Programming\\Repository\\HomeTask1\\HomeTask1.DaysNumbers\\HomeTask1.DaysNumbers.csproj",
+      "projectUniqueName": "D:\\Programming\\Repository\\RamanShuliak\\HomeTask1\\HomeTask1.DaysNumbers\\HomeTask1.DaysNumbers.csproj",
       "projectName": "HomeTask1.DaysNumbers",
-      "projectPath": "C:\\MyFiles\\Programming\\Repository\\HomeTask1\\HomeTask1.DaysNumbers\\HomeTask1.DaysNumbers.csproj",
+      "projectPath": "D:\\Programming\\Repository\\RamanShuliak\\HomeTask1\\HomeTask1.DaysNumbers\\HomeTask1.DaysNumbers.csproj",
       "packagesPath": "C:\\Users\\shuli\\.nuget\\packages\\",
-      "outputPath": "C:\\MyFiles\\Programming\\Repository\\HomeTask1\\HomeTask1.DaysNumbers\\obj\\",
+      "outputPath": "D:\\Programming\\Repository\\RamanShuliak\\HomeTask1\\HomeTask1.DaysNumbers\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\shuli\\AppData\\Roaming\\NuGet\\NuGet.Config",
