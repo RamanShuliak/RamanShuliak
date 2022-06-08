@@ -27,7 +27,7 @@
                 $"3. A * B {Environment.NewLine}" +
                 $"4. A / B {Environment.NewLine}" +
                 $"5. A ^ B {Environment.NewLine}" +
-                $"6. A! {Environment.NewLine}");
+                $"6. A!, B! {Environment.NewLine}");
 
             ChekOperationSelection(numberA, numberB);
 
@@ -71,6 +71,7 @@
                     Rising(numberA, numberB);
                     break;
                 case 6:
+                    Factorial(numberA, numberB);
                     break;
                 default:
                     Console.WriteLine($"Operation with such number is not found.{Environment.NewLine}" +
@@ -173,6 +174,23 @@
 
         static void Factorial(int numberA, int numberB)
         {
+            int factorialA = 1;
+            for (int i = 1; i <= numberA; i++)
+            {
+                factorialA *= i;
+            }
+
+            int factorialB = 1;
+            for (int x = 1; x <= numberB; x++)
+            {
+                factorialB *= x;
+            }
+
+            Console.WriteLine($"Factorial A = {factorialA}{Environment.NewLine}" +
+                $"" +
+                $"Factorial B = {factorialB}{Environment.NewLine}" +
+                $"");
+            MenuContinuation(numberA, numberB);
 
         }
     }
