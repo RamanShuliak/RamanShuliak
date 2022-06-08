@@ -4,11 +4,21 @@
     {
         static void Main(string[] args)
         {
+
             PrintBaseMenu();
         }
 
         static void PrintBaseMenu()
         {
+            var numberA = RandomNumberA();
+            var numberB = RandomNumberB();
+
+            Console.WriteLine($"Now program will generate two numbers from 1 " +
+                $"to 10 for next math operations{Environment.NewLine}" +
+                $"" +
+                $"Number A = {numberA},   Number B = {numberB}{Environment.NewLine}" +
+                $"");
+
             Console.WriteLine("Alexei, please, select number of math operation");
             Console.WriteLine($"1. A + B{Environment.NewLine}" +
                 $"2. A - B {Environment.NewLine}" +
@@ -31,11 +41,36 @@
                     $"Please, try again{Environment.NewLine}" +
                     $"");
 
-                PrintBaseMenu();
+                MenuContinuation();
             }
             else
             {
                 OperationSelection(enterOperationNew);
+            }
+        }
+
+        static void OperationSelection(int enterOperationNew)
+        {
+            switch (enterOperationNew)
+            {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                default:
+                    Console.WriteLine($"Operation with such number is not found.{Environment.NewLine}" +
+                    $"Please, try again{Environment.NewLine}" +
+                    $"");
+                    MenuContinuation();
+                    break;
             }
         }
 
@@ -69,14 +104,15 @@
 
         static void ContinuationSelection(int enterOperationNew2)
         {
-            switch(enterOperationNew2)
+            switch (enterOperationNew2)
             {
                 case 1:
                     PrintBaseMenu();
                     break;
                 case 2:
+                    Console.WriteLine("Program close. Goodby!");
                     break;
-                    default:
+                default:
                     Console.WriteLine($"Operation with such number is not found.{Environment.NewLine}" +
                    $"Please, try again{Environment.NewLine}" +
                    $"");
@@ -85,32 +121,22 @@
             }
         }
 
-        static void OperationSelection(int enterOperationNew)
+        static int RandomNumberA()
         {
-            switch(enterOperationNew)
-                {
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
-                case 6:
-                    break;
-                    default:
-                    Console.WriteLine($"Operation with such number is not found.{Environment.NewLine}" +
-                    $"Please, try again{Environment.NewLine}" +
-                    $"");
-                    PrintBaseMenu();
-                    break;
-            }
+            Random random = new Random();
+            int nA = random.Next(1, 10);
+            return nA;
         }
 
+        static int RandomNumberB()
+        {
+            Random random = new Random();
+            int nB = random.Next(1, 10);
+            return nB;
+        }
+        static void Addition()
+        {
 
-
+        }
     }
 }
