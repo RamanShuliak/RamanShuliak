@@ -21,7 +21,7 @@
                 $"Number A = {numberA},   Number B = {numberB}{Environment.NewLine}" +
                 $"");
 
-            Console.WriteLine("Alexei, please, select number of math operation");
+            Console.WriteLine("Alexei, please, select number of math operation (enter 1 - 6)");
             Console.WriteLine($"1. A + B{Environment.NewLine}" +
                 $"2. A - B {Environment.NewLine}" +
                 $"3. A * B {Environment.NewLine}" +
@@ -84,7 +84,7 @@
 
         static void MenuContinuation(int numberA, int numberB)
         {
-            Console.WriteLine($"Select, do you wont to continue?{Environment.NewLine}" +
+            Console.WriteLine($"Select, do you wont to continue (enter 1 or 2)?{Environment.NewLine}" +
                 $"1. Yes{Environment.NewLine}" +
                 $"2. No{Environment.NewLine}");
 
