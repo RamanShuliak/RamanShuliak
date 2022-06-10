@@ -15,8 +15,6 @@
         }
         static void PrintBaseMenu(int numberA, int numberB)
         {
-            Console.WriteLine("HAHAHAHAHAHAHAHAHAH");
-            
             Console.WriteLine($"Now program will generate two numbers from 1 " +
                 $"to 10 for next math operations{Environment.NewLine}" +
                 $"" +
