@@ -16,8 +16,6 @@
 # Mono auto generated files
 mono_crash.*
 
-git rm --cached [Bb]in/
-git rm --cached [Oo]bj/
 
 # Build results
 [Dd]ebug/
