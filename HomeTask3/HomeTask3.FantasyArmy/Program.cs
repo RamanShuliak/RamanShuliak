@@ -63,6 +63,8 @@
 
             GetArmyCoast(army);
 
+            //________MENU AND CHEK__________
+
             BaseMenu(army, mages, fighters, creatures);
 
             static void AssingLimitsFindUnits(Unit[] army)
@@ -191,6 +193,9 @@
                 }
             }
 
+
+            //________LIMITS__________
+
             static int EnterMaxLimit()
             {
                 Console.WriteLine($"Lord Alexei, please, enter the maximum limit of health{Environment.NewLine}" +
@@ -220,6 +225,8 @@
                     }
                 }
             }
+
+            //________ARRAYS METHODS__________
 
             static void GetArmyComposition(Unit[] army)
             {
@@ -272,6 +279,8 @@
                 Console.WriteLine("");
 
             }
+
+            //________SPECIALS CHARACTERISTICS__________
 
             static void SelectSpecialCharacteristics(Unit[] army)
             {
