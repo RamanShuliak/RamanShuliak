@@ -38,9 +38,19 @@
 
             var ghost = new Creature("Ghost", 200, 2000, 100, "Undead", "Spirit");
 
+
             var army = new Unit[] { withard, dragon, druid, warlock,
                 battleMage, golem, swordman, pikeman, necromancer, archer, barbarian,
                 horseman, griffin, leviathan};
+
+
+            var mages = new Mage[] { withard, druid, warlock, battleMage, necromancer };
+
+            var fighters = new Fighter[] { swordman, pikeman, archer, barbarian, horseman };
+
+            var creatures = new Creature[] { golem, griffin, leviathan, ghost };
+
+
 
 
 
@@ -53,7 +63,7 @@
 
             GetArmyCoast(army);
 
-            BaseMenu(army);
+            BaseMenu(army, mages, fighters, creatures);
 
             static void AssingLimitsFindUnits(Unit[] army)
             {
@@ -63,21 +73,21 @@
                 FindUnit(army, maxLimit2, minLimit2);
             }
 
-            static void BaseMenu(Unit[] army)
+            static void BaseMenu(Unit[] army, Mage[] mages, Fighter[] fighters, Creature[] creatures)
             {
                 Console.WriteLine($"Lord Alexei, please, enter the number" +
                  $"of operation from 1 to 3 {Environment.NewLine}" +
                  $"{Environment.NewLine}" +
                  $"1. Select limits of health and find the units," +
                     $"which are in the range{Environment.NewLine}" +
-                $"2. Select the special characteristics and find" +
-                $"the units,  which have them{Environment.NewLine}" +
+                $"2. To define in groups with different special characteristics units" +
+                $"with the most strong index of this characteristics{Environment.NewLine}" +
                 $"3. Close the program{Environment.NewLine}");
 
-                ChekOperationSelection(army);
+                ChekOperationSelection(army, mages, fighters, creatures);
             }
 
-            static void ChekOperationSelection(Unit[] army)
+            static void ChekOperationSelection(Unit[] army, Mage[] mages, Fighter[] fighters, Creature[] creatures)
             {
                 var enterOperation = Console.ReadLine();
                 int enterOperationNew = 0;
@@ -88,21 +98,32 @@
                         $"Please, try again{Environment.NewLine}" +
                         $"");
 
-                    MenuContinuation(army);
+                    MenuContinuation(army, mages, fighters, creatures);
                 }
                 else
                 {
-                    OperationSelection(enterOperationNew, army);
+                    OperationSelection(enterOperationNew, army, mages, fighters, creatures);
                 }
             }
 
-            static void OperationSelection(int enterOperationNew, Unit[] army)
+            static void OperationSelection(int enterOperationNew, Unit[] army, 
+                Mage[]mages, Fighter[]fighters, Creature[]creatures)
             {
                 switch (enterOperationNew)
                 {
                     case 1:
                         AssingLimitsFindUnits(army);
-                        MenuContinuation(army);
+                        MenuContinuation(army, mages, fighters, creatures);
+                        break;
+                    case 2:
+                        GetMagesManaHierarchy(mages);
+
+                        GetFightersCritHierarchy(fighters);
+
+                        GetCreatureElementHierarchy(creatures);
+
+                        MenuContinuation(army, mages, fighters, creatures);
+
                         break;
                     case 3:
                         Console.WriteLine($"{Environment.NewLine}" +
@@ -113,28 +134,23 @@
                         $"Operation with such number is not found.{Environment.NewLine}" +
                         $"Please, try again{Environment.NewLine}" +
                         $"");
-                        MenuContinuation(army);
+                        MenuContinuation(army, mages, fighters, creatures);
                         break;
                 }
             }
 
-            static void SelectSpecialCharacteristics()
-            {
-
-            }
-
-            static void MenuContinuation(Unit[] army)
+            static void MenuContinuation(Unit[] army, Mage[] mages, Fighter[] fighters, Creature[] creatures)
             {
                 Console.WriteLine($"{Environment.NewLine}" +
                     $"Select, do you wont to continue (enter 1 or 2)?{Environment.NewLine}" +
                     $"1. Yes{Environment.NewLine}" +
                     $"2. No{Environment.NewLine}");
 
-                ChekContinuationSelection(army);
+                ChekContinuationSelection(army, mages, fighters, creatures);
 
             }
 
-            static void ChekContinuationSelection(Unit[] army)
+            static void ChekContinuationSelection(Unit[] army, Mage[] mages, Fighter[] fighters, Creature[] creatures)
             {
                 var enterOperation2 = Console.ReadLine();
                 int enterOperationNew2 = 0;
@@ -145,20 +161,21 @@
                         $"Please, try again{Environment.NewLine}" +
                         $"");
 
-                    MenuContinuation(army);
+                    MenuContinuation(army, mages, fighters, creatures);
                 }
                 else
                 {
-                    ContinuationSelection(enterOperationNew2, army);
+                    ContinuationSelection(enterOperationNew2, army, mages, fighters, creatures);
                 }
             }
 
-            static void ContinuationSelection(int enterOperationNew2, Unit[] army)
+            static void ContinuationSelection(int enterOperationNew2, Unit[] army, 
+                Mage[] mages, Fighter[] fighters, Creature[] creatures)
             {
                 switch (enterOperationNew2)
                 {
                     case 1:
-                        BaseMenu(army);
+                        BaseMenu(army, mages, fighters, creatures);
                         break;
                     case 2:
                         Console.WriteLine($"{Environment.NewLine}" +
@@ -169,7 +186,7 @@
                             $"Operation with such number is not found.{Environment.NewLine}" +
                        $"Please, try again{Environment.NewLine}" +
                        $"");
-                        MenuContinuation(army);
+                        MenuContinuation(army, mages, fighters, creatures);
                         break;
                 }
             }
@@ -177,7 +194,7 @@
             static int EnterMaxLimit()
             {
                 Console.WriteLine($"Lord Alexei, please, enter the maximum limit of health{Environment.NewLine}" +
-                    "of the unit you need: ");
+                    $"of the unit you need: {Environment.NewLine}");
 
                 var maxLimit = Convert.ToInt32(Console.ReadLine());
                 return maxLimit;
@@ -186,7 +203,7 @@
             static int EnterMinLimit()
             {
                 Console.WriteLine($"Lord Alexei, please, enter the minimum limit of health{Environment.NewLine}" +
-                    "of the unit you need: ");
+                    $"of the unit you need: {Environment.NewLine}");
 
                 var minLimit = Convert.ToInt32(Console.ReadLine());
                 return minLimit;
@@ -230,7 +247,7 @@
                     }
                 }
 
-                Console.WriteLine($"Lord Alexei, now you can see the sorting army from unit with minimal attack, to unit with maximum{Environment.NewLine}" +
+                Console.WriteLine($"Lord Alexei, now you can see the sorting army from unit with minimal attack, to unit with maximum:{Environment.NewLine}" +
                     $"");
                 for (int i = 0; i < army.Length; i++)
                 {
@@ -248,7 +265,7 @@
                     armyCoast = armyCoast + army[i].Coast;
                 }
                 Console.WriteLine($"Lord Alexei, now you can see " +
-                    $"the summary mounthly coast of all units in Fantasy Army{Environment.NewLine}");
+                    $"the summary mounthly coast of all units in Fantasy Army:");
 
                 Console.WriteLine($"Summary mounthly coast = {armyCoast} septims");
 
@@ -256,9 +273,62 @@
 
             }
 
+            static void SelectSpecialCharacteristics(Unit[] army)
+            {
+                Console.WriteLine($"Lord Alexei, please, enter number from 1 to 3" +
+                    $"to select special characteristic {Environment.NewLine}" +
+                    $"1. Mana{Environment.NewLine}" +
+                    $"2. Armor{Environment.NewLine}" +
+                    $"3. ");
+            }
 
+            static void GetMagesManaHierarchy(Mage[]mages)
+            {
+                var maxMage = 1;
+                var maxIndex = 1;
+                for (int i = 0; i < mages.Length; i++)
+                {
+                    if (mages[i].Mana > maxMage)
+                    {
+                        maxMage = mages[i].Mana;
+                        maxIndex = i;
+                    }
+                    
+                }
+                Console.WriteLine($"Mage with the largest mana volume is:");
+                mages[maxIndex].PrintSpecialMageInfo();
+
+                Console.WriteLine("");
+            }
+
+            static void GetFightersCritHierarchy(Fighter[]fighters)
+            {
+                var maxCrit = 1;
+                var maxIndex = 1;
+                for (int i = 0; i < fighters.Length; i++)
+                {
+                    if (fighters[i].CriticalDamage > maxCrit)
+                    {
+                        maxCrit = fighters[i].CriticalDamage;
+                        maxIndex = i;
+                    }
+
+                }
+                Console.WriteLine($"Fighter with the largest bonus of critical damage is:");
+                fighters[maxIndex].PrintSpecialFighterInfo();
+
+                Console.WriteLine("");
+            }
+
+            static void GetCreatureElementHierarchy(Creature[] creatures)
+            {
+                Console.WriteLine($"All natural elements exist in garmony. " +
+                    $"The are no strongest or weakest among them.{Environment.NewLine}" +
+                    $"Strengh of the creatures depend only from their Attack and Health");
+            }
 
         }
 
     }
+
 }

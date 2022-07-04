@@ -2,11 +2,16 @@
 {
     public class Fighter : Unit
     {
-        private int CriticalDamage;
-        public Fighter(string name, int healthPoint, int attack, int coast, string race, int armor) 
+        public int CriticalDamage;
+        public Fighter(string name, int healthPoint, int attack, int coast, string race, int criticalDamage) 
             : base(name, healthPoint, attack, coast, race)
         {
-            CriticalDamage = armor;
+            CriticalDamage = criticalDamage;
+        }
+
+        public void PrintSpecialFighterInfo()
+        {
+            Console.WriteLine($"Unit - {Name}  |   Additional critical damage -  + {CriticalDamage} %");
         }
     }
 }
