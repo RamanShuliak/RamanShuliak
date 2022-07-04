@@ -23,5 +23,10 @@
         {
             Console.WriteLine($"Unit - {Name}  |  Damage - {Attack} HP/sec");
         }
+
+        public void PrintHealthInfo()
+        {
+            Console.WriteLine($"Unit - {Name}  |  Health - {HealthPoint} HP");
+        }
     }
 }

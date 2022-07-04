@@ -40,6 +40,27 @@
                 horseman, griffin, leviathan};
 
 
+            static int EnterLimits()
+            {
+                Console.WriteLine($"Lord Alexei, please, enter the maximum and minimum limits of health{Environment.NewLine}" +
+                    "of the unit you need: ");
+
+                var maxLimit = 
+            }
+
+            static void FindUnit(Unit[] army)
+            {
+                Console.WriteLine("Composition of the Fantasy Army: ");
+                for (int i = 0; i < army.Length; i++)
+                {
+                    if (army[i].HealthPoint < maxLimit && (army[i].HealthPoint > minLimit)
+                    {
+                        Console.WriteLine("Units with suitable number of Healthpoints are: ");
+                        army[i].PrintHealthInfo();
+                    }
+                }
+            }
+
             static void GetArmyComposition(Unit[] army)
             {
                 Console.WriteLine("Composition of the Fantasy Army: ");
@@ -48,8 +69,6 @@
                     army[i].PrintFullInfo();
                 }
             }
-
-            GetDamageHierarchy(army);
 
             static void GetDamageHierarchy(Unit[] army)
             {
