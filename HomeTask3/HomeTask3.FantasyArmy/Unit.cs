@@ -15,9 +15,13 @@
             Coast = coast;
         }
 
-        public void PrintInfo()
+        public void PrintFullInfo()
         {
             Console.WriteLine($"Unit - {Name}  |  Health - {HealthPoint} HP  |   Damage - {Attack} HP/sec  |   Coast/month - {Coast} septims");
+        }
+        public void PrintAttackInfo()
+        {
+            Console.WriteLine($"Unit - {Name}  |  Damage - {Attack} HP/sec");
         }
     }
 }

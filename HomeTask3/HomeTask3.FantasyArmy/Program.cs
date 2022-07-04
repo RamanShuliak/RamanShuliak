@@ -39,18 +39,42 @@
                 battleMage, golem, swordman, pikeman, necromancer, archer, barbarian, 
                 horseman, griffin, leviathan};
 
-            
-            
+
             static void GetArmyComposition(Unit[] army)
             {
                 Console.WriteLine("Composition of the Fantasy Army: ");
                 for (int i = 0; i < army.Length; i++)
                 {
-                    army[i].PrintInfo();
+                    army[i].PrintFullInfo();
                 }
             }
 
-            
+            GetDamageHierarchy(army);
+
+            static void GetDamageHierarchy(Unit[] army)
+            {
+                for (int i = 0; i < army.Length - 1; i++)
+                {
+                    for (int j = i + 1; j < army.Length; j++)
+                    {
+                        if (army[i].Attack > army[j].Attack)
+                        {
+                            var temp = army[i];
+                            army[i] = army[j];
+                            army[j] = temp;
+                        }
+                    }
+                }
+
+                // вывод
+                Console.WriteLine($"This is sorting army from unit with minimal attack, to unit with maximum{Environment.NewLine}" +
+                    $"");
+                for (int i = 0; i < army.Length; i++)
+                {
+                    army[i].PrintAttackInfo();
+                }
+            }
+
             static void GetArmyCoast(Unit[] army)
             {
                 var armyCoast = 0;
