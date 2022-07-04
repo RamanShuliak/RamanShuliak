@@ -8,38 +8,38 @@
         static void Main(string[] args)
         {
 
-            var necromancer = new Mage("Necromancer", 4480, 12763, 500, 14367);
+            var necromancer = new Mage("Necromancer", 4480, 12763, 500, "Orc", 14367);
 
-            var withard = new Mage("Withard", 3765, 13437, 430, 13200);
+            var withard = new Mage("Withard", 3765, 13437, 430, "Elf", 13200);
 
-            var druid = new Mage("Druid", 6400, 4300, 300, 8450);
+            var druid = new Mage("Druid", 6400, 4300, 300, "Human", 8450);
 
-            var warlock = new Mage("Warlock", 1200, 20567, 400, 10000);
+            var warlock = new Mage("Warlock", 1200, 20567, 400, "Dark Elf", 10000);
 
-            var battleMage = new Mage("BattleMage", 7000, 16850, 680, 12000);
+            var battleMage = new Mage("BattleMage", 7000, 16850, 680, "Human", 12000);
 
-            var swordman = new Fighter("Swordman", 10400, 3650, 75, 10);
+            var swordman = new Fighter("Swordman", 10400, 3650, 75, "Dwarf", 10);
 
-            var pikeman = new Fighter("Pikeman", 8296, 4500, 75, 32);
+            var pikeman = new Fighter("Pikeman", 8296, 4500, 75, "Human", 32);
 
-            var archer = new Fighter("Archer", 6560, 4000, 80, 64);
+            var archer = new Fighter("Archer", 6560, 4000, 80, "Elf", 64);
 
-            var barbarian = new Fighter("Barbarian", 12000, 6380, 100, 120);
+            var barbarian = new Fighter("Barbarian", 12000, 6380, 100, "Orc", 120);
 
-            var horseman = new Fighter("Horseman", 15830, 8270, 190, 85);
+            var horseman = new Fighter("Horseman", 15830, 8270, 190, "Centaur", 85);
 
-            var griffin = new Creature("Griffin", 20000, 16000, 300, "Wind");
+            var griffin = new Creature("Griffin", 20000, 16000, 300, "Relict", "Wind");
 
-            var golem = new Creature("Golem", 23420, 13407, 280, "Earth");
+            var golem = new Creature("Golem", 23420, 13407, 280, "Elemental", "Earth");
 
-            var dragon = new Creature("Dragon", 50280, 32480, 1000, "Fire");
+            var dragon = new Creature("Dragon", 50280, 32480, 1000, "Damed snake", "Fire");
 
-            var leviathan = new Creature("Leviathan", 45000, 40200, 1150, "Water");
+            var leviathan = new Creature("Leviathan", 45000, 40200, 1150, "Megalodon", "Water");
 
-            var ghost = new Creature("Ghost", 200, 2000, 100, "Spirit");
+            var ghost = new Creature("Ghost", 200, 2000, 100, "Undead", "Spirit");
 
-            var army = new Unit[] { withard, dragon, druid, warlock, 
-                battleMage, golem, swordman, pikeman, necromancer, archer, barbarian, 
+            var army = new Unit[] { withard, dragon, druid, warlock,
+                battleMage, golem, swordman, pikeman, necromancer, archer, barbarian,
                 horseman, griffin, leviathan};
 
 
@@ -55,14 +55,14 @@
 
             BaseMenu(army);
 
-            static void AssingLimitsFindUnits(Unit[]army)
+            static void AssingLimitsFindUnits(Unit[] army)
             {
                 int maxLimit2 = EnterMaxLimit();
                 int minLimit2 = EnterMinLimit();
 
                 FindUnit(army, maxLimit2, minLimit2);
             }
-            
+
             static void BaseMenu(Unit[] army)
             {
                 Console.WriteLine($"Lord Alexei, please, enter the number" +
@@ -102,6 +102,7 @@
                 {
                     case 1:
                         AssingLimitsFindUnits(army);
+                        MenuContinuation(army);
                         break;
                     case 3:
                         Console.WriteLine($"{Environment.NewLine}" +
@@ -115,6 +116,11 @@
                         MenuContinuation(army);
                         break;
                 }
+            }
+
+            static void SelectSpecialCharacteristics()
+            {
+
             }
 
             static void MenuContinuation(Unit[] army)
@@ -147,7 +153,7 @@
                 }
             }
 
-            static void ContinuationSelection(int enterOperationNew2, Unit[]army)
+            static void ContinuationSelection(int enterOperationNew2, Unit[] army)
             {
                 switch (enterOperationNew2)
                 {
