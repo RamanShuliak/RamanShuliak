@@ -2,6 +2,9 @@
 {
     internal class Program
     {
+        //________OBJECTS__________
+
+
         static void Main(string[] args)
         {
 
@@ -40,22 +43,156 @@
                 horseman, griffin, leviathan};
 
 
-            static int EnterLimits()
-            {
-                Console.WriteLine($"Lord Alexei, please, enter the maximum and minimum limits of health{Environment.NewLine}" +
-                    "of the unit you need: ");
 
-                var maxLimit = 
+            //________METODS__________
+
+
+            GetArmyComposition(army);
+
+            GetDamageHierarchy(army);
+
+            GetArmyCoast(army);
+
+            BaseMenu(army);
+
+            static void AssingLimitsFindUnits(Unit[]army)
+            {
+                int maxLimit2 = EnterMaxLimit();
+                int minLimit2 = EnterMinLimit();
+
+                FindUnit(army, maxLimit2, minLimit2);
+            }
+            
+            static void BaseMenu(Unit[] army)
+            {
+                Console.WriteLine($"Lord Alexei, please, enter the number" +
+                 $"of operation from 1 to 3 {Environment.NewLine}" +
+                 $"{Environment.NewLine}" +
+                 $"1. Select limits of health and find the units," +
+                    $"which are in the range{Environment.NewLine}" +
+                $"2. Select the special characteristics and find" +
+                $"the units,  which have them{Environment.NewLine}" +
+                $"3. Close the program{Environment.NewLine}");
+
+                ChekOperationSelection(army);
             }
 
-            static void FindUnit(Unit[] army)
+            static void ChekOperationSelection(Unit[] army)
             {
-                Console.WriteLine("Composition of the Fantasy Army: ");
+                var enterOperation = Console.ReadLine();
+                int enterOperationNew = 0;
+                if (!int.TryParse(enterOperation, out enterOperationNew))
+                {
+                    Console.WriteLine($"{Environment.NewLine}" +
+                        $"Entered data is wrong, because include symbols.{Environment.NewLine}" +
+                        $"Please, try again{Environment.NewLine}" +
+                        $"");
+
+                    MenuContinuation(army);
+                }
+                else
+                {
+                    OperationSelection(enterOperationNew, army);
+                }
+            }
+
+            static void OperationSelection(int enterOperationNew, Unit[] army)
+            {
+                switch (enterOperationNew)
+                {
+                    case 1:
+                        AssingLimitsFindUnits(army);
+                        break;
+                    case 3:
+                        Console.WriteLine($"{Environment.NewLine}" +
+                        $"Program is close. Goodby!");
+                        break;
+                    default:
+                        Console.WriteLine($"{Environment.NewLine}" +
+                        $"Operation with such number is not found.{Environment.NewLine}" +
+                        $"Please, try again{Environment.NewLine}" +
+                        $"");
+                        MenuContinuation(army);
+                        break;
+                }
+            }
+
+            static void MenuContinuation(Unit[] army)
+            {
+                Console.WriteLine($"{Environment.NewLine}" +
+                    $"Select, do you wont to continue (enter 1 or 2)?{Environment.NewLine}" +
+                    $"1. Yes{Environment.NewLine}" +
+                    $"2. No{Environment.NewLine}");
+
+                ChekContinuationSelection(army);
+
+            }
+
+            static void ChekContinuationSelection(Unit[] army)
+            {
+                var enterOperation2 = Console.ReadLine();
+                int enterOperationNew2 = 0;
+                if (!int.TryParse(enterOperation2, out enterOperationNew2))
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine($"Entered data is wrong, because include symbols.{Environment.NewLine}" +
+                        $"Please, try again{Environment.NewLine}" +
+                        $"");
+
+                    MenuContinuation(army);
+                }
+                else
+                {
+                    ContinuationSelection(enterOperationNew2, army);
+                }
+            }
+
+            static void ContinuationSelection(int enterOperationNew2, Unit[]army)
+            {
+                switch (enterOperationNew2)
+                {
+                    case 1:
+                        BaseMenu(army);
+                        break;
+                    case 2:
+                        Console.WriteLine($"{Environment.NewLine}" +
+                            $"Program close. Goodby!");
+                        break;
+                    default:
+                        Console.WriteLine($"{Environment.NewLine}" +
+                            $"Operation with such number is not found.{Environment.NewLine}" +
+                       $"Please, try again{Environment.NewLine}" +
+                       $"");
+                        MenuContinuation(army);
+                        break;
+                }
+            }
+
+            static int EnterMaxLimit()
+            {
+                Console.WriteLine($"Lord Alexei, please, enter the maximum limit of health{Environment.NewLine}" +
+                    "of the unit you need: ");
+
+                var maxLimit = Convert.ToInt32(Console.ReadLine());
+                return maxLimit;
+            }
+
+            static int EnterMinLimit()
+            {
+                Console.WriteLine($"Lord Alexei, please, enter the minimum limit of health{Environment.NewLine}" +
+                    "of the unit you need: ");
+
+                var minLimit = Convert.ToInt32(Console.ReadLine());
+                return minLimit;
+            }
+
+            static void FindUnit(Unit[] army, int maxLimit2, int minLimit2)
+            {
+                Console.WriteLine("Units with suitable number of Healthpoints are: ");
                 for (int i = 0; i < army.Length; i++)
                 {
-                    if (army[i].HealthPoint < maxLimit && (army[i].HealthPoint > minLimit)
+                    if (army[i].HealthPoint < maxLimit2 && army[i].HealthPoint > minLimit2)
                     {
-                        Console.WriteLine("Units with suitable number of Healthpoints are: ");
                         army[i].PrintHealthInfo();
                     }
                 }
@@ -63,11 +200,13 @@
 
             static void GetArmyComposition(Unit[] army)
             {
-                Console.WriteLine("Composition of the Fantasy Army: ");
+                Console.WriteLine($"Lord Alexei, this is " +
+                    $"the composition of the Fantasy Army, roled by you: {Environment.NewLine}");
                 for (int i = 0; i < army.Length; i++)
                 {
                     army[i].PrintFullInfo();
                 }
+                Console.WriteLine("");
             }
 
             static void GetDamageHierarchy(Unit[] army)
@@ -85,13 +224,14 @@
                     }
                 }
 
-                // вывод
-                Console.WriteLine($"This is sorting army from unit with minimal attack, to unit with maximum{Environment.NewLine}" +
+                Console.WriteLine($"Lord Alexei, now you can see the sorting army from unit with minimal attack, to unit with maximum{Environment.NewLine}" +
                     $"");
                 for (int i = 0; i < army.Length; i++)
                 {
                     army[i].PrintAttackInfo();
                 }
+
+                Console.WriteLine("");
             }
 
             static void GetArmyCoast(Unit[] army)
@@ -101,7 +241,12 @@
                 {
                     armyCoast = armyCoast + army[i].Coast;
                 }
-                Console.WriteLine($"Summary mounthly coast of all units in Fantasy Army = {armyCoast} septims");
+                Console.WriteLine($"Lord Alexei, now you can see " +
+                    $"the summary mounthly coast of all units in Fantasy Army{Environment.NewLine}");
+
+                Console.WriteLine($"Summary mounthly coast = {armyCoast} septims");
+
+                Console.WriteLine("");
 
             }
 
