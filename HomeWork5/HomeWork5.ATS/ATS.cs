@@ -22,11 +22,13 @@ namespace HomeWork5.ATS
             return createdRateID;
         }
 
-        public void GiveNumberToUsers(List<User> users)
+        public void GiveNumberToUsers(List<User> users, List<Terminal> terminals)
         {
             for (int i = 0; i < users.Count; i++)
             {
                 users[i].Number = CreateNumber();
+
+                terminals.Add(new Terminal(users[i].Number, true) { Number = users[i].Number });
             }
         }
 

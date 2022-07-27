@@ -8,9 +8,9 @@ namespace HomeWork5.ATS
 {
     internal class User
     {
-        delegate void UserRateHandler(string message);
+        delegate void UserHandler(string message);
 
-        event UserRateHandler NotifyUserRate;
+        event UserHandler NotifyUser;
         public string Name { get; set; }
 
         public string Rate { get; set; }
@@ -34,13 +34,11 @@ namespace HomeWork5.ATS
             return createdUserID;
         }
         
-        // Данный метод даёт юзеру Роману попытку поменять свой тарифный план.
-        // Я не смог родить аналогичный метод, общий для всех юзеров, чтобы каждый из них мог его вызвать.
-        // Пытался делать через доп.цикл for с перебором листа юзеров, но он тогда меняет тариф у всех,
-        // даже если вызывает метод конкретный юзер.
-        public void ChoseRate(User roman, List<Rate> rates, DateTime startTime)
+
+        // Ta fajna metoda, ten piękny cod, są dedykowany nauczycielu Aleksieju
+        public void ChoseRate(List<Rate> rates, DateTime startTime)
         {
-            var prescriptionChoicingRate = DateTime.Now - roman.UserDate;
+            var prescriptionChoicingRate = DateTime.Now - UserDate;
 
             var prescriptionChoicingRateInt = prescriptionChoicingRate.Days;
 
@@ -48,15 +46,15 @@ namespace HomeWork5.ATS
 
             for (int i = 0; i < rates.Count; i++)
             {
-                if (prescriptionChoicingRateInt >= 30 && roman.Rate != rates[i].Name)
+                if (prescriptionChoicingRateInt >= 30 && Rate != rates[i].Name)
                 {
-                    roman.Rate = rates[i].Name;
+                    Rate = rates[i].Name;
 
-                    roman.UserDate = DateTime.Now;
+                    UserDate = DateTime.Now;
 
-                    NotifyUserRate?.Invoke($"User {roman.Name}, you have changed your rate for {roman.Rate}");
+                    NotifyUser?.Invoke($"User {Name}, you changed your rate for {Rate}");
 
-                    Console.WriteLine($"User {roman.Name}, you have changed your rate for {roman.Rate}");
+                    Console.WriteLine($"User {Name} changed his rate for {Rate}");
                     
                     break;
 
@@ -69,13 +67,39 @@ namespace HomeWork5.ATS
 
             if (x >= rates.Count)
             {
-                NotifyUserRate?.Invoke($"User {roman.Name}, you can't change your rate" +
+                NotifyUser?.Invoke($"User {Name}, you can't change your rate" +
                     $"because you have already changed it in this month " +
                     $"or you already use this rate");
 
-                Console.WriteLine($"User {roman.Name}, you can't change your rate " +
+                Console.WriteLine($"User {Name} can't change your rate " +
                     $"because you have already changed it in this month " +
                     $"or you already use this rate");
+            }
+        }
+
+        public void ChangeConditionOfPort(List<Terminal> terminals)
+        {
+            for (int i = 0; i < terminals.Count; i++)
+            {
+                if (terminals[i].Number == Number )
+                {
+                    if (terminals[i].OpenPort == true)
+                    {
+                        terminals[i].OpenPort = false;
+
+                        NotifyUser?.Invoke($"User {Name}, your port had been cloused");
+
+                        Console.WriteLine($"User's {Name} port had been cloused");
+                    }
+                    else
+                    {
+                        terminals[i].OpenPort = true;
+
+                        NotifyUser?.Invoke($"User {Name}, your port had been opened");
+
+                        Console.WriteLine($"User's {Name} port had been opened");
+                    }
+                }
             }
         }
     }

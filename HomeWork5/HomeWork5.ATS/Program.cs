@@ -24,16 +24,27 @@
 
             var rates = new List<Rate> { noLimits, family, forLosers };
 
+            //__________ Inicialisation of Terminals __________
+
+            var terminals = new List<Terminal>
+            {
+
+            };
+
 
             //__________ Base work of ATS __________
 
             var ats = new ATS();
 
-            ats.GiveNumberToUsers(users);
+            ats.GiveNumberToUsers(users, terminals);           
 
             ats.GiveFirstRateToUsers(users, rates);
 
             var startTime = DateTime.Now;
+
+            roman.ChoseRate(rates, startTime);
+
+            roman.ChangeConditionOfPort(terminals);
 
 
 
