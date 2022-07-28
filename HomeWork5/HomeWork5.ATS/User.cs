@@ -33,9 +33,16 @@ namespace HomeWork5.ATS
 
             return createdUserID;
         }
+
+        public int CreateLongOfCalling()
+        {
+            var longOfCallingRandom = new Random().Next(1, 4000);
+
+            return longOfCallingRandom;
+        }
         
 
-        // Ta fajna metoda, ten piękny cod, są dedykowany nauczycielu Aleksieju
+        // Ta fajna metoda da ten piękny cod są dedykowany nauczycielu Aleksieju
         public void ChoseRate(List<Rate> rates, DateTime startTime)
         {
             var prescriptionChoicingRate = DateTime.Now - UserDate;
@@ -99,6 +106,63 @@ namespace HomeWork5.ATS
 
                         Console.WriteLine($"User's {Name} port had been opened");
                     }
+                }
+            }
+        }
+
+        public void Call(List<User> users, List<Terminal> terminals, List<Rate> rates)
+        {
+            var randomUserID = CreateUserID();
+
+            var startTimeCalling = DateTime.Now;
+
+            var longOfCalling = CreateLongOfCalling();
+
+            if (users[randomUserID].Number != Number)
+            {
+                if (terminals[randomUserID].OpenPort == true)
+                {
+                    Console.WriteLine($"User {Name} is calling for {users[randomUserID].Name}");
+
+                    terminals[randomUserID].OpenPort = false;
+
+                    for (int j = 0; j < terminals.Count; j++)
+                    {
+                        if (terminals[j].Number == Number)
+                        {
+                            terminals[j].OpenPort = false;
+                        }
+                    }
+
+                    Thread.Sleep(longOfCalling);
+
+                    var finishTimeCalling = DateTime.Now;
+
+                    Console.WriteLine($"User {Name} and {users[randomUserID].Name} are finishing talking. Talking lasted {finishTimeCalling - startTimeCalling}.");
+
+                    terminals[randomUserID].OpenPort = true;
+
+                    for (int j = 0; j < terminals.Count; j++)
+                    {
+                        if (terminals[j].Number == Number)
+                        {
+                            terminals[j].OpenPort = true;
+                        }
+                    }
+
+                    try
+                    {
+                        StreamWriter historyOfCalling = new StreamWriter(@$"D:\Programming\Repository\RamanShuliak\HomeWork5\HomeWork5.ATS\FilesTxt\{Name}HistoryOfCalling.txt");
+                    }
+                    finally
+                    {
+
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"Number {users[randomUserID].Number} is busy" +
+                        $"or out of network cowerage");
                 }
             }
         }
