@@ -17,19 +17,22 @@ namespace HomeWork5.ATS
 
         public int Number { get; set; }
 
-        public DateTime UserDate { get; set; }
+        public DateTime UserDateForChangingRate { get; set; }
 
-        public User(string name, string rate, int number, DateTime userDate)
+        public DateTime UserDateForMonthPaying { get; set; }
+
+        public User(string name, string rate, int number, DateTime userDateForChangingRate, DateTime userDateForMonthPaying)
         {
             Name = name;
             Rate = rate;
             Number = number;
-            UserDate = userDate;
+            UserDateForChangingRate = userDateForChangingRate;
+            UserDateForMonthPaying = userDateForMonthPaying;
         }
 
         public int CreateUserID()
         {
-            var createdUserID = new Random().Next(0, 2);
+            var createdUserID = new Random().Next(0, 3);
 
             return createdUserID;
         }
@@ -45,7 +48,7 @@ namespace HomeWork5.ATS
         // Ta fajna metoda da ten piękny cod są dedykowany nauczycielu Aleksieju
         public void ChoseRate(List<Rate> rates, DateTime startTime)
         {
-            var prescriptionChoicingRate = DateTime.Now - UserDate;
+            var prescriptionChoicingRate = DateTime.Now - UserDateForChangingRate;
 
             var prescriptionChoicingRateInt = prescriptionChoicingRate.Days;
 
@@ -57,11 +60,11 @@ namespace HomeWork5.ATS
                 {
                     Rate = rates[i].Name;
 
-                    UserDate = DateTime.Now;
+                    UserDateForChangingRate = DateTime.Now;
 
-                    NotifyUser?.Invoke($"User {Name}, you changed your rate for {Rate}");
+                    NotifyUser?.Invoke($"User {Name}, you changed your rate for {Rate}{Environment.NewLine}");
 
-                    Console.WriteLine($"User {Name} changed his rate for {Rate}");
+                    Console.WriteLine($"User {Name} changed his rate for {Rate}{Environment.NewLine}");
                     
                     break;
 
@@ -76,11 +79,11 @@ namespace HomeWork5.ATS
             {
                 NotifyUser?.Invoke($"User {Name}, you can't change your rate" +
                     $"because you have already changed it in this month " +
-                    $"or you already use this rate");
+                    $"or you already use this rate{Environment.NewLine}");
 
                 Console.WriteLine($"User {Name} can't change your rate " +
                     $"because you have already changed it in this month " +
-                    $"or you already use this rate");
+                    $"or you already use this rate{Environment.NewLine}");
             }
         }
 
@@ -94,17 +97,17 @@ namespace HomeWork5.ATS
                     {
                         terminals[i].OpenPort = false;
 
-                        NotifyUser?.Invoke($"User {Name}, your port had been cloused");
+                        NotifyUser?.Invoke($"User {Name}, your port had been cloused{Environment.NewLine}");
 
-                        Console.WriteLine($"User's {Name} port had been cloused");
+                        Console.WriteLine($"User's {Name} port had been cloused{Environment.NewLine}");
                     }
                     else
                     {
                         terminals[i].OpenPort = true;
 
-                        NotifyUser?.Invoke($"User {Name}, your port had been opened");
+                        NotifyUser?.Invoke($"User {Name}, your port had been opened{Environment.NewLine}");
 
-                        Console.WriteLine($"User's {Name} port had been opened");
+                        Console.WriteLine($"User's {Name} port had been opened{Environment.NewLine}");
                     }
                 }
             }
@@ -124,7 +127,7 @@ namespace HomeWork5.ATS
             {
                 if (terminals[randomUserID].OpenPort == true)
                 {
-                    Console.WriteLine($"User {Name} is calling for {users[randomUserID].Name}");
+                    Console.WriteLine($"User {Name} is calling for {users[randomUserID].Name}{Environment.NewLine}");
 
                     terminals[randomUserID].OpenPort = false;
 
@@ -152,10 +155,17 @@ namespace HomeWork5.ATS
                         }
                     }
 
+                    for (int j = 0; j < terminals.Count; j++)
+                    {
+                        if (terminals[j].Number == Number)
+                        {
+                            terminals[j].MonthPay += costOfCalling;
+                        }
+                    }
 
-                    Console.WriteLine($"User {Name} and {users[randomUserID].Name} are finishing talking. Talking lasted {longestOfCalling}.");
+                    Console.WriteLine($"User {Name} and {users[randomUserID].Name} are finishing talking. Talking lasted {longestOfCalling}.{Environment.NewLine}");
 
-                    NotifyUser?.Invoke($"Calling for {users[randomUserID].Name}  |  talking lasted {longestOfCalling}  |  coast of calling = {costOfCalling}");
+                    NotifyUser?.Invoke($"Calling for {users[randomUserID].Name}  |  talking lasted {longestOfCalling}  |  coast of calling = {costOfCalling}{Environment.NewLine}");
 
                     terminals[randomUserID].OpenPort = true;
 
@@ -167,20 +177,42 @@ namespace HomeWork5.ATS
                         }
                     }
 
-                    try
-                    {
-                        StreamWriter historyOfCalling = new StreamWriter(@$"D:\Programming\Repository\RamanShuliak\HomeWork5\HomeWork5.ATS\FilesTxt\{Name}HistoryOfCalling.txt");
-                    }
-                    finally
-                    {
+                    var historyOfCalling = @$"D:\Programming\Repository\RamanShuliak\HomeWork5\HomeWork5.ATS\FilesTxt\{Name}HistoryOfCalling.txt";
 
-                    }
+                    File.AppendAllText(historyOfCalling, $"Calling for {users[randomUserID].Name}  |  talking lasted {longestOfCallingInt} milliseconds  |  coast of calling = {costOfCalling} Eurodollars {Environment.NewLine}");
+
+                    var historyOfCallingSecondUser = @$"D:\Programming\Repository\RamanShuliak\HomeWork5\HomeWork5.ATS\FilesTxt\{users[randomUserID].Name}HistoryOfCalling.txt";
+
+                    File.AppendAllText(historyOfCallingSecondUser, $"Calling from {Name}  |  talking lasted {longestOfCallingInt} milliseconds {Environment.NewLine}");
                 }
                 else
                 {
                     Console.WriteLine($"Number {users[randomUserID].Number} is busy" +
-                        $"or out of network cowerage");
+                        $"or out of network cowerage{Environment.NewLine}");
+
                 }
+            }
+            else
+            {
+                Call(users, terminals, rates);
+            }
+        }
+
+        public void GetHistoryOfCalling()
+        {
+            try
+            {
+                StreamReader readHistory = new StreamReader($@"D:\Programming\Repository\RamanShuliak\HomeWork5\HomeWork5.ATS\FilesTxt\{Name}HistoryOfCalling.txt");
+
+                Console.WriteLine($"User {Name} history of calls is:{Environment.NewLine}");
+
+                NotifyUser?.Invoke($"User {Name} history of calls is:{Environment.NewLine}");
+
+                Console.WriteLine(readHistory.ReadToEnd());
+            }
+            finally
+            {
+
             }
         }
     }

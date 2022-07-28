@@ -12,10 +12,13 @@ namespace HomeWork5.ATS
 
         public bool OpenPort { get; set; }
 
-        public Terminal(int number, bool openPort)
+        public int MonthPay { get; set; }
+
+        public Terminal(int number, bool openPort, int monthPay)
         {
             Number = number;
             OpenPort = openPort;
+            MonthPay = monthPay;
         }
     }
 }

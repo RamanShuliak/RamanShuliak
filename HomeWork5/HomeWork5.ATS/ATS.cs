@@ -28,7 +28,7 @@ namespace HomeWork5.ATS
             {
                 users[i].Number = CreateNumber();
 
-                terminals.Add(new Terminal(users[i].Number, true) { Number = users[i].Number });
+                terminals.Add(new Terminal(users[i].Number, true, 0) { Number = users[i].Number });
             }
         }
 
@@ -41,6 +41,30 @@ namespace HomeWork5.ATS
                 users[i].Rate = rates[rateID].Name;
 
                 rateID = CreateRateID();
+            }
+        }
+
+        public void PayMonthly(List<User> users, List<Terminal> terminals)
+        {
+            var DateNow = DateTime.Now.Day;
+
+            for (int i = 0; i < users.Count; i++)
+            {
+                var userDate = users[i].UserDateForMonthPaying.Day;
+                
+                if((DateNow - userDate) >= 30)
+                {
+                    for (int j = 0; j < terminals.Count; j++)
+                    {
+                        if(terminals[j].Number == users[i].Number)
+                        {
+                            terminals[j].MonthPay = 0;
+
+                            Console.WriteLine($"User {users[i].Name} payd his monthly cost");
+
+                        }
+                    }
+                }
             }
         }
 

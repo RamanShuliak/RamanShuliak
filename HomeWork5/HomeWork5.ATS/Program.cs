@@ -6,11 +6,11 @@
         {
             //__________ Inicialisation of Users __________
 
-            var roman = new User("Roman", "NoRate", 0, DateTime.Now);
+            var roman = new User("Roman", "NoRate", 0, DateTime.Now, DateTime.Now);
 
-            var bogdan = new User("Bogdan", "NoRate", 0, DateTime.Now);
+            var bogdan = new User("Bogdan", "NoRate", 0, DateTime.Now, DateTime.Now);
 
-            var max = new User("Max", "NoRate", 0, DateTime.Now);
+            var max = new User("Max", "NoRate", 0, DateTime.Now, DateTime.Now);
 
             var users = new List<User> {roman, bogdan, max};
 
@@ -42,17 +42,20 @@
 
             var startTime = DateTime.Now;
 
-            roman.ChoseRate(rates, startTime);
+            bogdan.Call(users, terminals, rates);
 
-            roman.ChangeConditionOfPort(terminals);
+            max.ChangeConditionOfPort(terminals);
 
+            roman.Call(users, terminals, rates);
 
+            max.ChangeConditionOfPort(terminals);
 
-            //__________ METHODS __________
-
+            roman.GetHistoryOfCalling();
 
 
 
         }
+
+        //__________ METHODS __________
     }
 }
