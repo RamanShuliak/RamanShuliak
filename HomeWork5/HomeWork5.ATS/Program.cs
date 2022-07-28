@@ -52,12 +52,12 @@
 
             roman.GetHistoryOfCalling();
 
-
+            ats.PrintBaseMenu(users, terminals);
 
         }
 
         //__________ METHODS __________
 
-
+       
     }
 }
