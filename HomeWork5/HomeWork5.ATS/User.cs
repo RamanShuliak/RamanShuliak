@@ -118,6 +118,8 @@ namespace HomeWork5.ATS
 
             var longOfCalling = CreateLongOfCalling();
 
+            int costOfCalling = 0;
+
             if (users[randomUserID].Number != Number)
             {
                 if (terminals[randomUserID].OpenPort == true)
@@ -138,7 +140,22 @@ namespace HomeWork5.ATS
 
                     var finishTimeCalling = DateTime.Now;
 
-                    Console.WriteLine($"User {Name} and {users[randomUserID].Name} are finishing talking. Talking lasted {finishTimeCalling - startTimeCalling}.");
+                    var longestOfCalling = finishTimeCalling - startTimeCalling;
+
+                    var longestOfCallingInt = longestOfCalling.Milliseconds;
+
+                    foreach (Rate rate in rates)
+                    {
+                        if (rate.Name == Rate)
+                        {
+                            costOfCalling = rate.Cost * longestOfCallingInt;
+                        }
+                    }
+
+
+                    Console.WriteLine($"User {Name} and {users[randomUserID].Name} are finishing talking. Talking lasted {longestOfCalling}.");
+
+                    NotifyUser?.Invoke($"Calling for {users[randomUserID].Name}  |  talking lasted {longestOfCalling}  |  coast of calling = {costOfCalling}");
 
                     terminals[randomUserID].OpenPort = true;
 
