@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MVCProject.Core.DataTransferObject.ArticleDto>
+﻿@model IEnumerable<ArticleDto>
 
 @{
     ViewData["Title"] = "View";
@@ -30,6 +30,15 @@
             </h6>
         </div>
     }
+}
+
+@section CssStyles
+{
+    <style>
+        h1{
+            color: red;
+        }
+    </style>
 }
 
 @PaginatorHelper.GeneratePaginator()
