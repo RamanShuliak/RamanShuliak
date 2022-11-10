@@ -1,6 +1,8 @@
+using Microsoft.EntityFrameworkCore;
 using MVCProject.Business.ServicesImplementation;
 using MVCProject.Core;
 using MVCProject.Core.Abstractions;
+using MVCProject.DataBase;
 
 namespace MVCProject
 {
@@ -8,10 +10,17 @@ namespace MVCProject
     {
         public static void Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
+            var connectionString =
+                "Server=HPPROBOOK;" +
+                "Database=GoodNewsAggregatorDataBase;" +
+                "Trusted_Connection=True;" +
+                "TrustServerCertificate=True";
 
             // Add services to the container.
+            var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<GoodNewsAggregatorContext>(optionsBuilder =>
+            optionsBuilder.UseSqlServer(connectionString));
             builder.Services.AddTransient<IArticleService, ArticleService>();
             builder.Services.AddSingleton<ArticleStorage>();
 

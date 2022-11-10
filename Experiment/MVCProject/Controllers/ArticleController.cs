@@ -19,6 +19,7 @@ namespace MVCProject.Controllers
         {
             try
             {
+/*                var result = await _articleService.InitDatabase();*/
                 var article = await _articleService
                     .GetArticleByPageSizeAndPageNumberAsync(page, _pageSize);
                 if (article.Any())

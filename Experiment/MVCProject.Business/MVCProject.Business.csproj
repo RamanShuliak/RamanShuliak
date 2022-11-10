@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MVCProject.Core\MVCProject.Core.csproj" />
+    <ProjectReference Include="..\MVCProject.Data\MVCProject.DataBase.csproj" />
   </ItemGroup>
 
 </Project>

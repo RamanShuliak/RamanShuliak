@@ -11,8 +11,9 @@ namespace MVCProject.Core.Abstractions
     {
         Task<List<ArticleDto>> GetArticleByPageSizeAndPageNumberAsync(int pageNumber, int pageSize);
 
-        Task<List<ArticleDto>> GetNewArticleFromExternalSources();
+        Task<List<ArticleDto>> GetNewArticleFromExternalSourcesAsync();
 
         Task<ArticleDto> GetArticleByIdAsync(Guid id);
+
     }
 }
