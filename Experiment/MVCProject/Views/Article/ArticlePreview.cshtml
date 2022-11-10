@@ -1,0 +1,24 @@
+﻿@model ArticleDto
+
+<div>
+    <i>
+        @Html.DisplayFor(modelItem => Model.Id)
+    </i>
+    <h3>
+        @Html.DisplayFor(modelItem => Model.Title)
+    </h3>
+    <h5>
+        @Html.DisplayFor(modelItem => Model.Category)
+    </h5>
+    <p>
+        @Html.DisplayFor(modelItem => Model.ShortSummary)
+    </p>
+    <h6>
+        @Html.DisplayFor(modelItem => Model.PublicationDate)
+    </h6>
+
+    <a class="btn btn-primary" href="~/article/details/@Model.Id">Read details</a>
+
+</div>
+<hr>
+

@@ -13,6 +13,15 @@ namespace MVCProject.Business.ServicesImplementation
             _articleStorage = articleStorage;
         }
 
+        public async Task<ArticleDto> GetArticleByIdAsync(Guid id)
+        {
+            var dto = _articleStorage.ArticlesList
+                .FirstOrDefault(articleDto=>articleDto.Id.Equals(id));
+            
+                return dto;
+
+        }
+
         public async Task<List<ArticleDto>> GetArticleByPageSizeAndPageNumberAsync(int pageNumber, int pageSize)
         {
             List<ArticleDto> list;

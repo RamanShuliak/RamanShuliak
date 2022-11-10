@@ -2,6 +2,7 @@
 using MVCProject.Business.ServicesImplementation;
 using MVCProject.Core;
 using MVCProject.Core.Abstractions;
+using MVCProject.Core.DataTransferObject;
 
 namespace MVCProject.Controllers
 {
@@ -32,6 +33,21 @@ namespace MVCProject.Controllers
             catch
             {
                 throw;
+            }
+        }
+
+        public async Task<IActionResult> Details(Guid id)
+        {
+            var dto = await _articleService.GetArticleByIdAsync(id);
+            if (dto != null)
+            {
+                //ViewData["model"] = dto;
+                //ViewBag.Model = dto;
+                return View(dto);
+            }
+            else
+            {
+                return NotFound();
             }
         }
     }

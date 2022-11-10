@@ -12,23 +12,7 @@
 @if(Model.Any()){
     @foreach (var item in Model)
     {
-        <div>
-            <i>
-                @Html.DisplayFor(modelItem => item.Id)
-            </i>
-            <h3>
-                @Html.DisplayFor(modelItem => item.Title)
-            </h3>
-            <h5>
-                @Html.DisplayFor(modelItem => item.Category)
-            </h5>
-            <p>
-                @Html.DisplayFor(modelItem => item.ShortSummary)
-            </p>
-            <h6>
-                @Html.DisplayFor(modelItem => item.PublicationDate)
-            </h6>
-        </div>
+        @await Html.PartialAsync("ArticlePreview", item);
     }
 }
 
