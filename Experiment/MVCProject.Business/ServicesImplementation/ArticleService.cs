@@ -1,4 +1,6 @@
-﻿using MVCProject.Core;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using MVCProject.Core;
 using MVCProject.Core.Abstractions;
 using MVCProject.Core.DataTransferObject;
 using MVCProject.DataBase;
@@ -11,10 +13,12 @@ namespace MVCProject.Business.ServicesImplementation
     {
         /*        private readonly ArticleStorage _articleStorage;*/
 
+        private readonly IMapper _mapper;
         private readonly GoodNewsAggregatorContext _databaseContext;
-        public ArticleService(GoodNewsAggregatorContext databaseContext)
+        public ArticleService(GoodNewsAggregatorContext databaseContext, IMapper mapper)
         {
             _databaseContext = databaseContext;
+            _mapper = mapper;
         }
 
 /*        public async Task<ArticleDto> GetArticleByIdAsync(Guid id)
@@ -28,26 +32,12 @@ namespace MVCProject.Business.ServicesImplementation
 
         public async Task<List<ArticleDto>> GetArticleByPageSizeAndPageNumberAsync(int pageNumber, int pageSize)
         {
-            List<ArticleDto> list = new List<ArticleDto>();
-            var entities = 
-                _databaseContext.Articles
+            var list = await _databaseContext.Articles
                 .Skip(pageNumber * pageSize)
                 .Take(pageSize)
-                .Select(article => new ArticleDto()
-                {
-                    Id = article.Id,
-                    Title = article.Title,
-                    Category = "Default",
-                    Text = article.Text,
-                    PublicationDate = article.PublicationDate,
-                    ShortSummary = article.ShortDescription
-                })
-                .ToList();
+                .Select(article => _mapper.Map<ArticleDto>(article))
+                .ToListAsync();
 
-            /*            list = _articleStorage.ArticlesList
-                            .Skip(pageNumber*pageSize)
-                            .Take(pageSize)
-                            .ToList();*/
             return list;
         }
 

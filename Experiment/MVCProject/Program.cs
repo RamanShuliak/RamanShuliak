@@ -18,11 +18,12 @@ namespace MVCProject
 
             // Add services to the container.
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<GoodNewsAggregatorContext>(optionsBuilder =>
             optionsBuilder.UseSqlServer(connectionString));
             builder.Services.AddTransient<IArticleService, ArticleService>();
-            builder.Services.AddSingleton<ArticleStorage>();
+/*            builder.Services.AddSingleton<ArticleStorage>();*/
 
             var app = builder.Build();
 

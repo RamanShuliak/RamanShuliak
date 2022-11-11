@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MVCProject.Data\MVCProject.DataBase.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MVCProject.DataBase.Entities;
 
 namespace MVCProject.Core.DataTransferObject
 {
@@ -14,6 +10,15 @@ namespace MVCProject.Core.DataTransferObject
         public string ShortSummary { get; set; }
         public string Text { get; set; }
         public DateTime PublicationDate { get; set; }
+/*        public ArticleDto(Article article)
+        {
+            Id = article.Id;
+            Title = article.Title;
+            Category = "Default";
+            Text = article.Text;
+            PublicationDate = article.PublicationDate;
+            ShortSummary = article.ShortDescription;
+        }*/
 
     }
 }
