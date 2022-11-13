@@ -10,8 +10,12 @@ namespace MVCProject
     {
         public static void Main(string[] args)
         {
-            var connectionString =
-                "Server=HPPROBOOK;" +
+            
+            // Add services to the container.
+            var builder = WebApplication.CreateBuilder(args);
+
+            var connectionString = builder.Configuration.GetConnectionString("Default");
+            /*  "Server=HPPROBOOK;" +
                 "Database=GoodNewsAggregatorDataBase;" +
                 "Trusted_Connection=True;" +
                 "TrustServerCertificate=True";
