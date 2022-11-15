@@ -15,5 +15,7 @@ namespace MVCProject.Core.Abstractions
 
         Task<ArticleDto> GetArticleByIdAsync(Guid id);
 
+        Task<int> CreateArticleAsync(ArticleDto dto);
+
     }
 }

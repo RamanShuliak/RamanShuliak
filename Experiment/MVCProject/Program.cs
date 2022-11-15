@@ -3,6 +3,7 @@ using MVCProject.Business.ServicesImplementation;
 using MVCProject.Core;
 using MVCProject.Core.Abstractions;
 using MVCProject.DataBase;
+using Serilog;
 
 namespace MVCProject
 {
@@ -14,20 +15,26 @@ namespace MVCProject
             // Add services to the container.
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Host.UseSerilog((ctx, lc) => 
+            lc.WriteTo.File(@"D:\Programming\Experiments\Logs\data.log", 
+            Serilog.Events.LogEventLevel.Information)
+            .WriteTo.Console(Serilog.Events.LogEventLevel.Verbose));
+
+            builder.Services.AddControllersWithViews();
+
             var connectionString = builder.Configuration.GetConnectionString("Default");
             /*  "Server=HPPROBOOK;" +
-                "Database=GoodNewsAggregatorDataBase;" +
-                "Trusted_Connection=True;" +
-                "TrustServerCertificate=True";
+              "Database=GoodNewsAggregatorDataBase;" +
+              "Trusted_Connection=True;" +
+              "TrustServerCertificate=True";*/
 
-            // Add services to the container.
-            var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<GoodNewsAggregatorContext>(optionsBuilder =>
             optionsBuilder.UseSqlServer(connectionString));
             builder.Services.AddTransient<IArticleService, ArticleService>();
-/*            builder.Services.AddSingleton<ArticleStorage>();*/
+            /*            builder.Services.AddSingleton<ArticleStorage>();*/
+
+            builder.Configuration.AddJsonFile("secrets.json");
 
             var app = builder.Build();
 

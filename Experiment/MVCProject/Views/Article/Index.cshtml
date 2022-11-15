@@ -4,11 +4,10 @@
     ViewData["Title"] = "View";
 }
 
-<h1>View</h1>
+<h1>Articles</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<a href="~/article/create">Create article</a>
+
 @if(Model.Any()){
     @foreach (var item in Model)
     {

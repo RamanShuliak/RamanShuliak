@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNetCore.Mvc.Formatters
+@model ArticleModel
+@{
+    ViewData["Title"] = "Create article";
+}
+<div>
+    <h1>Create article</h1>
+
+    @using (Html.BeginForm("Create", "Article", FormMethod.Post))
+    {
+        <div>
+            @Html.LabelFor(model=>model.Title)
+            @Html.TextBoxFor(model =>model.Title)
+        </div>
+        <div>
+            @Html.LabelFor(model=>model.Id)
+            @Html.TextBoxFor(model =>model.Id)
+        </div>
+        <div>
+            @Html.LabelFor(model=>model.Category)
+            @Html.TextBoxFor(model =>model.Category)
+        </div>
+        <div>
+            @Html.LabelFor(model=>model.ShortSummary, new {@class ="form-label"})
+            @Html.TextBoxFor(model =>model.ShortSummary, new {@class="form-control", placeholder="Article short summary"})
+        </div>
+        <div>
+            @Html.LabelFor(model=>model.Text)
+            @Html.TextAreaFor(model =>model.Text)
+
+        </div>
+
+        <button>Submit</button>
+    }
+</div>
+
