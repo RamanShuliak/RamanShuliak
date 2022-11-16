@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalAssistantMVCProject", "MedicalAssistantMVCProject\MedicalAssistantMVCProject.csproj", "{E4C3A61B-D34D-4C9D-940F-AECE242FE94B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalAssistantMVCProject", "MedicalAssistantMVCProject\MedicalAssistantMVCProject.csproj", "{E4C3A61B-D34D-4C9D-940F-AECE242FE94B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalAssistantMVCProject.DataBase", "MedicalAssistantMVCProject.DataBase\MedicalAssistantMVCProject.DataBase.csproj", "{FD17CEDE-94B2-4E3D-A06C-34DB96D3709A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalAssistantMVCProject.DataBase", "MedicalAssistantMVCProject.DataBase\MedicalAssistantMVCProject.DataBase.csproj", "{FD17CEDE-94B2-4E3D-A06C-34DB96D3709A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalAssistantMVCProject.Business", "MedicalAssistantMVCProject.Business\MedicalAssistantMVCProject.Business.csproj", "{672B32D4-BE22-4D50-BAF7-4A36F2EF92DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalAssistantMVCProject.Core", "MedicalAssistantMVCProject.Core\MedicalAssistantMVCProject.Core.csproj", "{ACA4E420-8C3B-44B4-8A93-D904CC59ABAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{FD17CEDE-94B2-4E3D-A06C-34DB96D3709A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD17CEDE-94B2-4E3D-A06C-34DB96D3709A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD17CEDE-94B2-4E3D-A06C-34DB96D3709A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{672B32D4-BE22-4D50-BAF7-4A36F2EF92DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{672B32D4-BE22-4D50-BAF7-4A36F2EF92DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{672B32D4-BE22-4D50-BAF7-4A36F2EF92DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{672B32D4-BE22-4D50-BAF7-4A36F2EF92DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACA4E420-8C3B-44B4-8A93-D904CC59ABAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACA4E420-8C3B-44B4-8A93-D904CC59ABAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACA4E420-8C3B-44B4-8A93-D904CC59ABAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACA4E420-8C3B-44B4-8A93-D904CC59ABAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -17,9 +17,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MedicalAssistantMVCProject.Business\MedicalAssistantMVCProject.Business.csproj" />
+    <ProjectReference Include="..\MedicalAssistantMVCProject.Core\MedicalAssistantMVCProject.Core.csproj" />
     <ProjectReference Include="..\MedicalAssistantMVCProject.DataBase\MedicalAssistantMVCProject.DataBase.csproj" />
   </ItemGroup>
 
