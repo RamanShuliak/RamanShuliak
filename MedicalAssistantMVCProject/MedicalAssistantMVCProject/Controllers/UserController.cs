@@ -8,11 +8,11 @@ namespace MedicalAssistantMVCProject.Controllers
     public class UserController : Controller
     {
         private readonly IUserService _userService;
-        private readonly Mapper _mapper;
+        private readonly IMapper _mapper;
 
         private int _pageSize = 5;
 
-        public UserController(IUserService userService, Mapper mapper)
+        public UserController(IUserService userService, IMapper mapper)
         {
             _userService = userService;
             _mapper = mapper;
@@ -32,10 +32,12 @@ namespace MedicalAssistantMVCProject.Controllers
                     throw new ArgumentException(nameof(page));
                 }
             }
-            catch (Exception)
+            catch
             {
-                throw new Exception();
+
             }
+
+            return Ok();
         }
     }
 }

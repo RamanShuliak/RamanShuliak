@@ -9,9 +9,9 @@ namespace MedicalAssistantMVCProject.Business.ServicesImplementation
     public class UserService : IUserService
     {
         private readonly MedicalAssistantDbContext _medicalAssistantDbContext;
-        private readonly Mapper _mapper;
+        private readonly IMapper _mapper;
 
-        public UserService(MedicalAssistantDbContext medicalAssistantDbContext, Mapper mapper)
+        public UserService(MedicalAssistantDbContext medicalAssistantDbContext, IMapper mapper)
         {
             _medicalAssistantDbContext = medicalAssistantDbContext;
             _mapper = mapper;
