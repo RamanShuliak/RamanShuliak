@@ -1,5 +1,6 @@
 using MedicalAssistantMVCProject.Business.ServicesImplementation;
 using MedicalAssistantMVCProject.Core.Abstractions;
+using MedicalAssistantMVCProject.Core;
 using MedicalAssistantMVCProject.DataBase;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,9 +19,10 @@ namespace MedicalAssistantMVCProject
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddDbContext<MedicalAssistantDbContext>(optionsBuilder =>
                 optionsBuilder.UseSqlServer(connectionString));
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            builder.Services.AddTransient<IUserService, UserService>();
 
             var app = builder.Build();
 

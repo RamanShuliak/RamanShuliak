@@ -1,51 +1,31 @@
-﻿@model IEnumerable<MedicalAssistantMVCProject.Models.UserModel>
+﻿@model IEnumerable<UserDto>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>View</h1>
+<h1>Users</h1>
 
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
+@if (Model.Any())
+{
+    @foreach (var item in Model)
+    {
+        <div>
+            <h5>
                 @Html.DisplayNameFor(model => model.UserName)
-            </th>
-            <th>
+            </h5>
+            <h5>
                 @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
+            </h5>
+            <h6>
                 @Html.DisplayNameFor(model => model.PasswordHash)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PasswordHash)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
+            </h6>
+            <div>
+                @Html.DisplayNameFor(model => model.Id)
+            </div>
+        </div>
+    }
 }
-    </tbody>
-</table>
+
+
+
