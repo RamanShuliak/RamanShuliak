@@ -34,10 +34,9 @@ namespace MedicalAssistantMVCProject.Controllers
             }
             catch
             {
-
+                throw new ArgumentException(nameof(page));
             }
 
-            return Ok();
         }
     }
 }
