@@ -35,6 +35,8 @@ namespace MedicalAssistantMVCProject.MappingProfiles
                 .ForMember(user => user.PasswordHash,
                     opt =>
                         opt.MapFrom(user => user.PasswordHash));
+
+            CreateMap<UserDto, UserModel>().ReverseMap();
         }
     }
 }

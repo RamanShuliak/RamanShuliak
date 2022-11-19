@@ -10,5 +10,6 @@ namespace MedicalAssistantMVCProject.Core.Abstractions
     public interface IUserService
     {
         Task<List<UserDto>> GetUserByPageSizeAndPageNumberAsync(int pageNumber, int pageSize);
+        Task<int> CreateUserAsync(UserDto dto);
     }
 }

@@ -2,6 +2,7 @@
 using MedicalAssistantMVCProject.Core.Abstractions;
 using MedicalAssistantMVCProject.Core.DataTransferObject;
 using MedicalAssistantMVCProject.DataBase;
+using MedicalAssistantMVCProject.DataBase.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace MedicalAssistantMVCProject.Business.ServicesImplementation
@@ -27,6 +28,21 @@ namespace MedicalAssistantMVCProject.Business.ServicesImplementation
                 .ToListAsync();
 
             return list;
+        }
+
+        public async Task<int> CreateUserAsync(UserDto dto)
+        {
+            var entity = _mapper.Map<User>(dto);
+            if (entity != null)
+            {
+                await _medicalAssistantDbContext.Users.AddAsync(entity);
+                var addingResult = await _medicalAssistantDbContext.SaveChangesAsync();
+                return addingResult;
+            }
+            else
+            {
+                throw new ArgumentException(nameof(dto));
+            }
         }
     }
 }

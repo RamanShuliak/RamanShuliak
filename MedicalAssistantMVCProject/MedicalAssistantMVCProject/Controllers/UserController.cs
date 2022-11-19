@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MedicalAssistantMVCProject.Core.Abstractions;
+using MedicalAssistantMVCProject.Core.DataTransferObject;
 using MedicalAssistantMVCProject.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,6 +38,38 @@ namespace MedicalAssistantMVCProject.Controllers
                 throw new ArgumentException(nameof(page));
             }
 
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(UserModel model)
+        {
+            try
+            {
+                if (model != null)
+                {
+                    model.Id = Guid.NewGuid();
+
+                    var dto = _mapper.Map<UserDto>(model);
+
+                    await _userService.CreateUserAsync(dto);
+
+                    return RedirectToAction("Index", "User");
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }
