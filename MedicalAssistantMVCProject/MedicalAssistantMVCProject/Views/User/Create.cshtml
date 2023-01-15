@@ -7,28 +7,32 @@
     <h1>Create new user</h1>
     <hr/>
 
-    @using (Html.BeginForm("Create", "User", FormMethod.Post))
-    {
+    <form asp-controller="User" asp-action="Create" method="post">
+        <div class="mb-3">
+            <label for="UserName" class="form-label">Name of user</label>
+            <input type="UserName" class="form-control" id="exampleFormControlInput1">
+        </div>
+
         <div>
             @Html.LabelFor(model=>model.UserName)
             @Html.TextBoxFor(model =>model.UserName)
         </div>
-        <br/>
+        <br />
         <div>
             @Html.LabelFor(model=>model.Id)
             @Html.TextBoxFor(model =>model.Id)
         </div>
-        <br/>
+        <br />
         <div>
             @Html.LabelFor(model=>model.Email)
             @Html.TextBoxFor(model =>model.Email)
         </div>
-        <br/>
+        <br />
         <div>
             @Html.LabelFor(model=>model.PasswordHash)
             @Html.TextBoxFor(model =>model.PasswordHash)
         </div>
-        <br/>
+        <br />
         <button type="button" class="btn btn-primary">Submit</button>
-    }
+    </form>
 </div>
