@@ -4,10 +4,19 @@
     {
         static void Main(string[] args)
         {
-            var x = 5;
-            var y = 5.0;
+            var roman = new User()
+            {
+                Name = "Roman",
+                Age = 25
+            };
 
-            Console.WriteLine(x==y);
+            var roman2 = new User()
+            {
+                Name = "Roman",
+                Age = 25
+            };
+
+            Console.WriteLine(roman == roman2);
         }
     }
 }
