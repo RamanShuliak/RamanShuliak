@@ -26,7 +26,16 @@
 
             var file = @"D:\Programming\NewFile.txt";
 
-            File.AppendAllText(file, "Do you see that?");
+            File.AppendAllText(file, "ABSD");
+
+            Console.WriteLine(File.ReadAllText(file));
+
+            Console.WriteLine($"\n_______________FileStreams_______________\n");
+
+            //_______________FileStreams_______________
+
+            var fileSample = new FileStreamsSample();
+            fileSample.WorkWithFile(@"D:\Programming\NewFile.txt");
         }
     }
 }
