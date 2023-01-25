@@ -30,12 +30,14 @@
 
             Console.WriteLine(File.ReadAllText(file));
 
-            Console.WriteLine($"\n_______________FileStreams_______________\n");
+            Console.WriteLine($"\n_______________FileStream_______________\n");
 
-            //_______________FileStreams_______________
+            //_______________FileStream_______________
 
-            var fileSample = new FileStreamsSample();
+            var fileSample = new FileStreamSample();
             fileSample.WorkWithFile(@"D:\Programming\NewFile.txt");
+
+
         }
     }
 }

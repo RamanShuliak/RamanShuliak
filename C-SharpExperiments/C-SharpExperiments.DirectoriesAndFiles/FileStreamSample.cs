@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace C_SharpExperiments.DirectoriesAndFiles
 {
-    public class FileStreamsSample
+    public class FileStreamSample
     {
         public void WorkWithFile(string filePath)
         {
@@ -23,6 +23,16 @@ namespace C_SharpExperiments.DirectoriesAndFiles
                 Console.WriteLine(fs.Position);
                 Console.WriteLine(intValue);
                 Console.WriteLine(firstSymbol);
+            }
+        }
+
+        public void UseFilaStreamMainMethods(string filePath)
+        {
+            using (var fs = new FileStream(filePath, FileMode.OpenOrCreate))
+            {
+                fs.Seek(0, SeekOrigin.Begin);
+
+
             }
         }
     }
