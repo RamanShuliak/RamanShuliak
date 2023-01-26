@@ -36,6 +36,7 @@
 
             var fileSample = new FileStreamSample();
             fileSample.WorkWithFile(@"D:\Programming\NewFile.txt");
+            fileSample.UseFilaStreamMainMethods(file, @"D:\Programming\NewFile2.txt");
 
 
         }
