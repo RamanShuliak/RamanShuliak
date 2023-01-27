@@ -1,4 +1,6 @@
-﻿namespace C_SharpExperiments.DirectoriesAndFiles
+﻿using System.IO.Compression;
+
+namespace C_SharpExperiments.DirectoriesAndFiles
 {
     internal class Program
     {
@@ -8,7 +10,7 @@
 
             var directories = Directory.GetDirectories(@"D:\Programming");
 
-            foreach(var directory in directories)
+            foreach (var directory in directories)
             {
                 Console.WriteLine(directory);
             }
@@ -38,7 +40,29 @@
             fileSample.WorkWithFile(@"D:\Programming\NewFile.txt");
             fileSample.UseFilaStreamMainMethods(file, @"D:\Programming\NewFile2.txt");
 
+            var binaryFileStream = new BinaryStreams();
+            binaryFileStream.WorkWithBinaryFile(@"D:\Programming\Employees.bin");
 
+
+            using (var memoryStream = new MemoryStream())
+            {
+                using (var archive = new ZipArchive(memoryStream, ZipArchiveMode.Create, true))
+                {
+                    var demoFile = archive.CreateEntry("foo.txt");
+
+                    using (var entryStream = demoFile.Open())
+                    using (var streamWriter = new StreamWriter(entryStream))
+                    {
+                        streamWriter.Write("Archive is realy working!!!");
+                    }
+                }
+
+                using (var fileStream = new FileStream(@"D:\Programming\ExperimentFiles\test.zip", FileMode.Create))
+                {
+                    memoryStream.Seek(0, SeekOrigin.Begin);
+                    memoryStream.CopyTo(fileStream);
+                }
+            }
         }
     }
 }
