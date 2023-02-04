@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace C_SharpExperiments.Delegates
 {
-    delegate void PrintMessange();
+    delegate string PrintMessange(int number);
 }

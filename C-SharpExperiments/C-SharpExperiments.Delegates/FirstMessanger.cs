@@ -6,11 +6,18 @@ using System.Threading.Tasks;
 
 namespace C_SharpExperiments.Delegates
 {
-    public class FirstMessanger
+    public class Messanger
     {
-        public void PrintFirstMessange()
+        public string PrintFirstMessange(int number)
         {
-            Console.WriteLine("Do you want to drink together???");
+            Console.WriteLine($"Do you want to drink together {number} bottles???");
+            return $"Do you want to drink together {number} bottles???";
+        }
+
+        public string PrintSecondMessage(int number)
+        {
+            Console.WriteLine($"Needed number = {number}.");
+            return $"Needed number = {number}.";
         }
     }
 }
