@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C_SharpExperiments.Delegates
+namespace C_SharpExperiments.Events
 {
-    public delegate string PrintMessange(int number);
-
+    public delegate void AccountHandler(string message);
 }

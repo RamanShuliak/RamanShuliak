@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace C_SharpExperiments.Delegates
+namespace C_SharpExperiments.Lambda
 {
-    public delegate string PrintMessange(int number);
-
+    public delegate int Calculator (int x, int y);
 }

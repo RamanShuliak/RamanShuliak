@@ -19,6 +19,15 @@
             }
 
             var result2 = printMessange?.Invoke(10);
+
+            PrintMessange messanger = delegate (int number)
+            {
+                var messange = $"You owe {number}$ to the bank.";
+
+                Console.WriteLine(messange);
+
+                return messange;
+            };
         }
     }
 }
