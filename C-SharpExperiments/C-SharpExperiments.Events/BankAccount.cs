@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 
 namespace C_SharpExperiments.Events
 {
-    public delegate void AccountNotificationHandler(BankAccount sender, BankAccountNotificationEventArgs eventArgs);
+    public delegate void AccountNotificationHandler
+        (BankAccount sender, BankAccountNotificationEventArgs eventArgs);
     public class BankAccount
     {
         public Guid AccountId { get; }
-        public string PhoneNumber { get; }
+        public string PhoneNumber { get; set; }
 
         private int _sumOnAccount;
 
         public event AccountNotificationHandler Notify;
+
+        public BankAccount() { }
 
         public BankAccount(string phoneNumber, int sumOnAccount)
         {
@@ -50,20 +53,6 @@ namespace C_SharpExperiments.Events
                     deltaSum, 
                     _sumOnAccount));
             }
-        }
-
-        public void SmsNotify(BankAccountNotificationEventArgs eventArgs)
-        {
-            var targetPhoneNumber = PhoneNumber;
-
-            var sb = new StringBuilder();
-            sb.Append(eventArgs.Message);
-            sb.Append(Environment.NewLine);
-            sb.Append($"Actual state: {eventArgs.SumOnAccount}");
-
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(sb.ToString());
-            Console.ResetColor();
         }
     }
 }

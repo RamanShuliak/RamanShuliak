@@ -41,6 +41,22 @@ namespace C_SharpExperiments.Events
 
             obsCollection.Add(1);
             obsCollection.Remove(1);
+
+            var bank = new Bank()
+            {
+                Name = "Deutsche Bank AG",
+                BankAccounts= new List<BankAccount>()
+            };
+
+            var bankAcccount = new BankAccount("+375296351124", 2000);
+
+
+            bank.AddAccount(bankAcccount);
+
+            bankAcccount.CashWithdrow(1000);
+            bankAcccount.CashWithdrow(1345);
+
+            Console.WriteLine($"{bankAcccount.AccountId}");
         }
 
     }

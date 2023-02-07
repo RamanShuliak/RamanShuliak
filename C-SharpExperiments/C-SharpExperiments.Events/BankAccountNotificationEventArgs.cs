@@ -13,7 +13,8 @@ namespace C_SharpExperiments.Events
         public int DeltaSum { get; }
         public int SumOnAccount { get; }
 
-        public BankAccountNotificationEventArgs(Guid id, string message, int deltaSum, int sumOnAccount)
+        public BankAccountNotificationEventArgs
+            (Guid id, string message, int deltaSum, int sumOnAccount)
         {
             AccountId = id;
             Message = message;
