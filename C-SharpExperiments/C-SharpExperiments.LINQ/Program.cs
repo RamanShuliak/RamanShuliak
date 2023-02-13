@@ -15,7 +15,7 @@
 
             var methods = new LINQMethods();
 
-            methods.SelectByFirstSymbolInName(persons);
+/*            methods.SelectByFirstSymbolInName(persons);
 
             methods.SelectByNameAndAge(persons);
 
@@ -23,16 +23,19 @@
 
             methods.SelectByClassType(persons);
 
+            methods.OrderByName(persons);
 
+            methods.OrderByAge(persons);
 
-            var sortedByAgeList = persons
-                .OrderByDescending(p => p.Age)
-                .ToList();
+            methods.CollectionIntersectionLINQMethods();
 
-            foreach (var person in sortedByAgeList)
-            {
-                Console.WriteLine($"{person.Name} - {person.Age}");
-            }
+            methods.AggregateMethods(persons);
+
+            methods.TakeMethods(persons);
+
+            methods.GroupsMethod();*/
+
+            methods.ChekIsContainMethods();
         }
     }
 }
