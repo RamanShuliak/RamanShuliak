@@ -304,8 +304,6 @@ namespace C_SharpExperiments.LINQ
             var isElementInList = numbers.Contains(10);
             //Проверит есть ли элемент в со значением 10 в листе
             //Не работает с объектами классов
-
-
         }
     }
 }
