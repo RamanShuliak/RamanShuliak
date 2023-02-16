@@ -61,14 +61,18 @@
 
             y = 7;*/
 
-            var array = new int[5];
+/*            var array = new int[5];
 
             for (var i = 0; i < array.Length; i++)
             {
                 Console.WriteLine($"Enter the element {i}:");
 
                 array[i] = Convert.ToInt32(Console.ReadLine());
-            }
+            }*/
+
+            var task = new TaskOfTania();
+
+            task.CalculateAmongOfYears();
         }
     }
 }
