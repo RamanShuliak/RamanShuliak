@@ -10,48 +10,46 @@ namespace C_SharpExperiments.Multithreading
     {
         private int _number = 0;
 
+        private AutoResetEvent _waitHandler = new AutoResetEvent(true);
+        // создаём в рамках класса объект событий, которые сообщают
+        // наружу другим потокам состояние логики (свободна или нет).
+        // По умолчанию true - да, доступ открыт.
+
         private object _locker = new object();
         // Создаём локер для закрытие исполняемой
         // внутри потока логики от других потоков
 
         public void CreateThread()
         {
-            var thread = new Thread(PrintMessage)
-            // Передаём в поток ёисполняемый в нём метод
+            for(var i = 1; i<=3; i++)
             {
-                Name = "First"
-            };
+                var thread = new Thread(PrintMessageWithAutoResetEvents)
+                {
+                    Name = $"Thread {i}"
+                };
 
-            var thread2 = new Thread(PrintMessage)
-            {
-                Name = "SecondThread"
-            };
-
-            var message = "HAHA";
-
-/*            var thread3 = new Thread(() => PrintMessage(message));
-
-            thread3.Start();*/
-
-            thread.Start();
-            //Запускаем поток
-
-            thread2.Start();
+                thread.Start();
+            }
         }
 
-        public void PrintMessage()
+        public void PrintMessageWithLocker()
         {
             var currentThreadName = Thread.CurrentThread.Name;
 
-            /*            lock (_locker)// Запихиваем внутрь локера логику
-                        {
-                            _number = 0;
-                            for (var i = 0; i <= 10; i++)
-                            {
-                                Console.WriteLine($"{currentThreadName} - {_number}");
-                                _number++;
-                            }
-                        }*/
+            lock (_locker)// Запихиваем внутрь локера логику
+            {
+                _number = 0;
+                for (var i = 0; i <= 10; i++)
+                {
+                    Console.WriteLine($"{currentThreadName} - {_number}");
+                    _number++;
+                }
+            }
+        }
+
+        public void PrintMessageWithMonitor()
+        {
+            var currentThreadName = Thread.CurrentThread.Name;
 
             var acquiredLock = false;
 
@@ -76,7 +74,25 @@ namespace C_SharpExperiments.Multithreading
                     // Отменяем блокировку
                 }
             }
+        }
 
+        public void PrintMessageWithAutoResetEvents()
+        {
+            var currentThreadName = Thread.CurrentThread.Name;
+            Console.WriteLine($"!!!!{currentThreadName} start here!!!!");
+
+            _waitHandler.WaitOne();// Изменяет состояние на false
+
+            _number = 0;
+            for (var i = 0; i <= 10; i++)
+            {
+                Console.WriteLine($"{currentThreadName} - {_number}");
+                _number++;
+            }
+
+            Console.WriteLine($"!!!!{currentThreadName} finish here!!!!");
+
+            _waitHandler.Set();// Возвращает true
         }
     }
 }
