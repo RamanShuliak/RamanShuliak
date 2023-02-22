@@ -1,2 +1,3 @@
 
 Calling from Bogdan  |  talking lasted 145 milliseconds 
+Calling from Bogdan  |  talking lasted 540 milliseconds 
