@@ -4,7 +4,7 @@ namespace C_SharpExperiments.Multithreading
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             //var thread = new ThreadSample();
 
@@ -16,6 +16,10 @@ namespace C_SharpExperiments.Multithreading
             //}
 
             var tasks = new TaskSample();
+
+            var parallelSample = new ParallelSample();
+
+            var asyncSample = new AsyncSample();
 
             //tasks.DoTasks();
 
@@ -41,10 +45,30 @@ namespace C_SharpExperiments.Multithreading
             timer.Stop();
             var time2 = timer.ElapsedMilliseconds;
 
+            timer.Restart();
+            parallelSample.DoForEachMethod(list);
+            timer.Stop();
+            var time3 = timer.ElapsedMilliseconds;
+
+            timer.Restart();
+            await asyncSample.DoOperationByTasksContinueWithAsync(list);
+            timer.Stop();
+            var time4 = timer.ElapsedMilliseconds;
+
             Console.WriteLine(Environment.NewLine);
 
             Console.WriteLine($"Synchronic method work during {time1} milliseconds");
             Console.WriteLine($"Task method work during {time2} milliseconds");
+            Console.WriteLine($"Parallel method work during {time3} milliseconds");
+            Console.WriteLine($"Async method work during {time4} milliseconds");
+
+            //parallelSample.DoInvokeMethod();
+
+            //parallelSample.DoForMethod();
+
+            //var cancellationTokenSample = new CancellationTokenSourceSample();
+
+            //cancellationTokenSample.DoPow();
         }
 
         static List<int> GenerateList()
@@ -53,7 +77,7 @@ namespace C_SharpExperiments.Multithreading
 
             var random = new Random();
 
-            for (var i = 1; i <= 1000; i++)
+            for (var i = 1; i <= 5000; i++)
             {
                 var number = random.Next();
 

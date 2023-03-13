@@ -144,7 +144,6 @@ namespace C_SharpExperiments.Multithreading
         public void MultiplyAndCreateList(int x, List<int> numbersList)
         {
             numbersList.Add((int)Math.Pow(x, 2));
-            numbersList.OrderBy(n => n);
         }
     }
 }

@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C-SharpExperiments.Extensio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C-SharpExperiments.LINQ", "C-SharpExperiments.LINQ\C-SharpExperiments.LINQ.csproj", "{F426F7BB-461D-4329-8DEB-490EF86E7C0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C-SharpExperiments.Multithreading", "C-SharpExperiments.Multithreading\C-SharpExperiments.Multithreading.csproj", "{E87F06C6-43DA-42BA-A482-BD9F85AA1CCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C-SharpExperiments.Multithreading", "C-SharpExperiments.Multithreading\C-SharpExperiments.Multithreading.csproj", "{E87F06C6-43DA-42BA-A482-BD9F85AA1CCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C-SharpExperiments.AsyncMethods", "C-SharpExperiments.AsyncMethods\C-SharpExperiments.AsyncMethods.csproj", "{1072EC9E-821D-4DFB-B922-AA6271F71046}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{E87F06C6-43DA-42BA-A482-BD9F85AA1CCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E87F06C6-43DA-42BA-A482-BD9F85AA1CCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E87F06C6-43DA-42BA-A482-BD9F85AA1CCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1072EC9E-821D-4DFB-B922-AA6271F71046}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1072EC9E-821D-4DFB-B922-AA6271F71046}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1072EC9E-821D-4DFB-B922-AA6271F71046}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1072EC9E-821D-4DFB-B922-AA6271F71046}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
