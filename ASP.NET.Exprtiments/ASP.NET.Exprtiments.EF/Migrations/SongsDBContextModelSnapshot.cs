@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ASP.NET.Exprtiments.EF.Migrations
 {
-    [DbContext(typeof(SongsDBContext))]
+    [DbContext(typeof(SongsDbContext))]
     partial class SongsDBContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

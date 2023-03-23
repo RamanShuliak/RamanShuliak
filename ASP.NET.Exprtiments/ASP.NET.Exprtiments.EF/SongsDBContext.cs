@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ASP.NET.Exprtiments.EF
 {
-    public class SongsDBContext: DbContext
+    public class SongsDbContext: DbContext
     // Создаём класс с именами таблиц
     {
         public DbSet<Song> Songs { get; set; }

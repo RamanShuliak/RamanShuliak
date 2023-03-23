@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ASP.NET.Exprtiments.EF.Migrations
 {
-    [DbContext(typeof(SongsDBContext))]
+    [DbContext(typeof(SongsDbContext))]
     [Migration("20230321175102_InitialCreate")]
     partial class InitialCreate
     {
