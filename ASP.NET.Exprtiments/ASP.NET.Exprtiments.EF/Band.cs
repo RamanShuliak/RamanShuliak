@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient.DataClassification;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,9 @@ namespace ASP.NET.Exprtiments.EF
     {
         public int Id { get; set; }
         public string BandName { get; set; }
-        public string Label { get; set; }
+
+        public int? LabelId { get; set; }
+        public virtual Label Label { get; set; }
 
         public virtual List<Song> Songs { get; set; }
 

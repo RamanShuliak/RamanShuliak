@@ -13,6 +13,7 @@ namespace ASP.NET.Exprtiments.EF
         public DbSet<Song> Songs { get; set; }
         // Создаём таблицы
         public DbSet<Band> Bands { get; set; }
+        public DbSet<Label> Labels { get; set; }
 
         private const string ConnectionString =
             "Server=HPPROBOOK;" +
