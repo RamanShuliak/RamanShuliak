@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ASP.NET.MVC_Exprtiment.Controllers
 {
-    public class TestController : Controller
+    public class CreateTestController : Controller
     {
 
         [HttpGet]
@@ -14,7 +14,7 @@ namespace ASP.NET.MVC_Exprtiment.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateBand(TestModel testModel)
+        public IActionResult CreateBand(CreateTestModel testModel)
         {
             return RedirectToAction("Index", "Home");
         }

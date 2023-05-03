@@ -1,3 +1,8 @@
+using ASP.NET.MVC_Exprtiment.Business.ServicesImplementation;
+using ASP.NET.MVC_Exprtiment.Core;
+using ASP.NET.MVC_Exprtiment.Core.Abstractions;
+
+
 namespace ASP.NET.MVC_Exprtiment
 {
     public class Program
@@ -8,6 +13,8 @@ namespace ASP.NET.MVC_Exprtiment
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddTransient<IBandService, BandService>();
+            builder.Services.AddSingleton<BandStorage>();
 
             var app = builder.Build();
 

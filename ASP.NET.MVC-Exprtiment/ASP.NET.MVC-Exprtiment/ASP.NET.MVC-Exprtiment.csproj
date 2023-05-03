@@ -11,4 +11,8 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ASP.NET.MVC-Exprtiment.Business\ASP.NET.MVC-Exprtiment.Business.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ASP.NET.MVC_Exprtiment.Core.DataTransferObjects.BandDto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+@foreach (var item in Model) {
+        <div>
+            <h2>
+                @Html.DisplayFor(modelItem => item.BandName)
+            </h2>
+            <h6>
+                @Html.DisplayFor(modelItem => item.Id)
+            </h6>
+            <h3>
+                @Html.DisplayFor(modelItem => item.Country)
+            </h3>
+            <h6>
+                @Html.DisplayFor(modelItem => item.DateOfCreation)
+            </h6>
+            <h4>
+                @Html.DisplayFor(modelItem => item.MainInformation)
+            </h4>
+            <hr>
+            <br>
+        </div>
+}
+
