@@ -1,7 +1,8 @@
 using ASP.NET.MVC_Exprtiment.Business.ServicesImplementation;
 using ASP.NET.MVC_Exprtiment.Core;
 using ASP.NET.MVC_Exprtiment.Core.Abstractions;
-
+using ASP.NET.MVC_Exprtiment.DataBase;
+using Microsoft.EntityFrameworkCore;
 
 namespace ASP.NET.MVC_Exprtiment
 {
@@ -10,6 +11,15 @@ namespace ASP.NET.MVC_Exprtiment
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            var connectionString =
+            "Server=HPPROBOOK;" +
+            "Database=ASP.NET.MVC-Exprtiment;" +
+            "Trusted_Connection=True;" +
+            "TrustServerCertificate=True";
+
+            builder.Services.AddDbContext<MusicBandsContext>(
+                optionBuilder => optionBuilder.UseSqlServer(connectionString));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
