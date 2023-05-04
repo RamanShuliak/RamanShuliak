@@ -10,5 +10,6 @@ namespace ASP.NET.MVC_Exprtiment.Core.Abstractions
     public interface IBandService
     {
         Task<List<BandDto>> GetBandsByPageNumberAndPageSize(int pageNumber, int pageSize);
+        Task<BandDto> GetBandById(Guid id);
     }
 }

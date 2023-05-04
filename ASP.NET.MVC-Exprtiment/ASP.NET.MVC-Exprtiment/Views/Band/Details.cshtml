@@ -1,0 +1,36 @@
+﻿@using ASP.NET.MVC_Exprtiment.Core.DataTransferObjects;
+@model BandDto;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <h1>
+        @Model.BandName
+    </h1>
+    <h6>
+        @Model.Id
+    </h6>
+    <h3>
+        @Model.Country
+    </h3>
+    <h6>
+        @Model.DateOfCreation
+    </h6>
+    <h4>
+        @Model.MainInformation
+    </h4>
+    <hr>
+    <br>
+</div>
+
+@section CssStyles
+    {
+    <style>
+        h1 {
+            color: red;
+            text-align: center;
+        }
+    </style>
+}

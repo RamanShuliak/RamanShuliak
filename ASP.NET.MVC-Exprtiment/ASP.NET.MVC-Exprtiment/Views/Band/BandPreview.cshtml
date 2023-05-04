@@ -1,0 +1,20 @@
+﻿@using ASP.NET.MVC_Exprtiment.Core.DataTransferObjects;
+@model BandDto;
+
+<div>
+    <h2>
+        @Html.DisplayFor(modelItem => Model.BandName)
+    </h2>
+    <h6>
+        @Html.DisplayFor(modelItem => Model.Id)
+    </h6>
+    <h3>
+        @Html.DisplayFor(modelItem => Model.Country)
+    </h3>
+    <h6>
+        @Html.DisplayFor(modelItem => Model.DateOfCreation)
+    </h6>
+    <a class="btn btn-primary" href="~/band/details/@Model.Id">Read details</a>
+    <hr>
+    <br>
+</div>

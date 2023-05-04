@@ -23,5 +23,12 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
 
             return list;
         }
+
+        public async Task<BandDto> GetBandById(Guid id)
+        {
+            var band = _bandStorage.BandsList.FirstOrDefault(b => b.Id.Equals(id));
+
+            return band;
+        }
     }
 }

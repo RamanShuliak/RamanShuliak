@@ -1,4 +1,5 @@
 ﻿using ASP.NET.MVC_Exprtiment.Core.Abstractions;
+using ASP.NET.MVC_Exprtiment.Core.DataTransferObjects;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASP.NET.MVC_Exprtiment.Controllers
@@ -31,6 +32,13 @@ namespace ASP.NET.MVC_Exprtiment.Controllers
             {
                 throw;
             }
+        }
+
+        public async Task<IActionResult> Details(Guid id)
+        {
+            var band = await _bandService.GetBandById(id);
+
+            return View(band);
         }
     }
 }
