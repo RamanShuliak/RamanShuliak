@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ASP.NET.MVC_Exprtiment.DataBase.Migrations
 {
     [DbContext(typeof(MusicBandsContext))]
-    [Migration("20230504093243_Init")]
-    partial class Init
+    [Migration("20230504180646_CreateDataBase")]
+    partial class CreateDataBase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,9 +31,8 @@ namespace ASP.NET.MVC_Exprtiment.DataBase.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Country")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DateOfCreation")
                         .HasColumnType("datetime2");
@@ -42,6 +41,9 @@ namespace ASP.NET.MVC_Exprtiment.DataBase.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("LabelId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("MainText")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -49,9 +51,6 @@ namespace ASP.NET.MVC_Exprtiment.DataBase.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("LabelId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -98,16 +97,13 @@ namespace ASP.NET.MVC_Exprtiment.DataBase.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SourceType")
-                        .HasColumnType("int");
-
                     b.Property<string>("Url")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sources");
+                    b.ToTable("Labels");
                 });
 
             modelBuilder.Entity("ASP.NET.MVC_Exprtiment.DataBase.Entities.User", b =>

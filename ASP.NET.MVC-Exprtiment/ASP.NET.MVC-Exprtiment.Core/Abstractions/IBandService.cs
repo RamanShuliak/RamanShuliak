@@ -11,5 +11,6 @@ namespace ASP.NET.MVC_Exprtiment.Core.Abstractions
     {
         Task<List<BandDto>> GetBandsByPageNumberAndPageSize(int pageNumber, int pageSize);
         Task<BandDto> GetBandById(Guid id);
+        Task<int> PopulateDataBase();
     }
 }

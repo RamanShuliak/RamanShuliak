@@ -6,23 +6,22 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ASP.NET.MVC_Exprtiment.DataBase.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class CreateDataBase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Sources",
+                name: "Labels",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SourceType = table.Column<int>(type: "int", nullable: false)
+                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sources", x => x.Id);
+                    table.PrimaryKey("PK_Labels", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -46,19 +45,19 @@ namespace ASP.NET.MVC_Exprtiment.DataBase.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Country = table.Column<int>(type: "int", nullable: false),
                     DateOfCreation = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MainText = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SourceId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    LabelId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Bands", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Bands_Sources_SourceId",
-                        column: x => x.SourceId,
-                        principalTable: "Sources",
+                        name: "FK_Bands_Labels_LabelId",
+                        column: x => x.LabelId,
+                        principalTable: "Labels",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -91,7 +90,7 @@ namespace ASP.NET.MVC_Exprtiment.DataBase.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Bands_SourceId",
+                name: "IX_Bands_LabelId",
                 table: "Bands",
                 column: "LabelId");
 
@@ -119,7 +118,7 @@ namespace ASP.NET.MVC_Exprtiment.DataBase.Migrations
                 name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Sources");
+                name: "Labels");
         }
     }
 }

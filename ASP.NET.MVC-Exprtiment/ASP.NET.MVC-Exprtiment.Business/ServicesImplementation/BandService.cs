@@ -15,9 +15,9 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
             _musicBandsContext = musicBandsContext;
         }
 
-        public Task<int> PopulateDataBase()
+        public async Task<int> PopulateDataBase()
         {
-            var source = new Label
+            var label = new Label
             {
                 Id = new Guid(),
                 Name = "Warner Music Group",
@@ -51,25 +51,31 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
                     Country = CountryName.USA,
                     DateOfCreation = new DateTime(1985),
                     Description = "An American progressive metal band formed in 1985 under the name Majesty by John Petrucci, John Myung and Mike Portnoy — all natives of Long Island, New York — while they attended Berklee College of Music in Boston, Massachusetts.",
-                    MainText = "An American progressive metal band formed in 1985 under the name Majesty by John Petrucci, John Myung and Mike Portnoy — all natives of Long Island, New York — while they attended Berklee College of Music in Boston, Massachusetts. They subsequently dropped out of their studies to concentrate further on the band that would eventually become Dream Theater. Their current lineup consists of Petrucci, Myung, vocalist James LaBrie, keyboardist Jordan Rudess and drummer Mike Mangini.\r\n\r\nOver the course of various lineup changes, Petrucci and Myung have been the only two constant members. Portnoy remained with the band until 2010, when he was replaced by Mangini after deciding to leave to pursue other musical endeavors. After a brief stint with Chris Collins, followed by Charlie Dominici (who was dismissed from Dream Theater not long after the release of their first album), LaBrie was hired as the band's singer in 1991. Dream Theater's first keyboardist, Kevin Moore, left the band after three albums and was replaced by Derek Sherinian in 1995 after a period of touring. The band released one album with Sherinian, who was replaced by current keyboardist Jordan Rudess in 1999. "
+                    MainText = "They subsequently dropped out of their studies to concentrate further on the band that would eventually become Dream Theater. Their current lineup consists of Petrucci, Myung, vocalist James LaBrie, keyboardist Jordan Rudess and drummer Mike Mangini.\r\n\r\nOver the course of various lineup changes, Petrucci and Myung have been the only two constant members. Portnoy remained with the band until 2010, when he was replaced by Mangini after deciding to leave to pursue other musical endeavors. After a brief stint with Chris Collins, followed by Charlie Dominici (who was dismissed from Dream Theater not long after the release of their first album), LaBrie was hired as the band's singer in 1991. Dream Theater's first keyboardist, Kevin Moore, left the band after three albums and was replaced by Derek Sherinian in 1995 after a period of touring. The band released one album with Sherinian, who was replaced by current keyboardist Jordan Rudess in 1999. "
                 }
             };
+
+            await _musicBandsContext.Labels.AddAsync(label);
+            await _musicBandsContext.Bands.AddRangeAsync(bandList);
+
+            return await _musicBandsContext.SaveChangesAsync();
         }
 
         public async Task<List<BandDto>> GetBandsByPageNumberAndPageSize(int pageNumber, int pageSize)
         {
-            List<BandDto> list;
+            var list = new List<BandDto>();
 
-            list = _bandStorage.BandsList
-                .Skip(pageNumber*pageSize)
-                .Take(pageSize).ToList();
+            //list = _musicBandsContext.Bands
+            //    .Skip(pageNumber*pageSize)
+            //    .Take(pageSize).ToList();
 
             return list;
         }
 
         public async Task<BandDto> GetBandById(Guid id)
         {
-            var band = _bandStorage.BandsList.FirstOrDefault(b => b.Id.Equals(id));
+            var band = new BandDto();
+                //_bandStorage.BandsList.FirstOrDefault(b => b.Id.Equals(id));
 
             return band;
         }

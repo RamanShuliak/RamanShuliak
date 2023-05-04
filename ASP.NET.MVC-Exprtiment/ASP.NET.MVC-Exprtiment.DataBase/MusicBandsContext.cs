@@ -12,7 +12,7 @@ namespace ASP.NET.MVC_Exprtiment.DataBase
     {
         public DbSet<Band> Bands { get; set; }
         public DbSet<Comment> Comments { get; set; }
-        public DbSet<Label> Sources { get; set; }
+        public DbSet<Label> Labels { get; set; }
         public DbSet<User> Users { get; set; }
 
         public MusicBandsContext(DbContextOptions<MusicBandsContext> options) 

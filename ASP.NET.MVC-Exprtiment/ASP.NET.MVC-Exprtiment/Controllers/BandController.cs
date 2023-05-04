@@ -17,6 +17,8 @@ namespace ASP.NET.MVC_Exprtiment.Controllers
         {
             try
             {
+                var result = await _bandService.PopulateDataBase();
+
                 var bandList = await _bandService.GetBandsByPageNumberAndPageSize(pageNumber, _pageSize);
 
                 if (bandList.Any())
@@ -25,7 +27,7 @@ namespace ASP.NET.MVC_Exprtiment.Controllers
                 }
                 else
                 {
-                    return View("No bands.");
+                    return RedirectToAction("Index", "Home");
                 }
             }
             catch (Exception ex)
