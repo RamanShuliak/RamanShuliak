@@ -2,6 +2,7 @@ using ASP.NET.MVC_Exprtiment.Business.ServicesImplementation;
 using ASP.NET.MVC_Exprtiment.Core;
 using ASP.NET.MVC_Exprtiment.Core.Abstractions;
 using ASP.NET.MVC_Exprtiment.DataBase;
+using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.EntityFrameworkCore;
 
 namespace ASP.NET.MVC_Exprtiment
@@ -22,9 +23,10 @@ namespace ASP.NET.MVC_Exprtiment
                 optionBuilder => optionBuilder.UseSqlServer(connectionString));
 
             // Add services to the container.
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             builder.Services.AddControllersWithViews();
             builder.Services.AddTransient<IBandService, BandService>();
-            builder.Services.AddSingleton<BandStorage>();
 
             var app = builder.Build();
 

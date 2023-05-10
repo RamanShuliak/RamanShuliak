@@ -17,8 +17,6 @@ namespace ASP.NET.MVC_Exprtiment.Controllers
         {
             try
             {
-                var result = await _bandService.PopulateDataBase();
-
                 var bandList = await _bandService.GetBandsByPageNumberAndPageSize(pageNumber, _pageSize);
 
                 if (bandList.Any())

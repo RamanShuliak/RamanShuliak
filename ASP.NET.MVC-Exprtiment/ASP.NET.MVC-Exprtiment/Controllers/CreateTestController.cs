@@ -8,6 +8,7 @@ namespace ASP.NET.MVC_Exprtiment.Controllers
     {
 
         [HttpGet]
+        [Route ("Quick")]
         public IActionResult CreateBand()
         {
             return View();
