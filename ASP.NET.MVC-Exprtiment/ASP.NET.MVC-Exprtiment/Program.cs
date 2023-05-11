@@ -13,18 +13,13 @@ namespace ASP.NET.MVC_Exprtiment
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            var connectionString =
-            "Server=HPPROBOOK;" +
-            "Database=ASP.NET.MVC-Exprtiment;" +
-            "Trusted_Connection=True;" +
-            "TrustServerCertificate=True";
+            var connectionString = builder.Configuration.GetConnectionString("Default");
 
             builder.Services.AddDbContext<MusicBandsContext>(
                 optionBuilder => optionBuilder.UseSqlServer(connectionString));
 
             // Add services to the container.
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
             builder.Services.AddControllersWithViews();
             builder.Services.AddTransient<IBandService, BandService>();
 

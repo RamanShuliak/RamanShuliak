@@ -5,6 +5,7 @@ using ASP.NET.MVC_Exprtiment.DataBase;
 using ASP.NET.MVC_Exprtiment.DataBase.Entities;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
 {
@@ -12,15 +13,20 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
     {
         private readonly MusicBandsContext _musicBandsContext;
         private readonly IMapper _mapper;
+        private readonly IConfiguration _configuration;
 
-        public BandService(MusicBandsContext musicBandsContext, IMapper mapper)
+        public BandService(MusicBandsContext musicBandsContext, IMapper mapper, IConfiguration configuration)
         {
             _musicBandsContext = musicBandsContext;
             _mapper = mapper;
+            _configuration = configuration;
         }
 
         public async Task<List<BandDto>> GetBandsByPageNumberAndPageSize(int pageNumber, int pageSize)
         {
+            var myApiKey = _configuration.GetSection("UserSecret")["MyApiKey"];
+
+            var myPassword = _configuration["UserSecret:PasswordSalt"];
 
             var bandList = await _musicBandsContext.Bands
                 .Skip(pageNumber * pageSize)
@@ -33,8 +39,11 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
 
         public async Task<BandDto> GetBandById(Guid id)
         {
-            var band = new BandDto();
-                //_bandStorage.BandsList.FirstOrDefault(b => b.Id.Equals(id));
+            var bands = await _musicBandsContext.Bands
+                .Select(band => _mapper.Map<BandDto>(band))
+                .ToListAsync();
+
+            var band = bands.FirstOrDefault(band => band.Id.Equals(id));
 
             return band;
         }
