@@ -47,5 +47,32 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
 
             return band;
         }
+
+        public async Task<LabelDto> GetLabelByName(string name)
+        {
+            var labels = await _musicBandsContext.Labels
+                .Select(label => _mapper.Map<LabelDto>(label))
+                .ToListAsync();
+
+            var label = labels.FirstOrDefault(label => label.Name.Equals(name));
+
+            return label;
+        }
+
+        public async Task<int> AddBandAsync(BandDto bandDto)
+        {
+            var bandEntity = _mapper.Map<Band>(bandDto);
+
+            if (bandEntity != null)
+            {
+                await _musicBandsContext.AddAsync(bandEntity);
+                var resultOfAdding = await _musicBandsContext.SaveChangesAsync();
+                return resultOfAdding;
+            }
+            else 
+            {
+                throw new ArgumentException(nameof(bandDto));
+            }
+        }
     }
 }

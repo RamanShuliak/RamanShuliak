@@ -5,6 +5,9 @@
 }
 
 <h1>Bands</h1>
+
+<a href="~/band/add">Add new band</a>
+
 @foreach (var item in Model)
 {
     await Html.RenderPartialAsync("BandPreview", item);

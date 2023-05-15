@@ -4,6 +4,7 @@ using ASP.NET.MVC_Exprtiment.DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ASP.NET.MVC_Exprtiment.DataBase.Migrations
 {
     [DbContext(typeof(MusicBandsContext))]
-    partial class MusicBandsContextModelSnapshot : ModelSnapshot
+    [Migration("20230515084027_ReplaceCountryFromEnumToString")]
+    partial class ReplaceCountryFromEnumToString
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,18 +32,21 @@ namespace ASP.NET.MVC_Exprtiment.DataBase.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Country")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("DateOfCreation")
+                    b.Property<DateTime>("DateOfCreation")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("LabelId")
+                    b.Property<Guid>("LabelId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("MainText")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -67,6 +73,7 @@ namespace ASP.NET.MVC_Exprtiment.DataBase.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Text")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("UserId")
@@ -88,9 +95,11 @@ namespace ASP.NET.MVC_Exprtiment.DataBase.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Url")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -128,7 +137,9 @@ namespace ASP.NET.MVC_Exprtiment.DataBase.Migrations
                 {
                     b.HasOne("ASP.NET.MVC_Exprtiment.DataBase.Entities.Label", "Label")
                         .WithMany("Bands")
-                        .HasForeignKey("LabelId");
+                        .HasForeignKey("LabelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Label");
                 });

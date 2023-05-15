@@ -3,7 +3,7 @@
     public class Comment
     {
         public Guid Id { get; set; }
-        public string Text { get; set; }
+        public string? Text { get; set; }
         public DateTime PublicationDate { get; set; }
 
         public Guid BandId { get; set; }

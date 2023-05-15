@@ -4,6 +4,8 @@ using ASP.NET.MVC_Exprtiment.Core.Abstractions;
 using ASP.NET.MVC_Exprtiment.DataBase;
 using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
+using Serilog.Events;
 
 namespace ASP.NET.MVC_Exprtiment
 {
@@ -12,6 +14,12 @@ namespace ASP.NET.MVC_Exprtiment
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Host.UseSerilog((ctx, lc) =>
+            lc.WriteTo.File(
+                @"D:\Programming\ASP.NET.MVC-Exprtiment\Logs\data.log", 
+                Serilog.Events.LogEventLevel.Information)
+                .WriteTo.Console(LogEventLevel.Verbose));
 
             var connectionString = builder.Configuration.GetConnectionString("Default");
 

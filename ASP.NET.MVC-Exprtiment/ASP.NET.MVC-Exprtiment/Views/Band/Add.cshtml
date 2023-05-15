@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Add";
+}
+
+<h1>Add new band</h1>
+
+<form method="post" article="~/band/add">
+    <div>
+        <label for="band-name">Name:</label>
+        <input type="text" id="band-name" name="name">
+    </div>
+    <br>
+    <div>
+        <label for="band-country">Country:</label>
+        <input type="text" id="band-country" name="country">
+    </div>
+    <br>
+    <div>
+        <label for="band-label">Label:</label>
+        <input type="text" id="band-label" name="label">
+    </div>
+    <br>
+    <div>
+        <label for="band-date-of-creation">Date of creation:</label>
+        <input type="date" id="band-date-of-creation" name="date-of-creation">
+    </div>
+    <br>
+    <div>
+        <label for="band-description">Description:</label>
+        <textarea id="band-description" name="description"></textarea>
+    </div>
+    <br>
+    <div>
+        <label for="band-main-text">Main text:</label>
+        <textarea id="band-main-text" name="main-text"></textarea>
+    </div>
+    <br>
+    <button>Submit</button>
+</form>
+
+@section CssStyles
+    {
+    <style>
+        h1 {
+            color: red;
+            text-align: center;
+        }
+    </style>
+}

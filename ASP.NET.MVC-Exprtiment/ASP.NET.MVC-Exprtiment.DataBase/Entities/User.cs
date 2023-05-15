@@ -8,6 +8,6 @@
         public string PasswordHash { get; set; }
         public DateTime DateOfRegistration { get; set; }
 
-        public virtual List<Comment> Comments { get; set; }
+        public virtual List<Comment>? Comments { get; set; }
     }
 }
