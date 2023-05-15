@@ -1,11 +1,11 @@
 ﻿@model BandModel
 @{
-    ViewData["Title"] = "Add";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Add new band</h1>
+<h3>Edit the band's information</h3>
 
-@using (Html.BeginForm("Add", "Band", FormMethod.Post))
+@using (Html.BeginForm("Edit", "Band", FormMethod.Post))
 {
     <div>
         @Html.LabelFor(model => model.Name)
@@ -45,9 +45,9 @@
 @section CssStyles
     {
     <style>
-        h1 {
+        h3 {
             color: red;
-            text-align: center;
+            text-align: left;
         }
     </style>
 }

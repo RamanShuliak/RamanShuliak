@@ -30,11 +30,12 @@ namespace ASP.NET.MVC_Exprtiment.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Home");
+                    return BadRequest();
                 }
             }
             catch (Exception ex)
             {
+                Log.Error($"{ex.Message}; {Environment.NewLine} {ex.StackTrace}");
                 throw;
             }
         }
@@ -44,7 +45,7 @@ namespace ASP.NET.MVC_Exprtiment.Controllers
 
             try
             {
-                var band = await _bandService.GetBandById(id);
+                var band = await _bandService.GetBandByIdAsync(id);
 
                 if(band != null)
                 {
@@ -73,7 +74,7 @@ namespace ASP.NET.MVC_Exprtiment.Controllers
         {
             bandModel.Id = Guid.NewGuid();
 
-            var label = await _bandService.GetLabelByName(bandModel.Label);
+            var label = await _bandService.GetLabelByNameAsync(bandModel.Label);
 
             var addedDandDto = _mapper.Map<BandDto>(bandModel);
 
@@ -81,7 +82,46 @@ namespace ASP.NET.MVC_Exprtiment.Controllers
 
             var resultOfAdding = await _bandService.AddBandAsync(addedDandDto);
 
-            return View();
+            return RedirectToAction("Index", "Band");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            if (id != null)
+            {
+                var bandDto = await _bandService.GetBandByIdAsync(id);
+
+                var bandModel = _mapper.Map<BandModel>(bandDto);
+
+                return View(bandModel);
+            }
+            else 
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(BandModel bandModel)
+        {
+            var label = await _bandService.GetLabelByNameAsync(bandModel.Label);
+
+            var editedDandDto = _mapper.Map<BandDto>(bandModel);
+
+            if(label != null)
+            {
+                editedDandDto.LabelId = label.Id;
+
+            }
+            else
+            {
+                editedDandDto.LabelId = Guid.Empty;
+            }
+
+            var resultOfEdition = await _bandService.EditBandAsync(editedDandDto);
+
+            return RedirectToAction("Index", "Band");
         }
     }
 }

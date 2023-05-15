@@ -19,10 +19,13 @@
         Date of creation: @Model.DateOfCreation
     </h6>
     <h4>
-        @Model.MainText
+        Main infirmation: @Model.MainText
     </h4>
     <hr>
-    <br>
+    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+        @Html.ActionLink("Delete", "Delete", "Band", new {id = Model.Id}, new {@class = "btn btn-danger"})
+        @Html.ActionLink("Edit", "Edit", "Band", new {id = Model.Id}, new {@class = "btn btn-warning"})
+    </div>
 </div>
 
 @section CssStyles

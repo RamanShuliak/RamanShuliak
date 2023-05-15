@@ -37,26 +37,35 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
             return bandList;
         }
 
-        public async Task<BandDto> GetBandById(Guid id)
+        public async Task<BandDto> GetBandByIdAsync(Guid id)
         {
-            var bands = await _musicBandsContext.Bands
-                .Select(band => _mapper.Map<BandDto>(band))
-                .ToListAsync();
+            //var bands = await _musicBandsContext.Bands
+            //    .Select(band => _mapper.Map<BandDto>(band))
+            //    .ToListAsync();
 
-            var band = bands.FirstOrDefault(band => band.Id.Equals(id));
+            //var band = bands.FirstOrDefault(band => band.Id.Equals(id));
 
-            return band;
+            var band = await _musicBandsContext.Bands
+                .FirstOrDefaultAsync(band => band.Id.Equals(id));
+
+            var bandDto = _mapper.Map<BandDto>(band);
+
+            return bandDto;
         }
 
-        public async Task<LabelDto> GetLabelByName(string name)
+        public async Task<LabelDto> GetLabelByNameAsync(string name)
         {
-            var labels = await _musicBandsContext.Labels
-                .Select(label => _mapper.Map<LabelDto>(label))
-                .ToListAsync();
+                var label = await _musicBandsContext.Labels
+                    .FirstOrDefaultAsync(label => label.Name.Equals(name));
 
-            var label = labels.FirstOrDefault(label => label.Name.Equals(name));
+            if(label == null)
+            {
+                return null;
+            }
 
-            return label;
+                var labelDto = _mapper.Map<LabelDto>(label);
+
+                return labelDto;
         }
 
         public async Task<int> AddBandAsync(BandDto bandDto)
@@ -70,6 +79,30 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
                 return resultOfAdding;
             }
             else 
+            {
+                throw new ArgumentException(nameof(bandDto));
+            }
+        }
+
+        public async Task<int> EditBandAsync(BandDto bandDto)
+        {
+
+            if (bandDto != null)
+            {
+                var entityInDataBase = await _musicBandsContext.Bands
+                    .FirstOrDefaultAsync(band => band.Id.Equals(bandDto.Id));
+
+                entityInDataBase.Name = bandDto.Name;
+                entityInDataBase.Country = bandDto.Country;
+                entityInDataBase.DateOfCreation = bandDto.DateOfCreation;
+                entityInDataBase .Description = bandDto.Description;
+                entityInDataBase.MainText = bandDto.MainText;
+                entityInDataBase.LabelId = bandDto.LabelId;
+
+                var resultOfAdding = await _musicBandsContext.SaveChangesAsync();
+                return resultOfAdding;
+            }
+            else
             {
                 throw new ArgumentException(nameof(bandDto));
             }

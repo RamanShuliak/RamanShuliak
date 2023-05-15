@@ -10,8 +10,9 @@ namespace ASP.NET.MVC_Exprtiment.Core.Abstractions
     public interface IBandService
     {
         Task<List<BandDto>> GetBandsByPageNumberAndPageSize(int pageNumber, int pageSize);
-        Task<BandDto> GetBandById(Guid id);
-        Task<LabelDto> GetLabelByName(string name);
+        Task<BandDto> GetBandByIdAsync(Guid id);
+        Task<LabelDto> GetLabelByNameAsync(string name);
         Task<int> AddBandAsync(BandDto bandDto);
+        Task<int> EditBandAsync(BandDto bandDto);
     }
 }
