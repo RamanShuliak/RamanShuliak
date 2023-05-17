@@ -22,7 +22,7 @@ namespace ASP.NET.MVC_Exprtiment.Controllers
         {
             try
             {
-                var bandList = await _bandService.GetBandsByPageNumberAndPageSize(pageNumber, _pageSize);
+                var bandList = await _bandService.GetBandsByPageNumberAndPageSizeAsync(pageNumber, _pageSize);
 
                 if (bandList.Any())
                 {

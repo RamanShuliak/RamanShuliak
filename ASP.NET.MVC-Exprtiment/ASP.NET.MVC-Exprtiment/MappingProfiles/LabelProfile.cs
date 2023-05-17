@@ -12,7 +12,8 @@ namespace ASP.NET.MVC_Exprtiment.MappingProfiles
             CreateMap<Label, LabelDto>().ReverseMap()
                 .ForMember(ent => ent.Id, dto => dto.MapFrom(label => label.Id))
                 .ForMember(ent => ent.Name, dto => dto.MapFrom(label => label.Name))
-                .ForMember(ent => ent.Url, dto => dto.MapFrom(label => label.Url));    
+                .ForMember(ent => ent.Url, dto => dto.MapFrom(label => label.Url))
+                .ForMember(ent => ent.Description, dto => dto.MapFrom(label => label.Description));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿@{
+﻿@using ASP.NET.MVC_Exprtiment.Helpers;
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,3 +7,9 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<server-summary visible="true" style='new StyleInformation{Color = "#ff0000", BackgroundColor = "#ffff61"}'>
+    <time></time>
+    <server-information></server-information>
+</server-summary>
+

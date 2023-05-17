@@ -30,6 +30,7 @@ namespace ASP.NET.MVC_Exprtiment
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddControllersWithViews();
             builder.Services.AddTransient<IBandService, BandService>();
+            builder.Services.AddTransient<ILabelService, LabelService>();
 
             var app = builder.Build();
 

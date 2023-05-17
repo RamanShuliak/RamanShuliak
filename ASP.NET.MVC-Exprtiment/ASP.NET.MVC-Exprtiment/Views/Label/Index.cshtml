@@ -1,0 +1,28 @@
+﻿@model IEnumerable<ASP.NET.MVC_Exprtiment.Core.DataTransferObjects.LabelDto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Labels</h1>
+
+<div class="d-grid gap-2">
+    <a asp-controller="Label" asp-action="Add" class="btn btn-primary">Add new label</a>
+</div>
+
+
+@foreach (var item in Model)
+{
+    await Html.RenderPartialAsync("LablePreview", item);
+}
+
+@section CssStyles
+{
+    <style>
+        h1{
+            color:red;
+            text-align: center;
+        }
+    </style>
+}
+

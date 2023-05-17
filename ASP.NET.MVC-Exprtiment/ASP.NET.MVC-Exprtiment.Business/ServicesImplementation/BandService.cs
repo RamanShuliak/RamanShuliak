@@ -22,12 +22,8 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
             _configuration = configuration;
         }
 
-        public async Task<List<BandDto>> GetBandsByPageNumberAndPageSize(int pageNumber, int pageSize)
+        public async Task<List<BandDto>> GetBandsByPageNumberAndPageSizeAsync(int pageNumber, int pageSize)
         {
-            var myApiKey = _configuration.GetSection("UserSecret")["MyApiKey"];
-
-            var myPassword = _configuration["UserSecret:PasswordSalt"];
-
             var bandList = await _musicBandsContext.Bands
                 .Skip(pageNumber * pageSize)
                 .Take(pageSize)
@@ -39,11 +35,6 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
 
         public async Task<BandDto> GetBandByIdAsync(Guid id)
         {
-            //var bands = await _musicBandsContext.Bands
-            //    .Select(band => _mapper.Map<BandDto>(band))
-            //    .ToListAsync();
-
-            //var band = bands.FirstOrDefault(band => band.Id.Equals(id));
 
             var band = await _musicBandsContext.Bands
                 .FirstOrDefaultAsync(band => band.Id.Equals(id));

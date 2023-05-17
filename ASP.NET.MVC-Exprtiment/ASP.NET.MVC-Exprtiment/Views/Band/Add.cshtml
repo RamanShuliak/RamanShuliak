@@ -5,7 +5,7 @@
 
 <h1>Add new band</h1>
 
-@using (Html.BeginForm("Add", "Band", FormMethod.Post))
+@*@using (Html.BeginForm("Add", "Band", FormMethod.Post))
 {
     <div>
         @Html.LabelFor(model => model.Name)
@@ -40,7 +40,35 @@
     </div>
     <br>
     <button type="submit" class="btn btn-outline-primary">Submit</button>
-}
+}*@
+
+<form asp-controller="Band" asp-action="Add" method="post">
+    <div class="mb-3">
+        <label for="name" class="form-label">Name:</label>
+        <input asp-for="Name" class="form-control" id="name">
+    </div>
+    <div class="mb-3">
+        <label for="country" class="form-label">Country:</label>
+        <input asp-for="Country" class="form-control" id="country">
+    </div>
+    <div class="mb-3">
+        <label for="label" class="form-label">Label:</label>
+        <input asp-for="Label" class="form-control" id="label">
+    </div>
+    <div class="mb-3">
+        <label for="dateOfCreation" class="form-label">Date of creation:</label>
+        <input asp-for="DateOfCreation" class="form-control" type = "date" id="dateOfCreation">
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Description:</label>
+        <textarea asp-for="Description" class="form-control" id="description"></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="mainText" class="form-label">Main information about band:</label>
+        <textarea asp-for="MainText" class="form-control" id="mainText"></textarea>
+    </div>
+    <button type="submit" class="btn btn-outline-primary">Submit</button>
+</form>
 
 @section CssStyles
     {
