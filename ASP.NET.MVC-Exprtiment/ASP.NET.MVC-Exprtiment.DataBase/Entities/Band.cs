@@ -1,6 +1,6 @@
 ﻿namespace ASP.NET.MVC_Exprtiment.DataBase.Entities
 {
-    public class Band
+    public class Band : IBaseEntity
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

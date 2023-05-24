@@ -1,10 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+using System.Net;
 
 namespace ASP.NET.MVC_Exprtiment.Models
 {
     public class BandModel
     {
         public Guid Id { get; set; }
+
+        [Required(ErrorMessage = "This is required field.")]
+        [Remote("CheckName", "Band", HttpMethod = WebRequestMethods.Http.Post, ErrorMessage = "Band with this name is already exist.")]
         public string Name { get; set; }
         public string Country { get; set; }
         public DateTime DateOfCreation { get; set; }

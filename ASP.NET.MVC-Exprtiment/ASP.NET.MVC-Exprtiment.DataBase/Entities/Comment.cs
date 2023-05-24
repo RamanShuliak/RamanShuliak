@@ -1,6 +1,6 @@
 ﻿namespace ASP.NET.MVC_Exprtiment.DataBase.Entities
 {
-    public class Comment
+    public class Comment : IBaseEntity
     {
         public Guid Id { get; set; }
         public string? Text { get; set; }

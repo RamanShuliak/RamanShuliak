@@ -72,17 +72,49 @@ namespace ASP.NET.MVC_Exprtiment.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(BandModel bandModel)
         {
-            bandModel.Id = Guid.NewGuid();
+            if (ModelState.IsValid)
+            {
+                var isBandExist = await _bandService.IsBandAlreadyExist(bandModel.Name);
 
-            var label = await _bandService.GetLabelByNameAsync(bandModel.Label);
+                if (isBandExist == true)
+                {
+                    ModelState.AddModelError(nameof (bandModel.Name), "Band with this name is already exist.");
+                    return View(bandModel);
+                }
+                else
+                {
+                    bandModel.Id = Guid.NewGuid();
 
-            var addedDandDto = _mapper.Map<BandDto>(bandModel);
+                    var label = await _bandService.GetLabelByNameAsync(bandModel.Label);
 
-            addedDandDto.LabelId = label.Id;
+                    var addedDandDto = _mapper.Map<BandDto>(bandModel);
 
-            var resultOfAdding = await _bandService.AddBandAsync(addedDandDto);
+                    addedDandDto.LabelId = label.Id;
 
-            return RedirectToAction("Index", "Band");
+                    var resultOfAdding = await _bandService.AddBandAsync(addedDandDto);
+
+                    return RedirectToAction("Index", "Band");
+                }
+            }
+            else
+            {
+                return View(bandModel);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CheckName(string bandName)
+        {
+            var isBandExist = await _bandService.IsBandAlreadyExist(bandName);
+
+            if(isBandExist == true)
+            {
+                return Ok(false);
+            }
+            else
+            {
+                return Ok(true);
+            }
         }
 
         [HttpGet]

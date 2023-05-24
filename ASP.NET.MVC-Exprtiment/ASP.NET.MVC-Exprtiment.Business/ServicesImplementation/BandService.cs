@@ -1,6 +1,7 @@
 ﻿using ASP.NET.MVC_Exprtiment.Core;
 using ASP.NET.MVC_Exprtiment.Core.Abstractions;
 using ASP.NET.MVC_Exprtiment.Core.DataTransferObjects;
+using ASP.NET.MVC_Exprtiment.Data.Abstractions;
 using ASP.NET.MVC_Exprtiment.DataBase;
 using ASP.NET.MVC_Exprtiment.DataBase.Entities;
 using AutoMapper;
@@ -12,19 +13,23 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
     public class BandService: IBandService
     {
         private readonly MusicBandsContext _musicBandsContext;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
 
-        public BandService(MusicBandsContext musicBandsContext, IMapper mapper, IConfiguration configuration)
+        public BandService(MusicBandsContext musicBandsContext, 
+            IMapper mapper, IConfiguration configuration, IUnitOfWork unitOfWork)
         {
             _musicBandsContext = musicBandsContext;
             _mapper = mapper;
             _configuration = configuration;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<List<BandDto>> GetBandsByPageNumberAndPageSizeAsync(int pageNumber, int pageSize)
         {
-            var bandList = await _musicBandsContext.Bands
+            var bandList = await _unitOfWork.Bands
+                .Get()
                 .Skip(pageNumber * pageSize)
                 .Take(pageSize)
                 .Select(band => _mapper.Map<BandDto>(band))
@@ -36,8 +41,7 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
         public async Task<BandDto> GetBandByIdAsync(Guid id)
         {
 
-            var band = await _musicBandsContext.Bands
-                .FirstOrDefaultAsync(band => band.Id.Equals(id));
+            var band = await _unitOfWork.Bands.GetByIdAsync(id);
 
             var bandDto = _mapper.Map<BandDto>(band);
 
@@ -46,17 +50,22 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
 
         public async Task<LabelDto> GetLabelByNameAsync(string name)
         {
-                var label = await _musicBandsContext.Labels
-                    .FirstOrDefaultAsync(label => label.Name.Equals(name));
 
-            if(label == null)
+            var label = await _unitOfWork.Labels
+                .FindBy(label =>  label.Name.Equals(name))
+                .FirstOrDefaultAsync();
+
+            var labelDto = _mapper.Map<LabelDto>(label);
+
+            if (label == null)
             {
                 return null;
             }
-
-                var labelDto = _mapper.Map<LabelDto>(label);
-
+            else 
+            {
                 return labelDto;
+            }
+
         }
 
         public async Task<int> AddBandAsync(BandDto bandDto)
@@ -65,9 +74,8 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
 
             if (bandEntity != null)
             {
-                await _musicBandsContext.AddAsync(bandEntity);
-                var resultOfAdding = await _musicBandsContext.SaveChangesAsync();
-                return resultOfAdding;
+                await _unitOfWork.Bands.AddAsync(bandEntity);
+                return await _unitOfWork.Commit();
             }
             else 
             {
@@ -80,8 +88,7 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
 
             if (bandDto != null)
             {
-                var entityInDataBase = await _musicBandsContext.Bands
-                    .FirstOrDefaultAsync(band => band.Id.Equals(bandDto.Id));
+                var entityInDataBase = await _unitOfWork.Bands.GetByIdAsync(bandDto.Id);
 
                 entityInDataBase.Name = bandDto.Name;
                 entityInDataBase.Country = bandDto.Country;
@@ -90,7 +97,7 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
                 entityInDataBase.MainText = bandDto.MainText;
                 entityInDataBase.LabelId = bandDto.LabelId;
 
-                var resultOfAdding = await _musicBandsContext.SaveChangesAsync();
+                var resultOfAdding = await _unitOfWork.Commit();
                 return resultOfAdding;
             }
             else
@@ -98,5 +105,20 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
                 throw new ArgumentException(nameof(bandDto));
             }
         }
+
+        public async Task<bool> IsBandAlreadyExist (string name)
+        {
+            var result = await _musicBandsContext.Bands
+                .FirstOrDefaultAsync(band => band.Name.Equals(name));
+
+            if(result == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        } 
     }
 }
