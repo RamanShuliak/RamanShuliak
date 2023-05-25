@@ -6,6 +6,7 @@ using ASP.NET.MVC_Exprtiment.Data.Abstractions.Repositories;
 using ASP.NET.MVC_Exprtiment.Data.Repositories;
 using ASP.NET.MVC_Exprtiment.DataBase;
 using ASP.NET.MVC_Exprtiment.DataBase.Entities;
+using ASP.NET.MVC_Exprtiment.Filters;
 using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol.Core.Types;
@@ -31,9 +32,10 @@ namespace ASP.NET.MVC_Exprtiment
             builder.Services.AddDbContext<MusicBandsContext>(
                 optionBuilder => optionBuilder.UseSqlServer(connectionString));
 
+            builder.Services.AddControllersWithViews();
+
             // Add services to the container.
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            builder.Services.AddControllersWithViews();
             builder.Services.AddTransient<IBandService, BandService>();
             builder.Services.AddTransient<ILabelService, LabelService>();
             builder.Services.AddScoped<IRepository<Band>, BandRepository>();
