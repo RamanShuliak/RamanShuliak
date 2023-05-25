@@ -6,7 +6,6 @@ using ASP.NET.MVC_Exprtiment.Data.Abstractions.Repositories;
 using ASP.NET.MVC_Exprtiment.Data.Repositories;
 using ASP.NET.MVC_Exprtiment.DataBase;
 using ASP.NET.MVC_Exprtiment.DataBase.Entities;
-using ASP.NET.MVC_Exprtiment.Filters;
 using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol.Core.Types;
