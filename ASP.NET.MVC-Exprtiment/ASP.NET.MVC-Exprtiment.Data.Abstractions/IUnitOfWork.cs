@@ -12,7 +12,9 @@ namespace ASP.NET.MVC_Exprtiment.Data.Abstractions
     {
         public IRepository<Band> Bands { get; }
         public IRepository<Label> Labels { get; }
+        public IRepository<User> Users { get; }
+        public IRepository<Role> Roles { get; }
 
-        Task<int> Commit();
+        Task<int> CommitAsync();
     }
 }

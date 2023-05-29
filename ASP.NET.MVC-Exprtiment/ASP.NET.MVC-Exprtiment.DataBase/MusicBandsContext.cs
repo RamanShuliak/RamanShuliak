@@ -14,6 +14,7 @@ namespace ASP.NET.MVC_Exprtiment.DataBase
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Label> Labels { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
         public MusicBandsContext(DbContextOptions<MusicBandsContext> options) 
             : base(options)

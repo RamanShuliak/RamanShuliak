@@ -14,6 +14,6 @@ namespace ASP.NET.MVC_Exprtiment.Core.Abstractions
         Task<LabelDto> GetLabelByNameAsync(string name);
         Task<int> AddBandAsync(BandDto bandDto);
         Task<int> EditBandAsync(BandDto bandDto);
-        Task<bool> IsBandAlreadyExist(string name);
+        Task<bool> IsBandAlreadyExistAsync(string name);
     }
 }

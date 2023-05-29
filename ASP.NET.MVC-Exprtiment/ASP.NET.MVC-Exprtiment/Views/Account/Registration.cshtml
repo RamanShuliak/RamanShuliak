@@ -1,0 +1,47 @@
+﻿@model RegistrationModel
+@{
+    ViewData["Title"] = "Registration";
+}
+
+<h1>Please, enter your data for registration</h1>
+
+<form asp-controller="Account" asp-action="Registration" method="post">
+    <div asp-validation-summary="All"></div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input asp-for="Email" class="form-control" id="email" required>
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="name" class="form-label">Name:</label>
+        <input asp-for="Name" class="form-control" id="name" required>
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password:</label>
+        <input asp-for="Password" class="form-control" id="password" required>
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="passwordHash" class="form-label">Password confirmation:</label>
+        <input asp-for="PasswordConfirmation" class="form-control" id="passwordHash" required>
+        <span asp-validation-for="PasswordConfirmation" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-outline-primary">Submit</button>
+</form>
+
+@section CssStyles
+    {
+    <style>
+        h1 {
+            color: purple;
+            text-align: left;
+        }
+    </style>
+}
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+

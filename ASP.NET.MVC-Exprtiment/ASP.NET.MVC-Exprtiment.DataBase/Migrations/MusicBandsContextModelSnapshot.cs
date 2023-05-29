@@ -101,6 +101,21 @@ namespace ASP.NET.MVC_Exprtiment.DataBase.Migrations
                     b.ToTable("Labels");
                 });
 
+            modelBuilder.Entity("ASP.NET.MVC_Exprtiment.DataBase.Entities.Role", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+                });
+
             modelBuilder.Entity("ASP.NET.MVC_Exprtiment.DataBase.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -118,11 +133,16 @@ namespace ASP.NET.MVC_Exprtiment.DataBase.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PasswordHash")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
 
                     b.ToTable("Users");
                 });
@@ -155,6 +175,17 @@ namespace ASP.NET.MVC_Exprtiment.DataBase.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("ASP.NET.MVC_Exprtiment.DataBase.Entities.User", b =>
+                {
+                    b.HasOne("ASP.NET.MVC_Exprtiment.DataBase.Entities.Role", "Role")
+                        .WithMany("Users")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+                });
+
             modelBuilder.Entity("ASP.NET.MVC_Exprtiment.DataBase.Entities.Band", b =>
                 {
                     b.Navigation("Comments");
@@ -163,6 +194,11 @@ namespace ASP.NET.MVC_Exprtiment.DataBase.Migrations
             modelBuilder.Entity("ASP.NET.MVC_Exprtiment.DataBase.Entities.Label", b =>
                 {
                     b.Navigation("Bands");
+                });
+
+            modelBuilder.Entity("ASP.NET.MVC_Exprtiment.DataBase.Entities.Role", b =>
+                {
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("ASP.NET.MVC_Exprtiment.DataBase.Entities.User", b =>

@@ -2,11 +2,13 @@
 using ASP.NET.MVC_Exprtiment.Core.DataTransferObjects;
 using ASP.NET.MVC_Exprtiment.Models;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
 namespace ASP.NET.MVC_Exprtiment.Controllers
 {
+    [Authorize(Roles = "User")]
     public class BandController : Controller
     {
         private readonly IBandService _bandService;
@@ -74,7 +76,7 @@ namespace ASP.NET.MVC_Exprtiment.Controllers
         {
             if (ModelState.IsValid)
             {
-                var isBandExist = await _bandService.IsBandAlreadyExist(bandModel.Name);
+                var isBandExist = await _bandService.IsBandAlreadyExistAsync(bandModel.Name);
 
                 if (isBandExist == true)
                 {
@@ -103,11 +105,11 @@ namespace ASP.NET.MVC_Exprtiment.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CheckName(string bandName)
+        public async Task<IActionResult> CheckName(BandModel bandModel)
         {
-            var isBandExist = await _bandService.IsBandAlreadyExist(bandName);
+            var isBandExist = await _bandService.IsBandAlreadyExistAsync(bandModel.Name);
 
-            if(isBandExist == true)
+            if (isBandExist == true)
             {
                 return Ok(false);
             }

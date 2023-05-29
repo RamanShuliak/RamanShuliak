@@ -75,7 +75,7 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
             if (bandEntity != null)
             {
                 await _unitOfWork.Bands.AddAsync(bandEntity);
-                return await _unitOfWork.Commit();
+                return await _unitOfWork.CommitAsync();
             }
             else 
             {
@@ -97,7 +97,7 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
                 entityInDataBase.MainText = bandDto.MainText;
                 entityInDataBase.LabelId = bandDto.LabelId;
 
-                var resultOfAdding = await _unitOfWork.Commit();
+                var resultOfAdding = await _unitOfWork.CommitAsync();
                 return resultOfAdding;
             }
             else
@@ -106,10 +106,11 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
             }
         }
 
-        public async Task<bool> IsBandAlreadyExist (string name)
+        public async Task<bool> IsBandAlreadyExistAsync (string name)
         {
-            var result = await _musicBandsContext.Bands
-                .FirstOrDefaultAsync(band => band.Name.Equals(name));
+            var result = await _unitOfWork.Bands
+                .FindBy(band => band.Name.Equals(name))
+                .FirstOrDefaultAsync();
 
             if(result == null)
             {

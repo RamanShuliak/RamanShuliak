@@ -8,8 +8,10 @@ namespace ASP.NET.MVC_Exprtiment.Models
     {
         public Guid Id { get; set; }
 
-        [Required(ErrorMessage = "This is required field.")]
-        [Remote("CheckName", "Band", HttpMethod = WebRequestMethods.Http.Post, ErrorMessage = "Band with this name is already exist.")]
+        [Required]
+        [Remote("CheckName", "Band",
+            HttpMethod = WebRequestMethods.Http.Post, 
+            ErrorMessage = "Band with this name is already exist.")]
         public string Name { get; set; }
         public string Country { get; set; }
         public DateTime DateOfCreation { get; set; }

@@ -1,0 +1,36 @@
+﻿@model LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Please, enter your data for login</h1>
+
+<form asp-controller="Account" asp-action="Login" method="post">
+    <div asp-validation-summary="All"></div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input asp-for="Email" class="form-control" id="email" required>
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password:</label>
+        <input asp-for="Password" class="form-control" id="password" required>
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-outline-primary">Submit</button>
+</form>
+
+@section CssStyles
+    {
+    <style>
+        h1 {
+            color: purple;
+            text-align: left;
+        }
+    </style>
+}
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

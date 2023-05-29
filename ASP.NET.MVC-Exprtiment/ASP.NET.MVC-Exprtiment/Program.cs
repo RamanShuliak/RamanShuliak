@@ -6,6 +6,7 @@ using ASP.NET.MVC_Exprtiment.Data.Abstractions.Repositories;
 using ASP.NET.MVC_Exprtiment.Data.Repositories;
 using ASP.NET.MVC_Exprtiment.DataBase;
 using ASP.NET.MVC_Exprtiment.DataBase.Entities;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol.Core.Types;
@@ -33,12 +34,26 @@ namespace ASP.NET.MVC_Exprtiment
 
             builder.Services.AddControllersWithViews();
 
+            builder.Configuration.AddJsonFile("secret.json");
+
+            builder.Services
+                .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.ExpireTimeSpan = TimeSpan.FromHours(1);
+                    options.LoginPath = new PathString(@"/Account/Login");
+                });
+
             // Add services to the container.
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddTransient<IBandService, BandService>();
             builder.Services.AddTransient<ILabelService, LabelService>();
+            builder.Services.AddTransient<IUserService, UserService>();
+            builder.Services.AddTransient<IRoleService, RoleService>();
             builder.Services.AddScoped<IRepository<Band>, BandRepository>();
             builder.Services.AddScoped<IRepository<Label>, Repository<Label>>();
+            builder.Services.AddScoped<IRepository<User>, Repository<User>>();
+            builder.Services.AddScoped<IRepository<Role>, Repository<Role>>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             var app = builder.Build();
@@ -56,6 +71,7 @@ namespace ASP.NET.MVC_Exprtiment
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
