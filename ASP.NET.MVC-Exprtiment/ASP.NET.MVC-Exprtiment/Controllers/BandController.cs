@@ -122,7 +122,7 @@ namespace ASP.NET.MVC_Exprtiment.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
-            if (id != null)
+            if (id != Guid.Empty)
             {
                 var bandDto = await _bandService.GetBandByIdAsync(id);
 

@@ -1,7 +1,7 @@
 ﻿@using ASP.NET.MVC_Exprtiment.Core.DataTransferObjects;
 @model BandDto;
 
-<div>
+<div class="col-12 col-sm-10 col-md-6 col-lg-4" id="band-preview">
     <h2>
         @Html.DisplayFor(modelItem => Model.Name)
     </h2>
@@ -18,6 +18,4 @@
         @Html.DisplayFor(modelItem => Model.Description)
     </h4>
     <a class="btn btn-primary" href="~/band/details/@Model.Id">Read details</a>
-    <hr>
-    <br>
 </div>

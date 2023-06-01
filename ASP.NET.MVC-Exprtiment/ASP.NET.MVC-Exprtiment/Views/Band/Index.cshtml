@@ -10,11 +10,13 @@
     <a href="~/band/add" class="btn btn-primary" type="button">Add new band</a>
 <div/>
 
+<div class="row">
+        @foreach (var item in Model)
+        {
+            await Html.RenderPartialAsync("BandPreview", item);
+        }
+</div>
 
-@foreach (var item in Model)
-{
-    await Html.RenderPartialAsync("BandPreview", item);
-}
 
 @section CssStyles
 {
