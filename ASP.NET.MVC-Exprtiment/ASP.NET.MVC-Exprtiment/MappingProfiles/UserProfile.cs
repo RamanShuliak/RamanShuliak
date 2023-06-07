@@ -27,6 +27,8 @@ namespace ASP.NET.MVC_Exprtiment.MappingProfiles
             CreateMap<LoginModel, UserDto>()
                 .ForMember(dto => dto.RoleId,
                 opt => opt.MapFrom(model => new Guid("D4C8F363-D6A0-4EAC-BCEF-83B856E422F5")));
+
+            CreateMap<UserDto, UserDataModel>();
         }
     }
 }

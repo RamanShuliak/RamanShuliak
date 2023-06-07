@@ -15,6 +15,7 @@ namespace ASP.NET.MVC_Exprtiment.Controllers
 
         public IActionResult Index()
         {
+
             return View();
         }
 

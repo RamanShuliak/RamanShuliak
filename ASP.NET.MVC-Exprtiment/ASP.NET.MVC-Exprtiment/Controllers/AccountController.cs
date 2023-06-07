@@ -1,9 +1,11 @@
 ﻿using ASP.NET.MVC_Exprtiment.Core.Abstractions;
 using ASP.NET.MVC_Exprtiment.Core.DataTransferObjects;
+using ASP.NET.MVC_Exprtiment.DataBase.Entities;
 using ASP.NET.MVC_Exprtiment.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -40,6 +42,13 @@ namespace ASP.NET.MVC_Exprtiment.Controllers
                 return RedirectToAction("Index", "Home");
             }
             return View(loginModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
@@ -91,6 +100,25 @@ namespace ASP.NET.MVC_Exprtiment.Controllers
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(identity));
         }
-        
+
+        [HttpGet]
+        public async Task<IActionResult> UserLoginPreview()
+        {
+            if (User.Identities.Any(idernity => idernity.IsAuthenticated))
+            {
+                var userEmail = User.Identity?.Name;
+                if (string.IsNullOrEmpty(userEmail))
+                {
+                    return BadRequest();
+                }
+
+                var user = _mapper
+                    .Map<UserDataModel>(await _userService.GetUserByEmailAsync(userEmail));
+
+                return View(user);
+            }
+            return View();
+        }
+
     }
 }
