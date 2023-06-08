@@ -120,5 +120,21 @@ namespace ASP.NET.MVC_Exprtiment.Controllers
             return View();
         }
 
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> GetUserData()
+        {
+            var userEmail = User.Identity?.Name;
+            if (string.IsNullOrEmpty(userEmail))
+            {
+                return BadRequest();
+            }
+
+            var user = _mapper
+                .Map<UserDataModel>(await _userService.GetUserByEmailAsync(userEmail));
+
+            return View(user);
+        }
+
     }
 }

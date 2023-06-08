@@ -1,22 +1,13 @@
-﻿function checkIsUserAuth() {
-    const checkIsUserAuthUrl = `${window.location.origin}/account/IsLoggedIn`;
+﻿let navbar = document.getElementById("login-nav");
 
-    fetch(checkIsUserAuthUrl)
-        .then(function (responce) {
-            return responce.json();
-        }).then(function (result) {
-            return result;
-        }).catch(function () {
-            console.error("somthing goes wrong.");
-        });  
-}
+const getLoginPreviewUrl = `${window.location.origin}/Account/UserLoginPreview`;
 
-let isUserLoggedIn = checkIsUserAuth();
+fetch(getLoginPreviewUrl)
+    .then(function (response) {
+        return response.text();
+    }).then(function (result) {
+        navbar.innerHTML = result;
+    }).catch(function () {
+        console.error("somthing goes wrong.");
+    });
 
-if (isUserLoggedIn) {
-
-}
-else {
-    let navbar = document.getElementById("login-nav");
-
-}
