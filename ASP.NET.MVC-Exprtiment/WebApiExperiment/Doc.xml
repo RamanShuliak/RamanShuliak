@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebApiExperiment</name>
+    </assembly>
+    <members>
+        <member name="T:WebApiExperiment.Controllers.BandController">
+            <summary>
+            Controller for work with bands
+            </summary>
+        </member>
+        <member name="M:WebApiExperiment.Controllers.BandController.GetBandByIdAsync(System.Guid)">
+            <summary>
+            Get band by specific Id 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiExperiment.Controllers.BandController.AddBandsAsync(WebApiExperiment.Models.Requests.AddBandsRequestModel)">
+            <summary>
+            Add band
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApiExperiment.Controllers.BandController.DeleteBand(System.Guid)">
+            <summary>
+            Delete band
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

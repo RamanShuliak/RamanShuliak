@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "ASP.NET.MVC-Exprtiment.DataBase": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:61979;http://localhost:61986"
+    }
+  }
+}

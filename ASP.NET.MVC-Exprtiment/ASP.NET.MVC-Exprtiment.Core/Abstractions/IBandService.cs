@@ -15,5 +15,6 @@ namespace ASP.NET.MVC_Exprtiment.Core.Abstractions
         Task<int> AddBandAsync(BandDto bandDto);
         Task<int> EditBandAsync(BandDto bandDto);
         Task<bool> IsBandAlreadyExistAsync(string name);
+        Task<int> DeleteBandAsync(Guid id);
     }
 }

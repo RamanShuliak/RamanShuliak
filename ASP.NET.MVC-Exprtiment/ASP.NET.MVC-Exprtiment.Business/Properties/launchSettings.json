@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "ASP.NET.MVC-Exprtiment.Business": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:61980;http://localhost:61987"
+    }
+  }
+}

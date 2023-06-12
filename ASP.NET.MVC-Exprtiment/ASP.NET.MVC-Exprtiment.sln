@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NET.MVC-Exprtiment.Busi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NET.MVC-Exprtiment.DataBase", "ASP.NET.MVC-Exprtiment.DataBase\ASP.NET.MVC-Exprtiment.DataBase.csproj", "{C1D9BCFA-214F-4649-B1C6-6DD84A402984}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP.NET.MVC-Exprtiment.Data.Abstractions", "ASP.NET.MVC-Exprtiment.Data.Abstractions\ASP.NET.MVC-Exprtiment.Data.Abstractions.csproj", "{6BB65E11-2F1A-4FC4-838F-A856B55B06AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NET.MVC-Exprtiment.Data.Abstractions", "ASP.NET.MVC-Exprtiment.Data.Abstractions\ASP.NET.MVC-Exprtiment.Data.Abstractions.csproj", "{6BB65E11-2F1A-4FC4-838F-A856B55B06AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP.NET.MVC-Exprtiment.Data.Repositories", "ASP.NET.MVC-Exprtiment.Data.Repositories\ASP.NET.MVC-Exprtiment.Data.Repositories.csproj", "{608ED0F9-4C98-492E-B586-C4A3B08837EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NET.MVC-Exprtiment.Data.Repositories", "ASP.NET.MVC-Exprtiment.Data.Repositories\ASP.NET.MVC-Exprtiment.Data.Repositories.csproj", "{608ED0F9-4C98-492E-B586-C4A3B08837EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiExperiment", "WebApiExperiment\WebApiExperiment.csproj", "{592E7DD6-E2C8-4D53-86DE-73D3C4E5B158}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{608ED0F9-4C98-492E-B586-C4A3B08837EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{608ED0F9-4C98-492E-B586-C4A3B08837EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{608ED0F9-4C98-492E-B586-C4A3B08837EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{592E7DD6-E2C8-4D53-86DE-73D3C4E5B158}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{592E7DD6-E2C8-4D53-86DE-73D3C4E5B158}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{592E7DD6-E2C8-4D53-86DE-73D3C4E5B158}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{592E7DD6-E2C8-4D53-86DE-73D3C4E5B158}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

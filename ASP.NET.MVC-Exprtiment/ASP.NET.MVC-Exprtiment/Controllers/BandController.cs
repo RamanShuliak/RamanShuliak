@@ -8,13 +8,12 @@ using Serilog;
 
 namespace ASP.NET.MVC_Exprtiment.Controllers
 {
-    [Authorize(Roles = "User")]
     public class BandController : Controller
     {
         private readonly IBandService _bandService;
         private readonly IMapper _mapper;
 
-        private int _pageSize = 5;
+        private int _pageSize = 6;
         public BandController(IBandService bandService, IMapper mapper)
         {
             _bandService = bandService;
@@ -154,6 +153,13 @@ namespace ASP.NET.MVC_Exprtiment.Controllers
             }
 
             var resultOfEdition = await _bandService.EditBandAsync(editedDandDto);
+
+            return RedirectToAction("Index", "Band");
+        }
+
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var resultOfDelete = await _bandService.DeleteBandAsync(id);
 
             return RedirectToAction("Index", "Band");
         }

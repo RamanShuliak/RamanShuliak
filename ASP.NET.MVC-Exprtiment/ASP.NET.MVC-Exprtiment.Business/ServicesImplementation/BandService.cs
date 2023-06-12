@@ -121,5 +121,14 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
                 return true;
             }
         } 
+
+        public async Task<int> DeleteBandAsync(Guid id)
+        {
+            var bandForDelete = await _unitOfWork.Bands.GetByIdAsync(id);
+
+            _unitOfWork.Bands.Remove(bandForDelete);
+
+            return await _unitOfWork.CommitAsync();
+        }
     }
 }
