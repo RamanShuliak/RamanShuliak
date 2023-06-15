@@ -8,6 +8,9 @@ using ASP.NET.MVC_Exprtiment.DataBase.Entities;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Serilog.Events;
+using Hangfire;
+using Hangfire.SqlServer;
+using Microsoft.Extensions.Configuration;
 
 namespace WebApiExperiment
 {
@@ -30,6 +33,15 @@ namespace WebApiExperiment
             builder.Services.AddDbContext<MusicBandsContext>(
                 optionBuilder => optionBuilder.UseSqlServer(connectionString));
 
+            // Add Hangfire services.
+            builder.Services.AddHangfire(configuration => configuration
+                .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
+                .UseSimpleAssemblyNameTypeSerializer()
+                .UseRecommendedSerializerSettings()
+                .UseSqlServerStorage(connectionString));
+
+            builder.Services.AddHangfireServer();
+
             // Add services to the container.
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddTransient<IBandService, BandService>();
@@ -51,6 +63,9 @@ namespace WebApiExperiment
 
             var app = builder.Build();
 
+            app.UseStaticFiles();
+            app.UseHangfireDashboard();
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -64,6 +79,7 @@ namespace WebApiExperiment
 
 
             app.MapControllers();
+            app.MapHangfireDashboard();
 
             app.Run();
         }

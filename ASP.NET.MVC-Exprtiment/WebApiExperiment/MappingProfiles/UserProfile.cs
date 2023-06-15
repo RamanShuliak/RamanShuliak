@@ -1,6 +1,7 @@
 ﻿using ASP.NET.MVC_Exprtiment.Core.DataTransferObjects;
 using ASP.NET.MVC_Exprtiment.DataBase.Entities;
 using AutoMapper;
+using WebApiExperiment.Models.Requests;
 
 namespace WebApiExperiment.MappingProfiles
 {
@@ -18,6 +19,8 @@ namespace WebApiExperiment.MappingProfiles
                 opt => opt.MapFrom(dto => DateTime.Now))
                 .ForMember(ent => ent.Id,
                 opt => opt.MapFrom(dto => Guid.NewGuid()));
+
+            CreateMap<RegisterRequestModel, UserDto>();
         }
     }
 }

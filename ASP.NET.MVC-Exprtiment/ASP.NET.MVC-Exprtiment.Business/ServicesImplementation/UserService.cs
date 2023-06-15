@@ -76,6 +76,13 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
                 .AnyAsync(user => user.Id.Equals(userId));
         }
 
+        public async Task<bool> IsUserByEmailExistAsync(string email)
+        {
+            return await _unitOfWork.Users
+                .Get()
+                .AnyAsync(user => user.Email.Equals(email));
+        }
+
         public async Task<int> RegisterUserAsync(UserDto userDto)
         {
             var newUser = _mapper.Map<User>(userDto);

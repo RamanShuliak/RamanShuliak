@@ -13,6 +13,7 @@ namespace ASP.NET.MVC_Exprtiment.Core.Abstractions
         Task<bool> ChekUserPasswordByEmailAsync(string email, string password);
         Task<Guid?> GetUserIdByEmailAsync(string email);
         Task<bool> IsUserExistAsync(Guid userId);
+        Task<bool> IsUserByEmailExistAsync(string email);
         Task<int> RegisterUserAsync(UserDto userDto);
         Task<UserDto> GetUserByEmailAsync(string email);
         string CreateMD5(string password);

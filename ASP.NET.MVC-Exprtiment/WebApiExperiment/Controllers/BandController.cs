@@ -1,6 +1,7 @@
 ﻿using ASP.NET.MVC_Exprtiment.Core.Abstractions;
 using ASP.NET.MVC_Exprtiment.Core.DataTransferObjects;
 using AutoMapper;
+using Hangfire;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApiExperiment.Models.Requests;
@@ -35,7 +36,16 @@ namespace WebApiExperiment.Controllers
         {
             var band = await _bandService.GetBandByIdAsync(id);
 
-            if(band == null)
+            var job1 = BackgroundJob.Schedule(() => 
+            Console.WriteLine("Delayed!"),TimeSpan.FromDays(7));
+
+            var job2 = BackgroundJob.Schedule(() =>
+            Console.WriteLine("Delayed!"), TimeSpan.FromDays(7));
+
+            BackgroundJob.ContinueJobWith(job1, job2,
+                () => Console.WriteLine("Continuation!"));
+
+            if (band == null)
             {
                 return NotFound();
             }
