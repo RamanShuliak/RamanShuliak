@@ -90,7 +90,10 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
             newUser.PasswordHash = CreateMD5(userDto.Password);
 
             await _unitOfWork.Users.AddAsync(newUser);
-            return await _unitOfWork.CommitAsync();
+
+            var result =  await _unitOfWork.CommitAsync();
+
+            return result;
         }
 
         public async Task<UserDto> GetUserByEmailAsync(string email)
@@ -104,6 +107,11 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
 
 
             return userDto;
+        }
+
+        public async Task<IEnumerable<UserDto>> GetAllUsersAsync()
+        {
+            return (await _unitOfWork.Users.GetAllAsync()).Select(user => _mapper.Map<UserDto>(user));
         }
 
         public string CreateMD5(string password)

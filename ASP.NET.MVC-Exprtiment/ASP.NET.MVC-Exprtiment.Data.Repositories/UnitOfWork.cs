@@ -32,7 +32,8 @@ namespace ASP.NET.MVC_Exprtiment.Data.Repositories
 
         public async Task<int> CommitAsync()
         {
-            return await _dataBase.SaveChangesAsync();
+                var result = await _dataBase.SaveChangesAsync();
+                return result;
         }
     }
 }

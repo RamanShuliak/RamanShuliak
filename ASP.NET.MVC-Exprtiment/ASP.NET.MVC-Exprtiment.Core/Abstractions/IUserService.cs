@@ -16,6 +16,7 @@ namespace ASP.NET.MVC_Exprtiment.Core.Abstractions
         Task<bool> IsUserByEmailExistAsync(string email);
         Task<int> RegisterUserAsync(UserDto userDto);
         Task<UserDto> GetUserByEmailAsync(string email);
+        Task<IEnumerable<UserDto>> GetAllUsersAsync();
         string CreateMD5(string password);
     }
 }

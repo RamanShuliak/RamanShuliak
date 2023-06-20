@@ -4,6 +4,13 @@
         <name>WebApiExperiment</name>
     </assembly>
     <members>
+        <member name="M:WebApiExperiment.Controllers.AccountController.Register(WebApiExperiment.Models.Requests.RegisterRequestModel)">
+            <summary>
+            Register users
+            </summary>
+            <param name="registerModel"></param>
+            <returns></returns>
+        </member>
         <member name="T:WebApiExperiment.Controllers.BandController">
             <summary>
             Controller for work with bands
