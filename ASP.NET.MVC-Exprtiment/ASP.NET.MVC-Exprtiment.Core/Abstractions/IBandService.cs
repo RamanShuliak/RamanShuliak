@@ -1,4 +1,5 @@
 ﻿using ASP.NET.MVC_Exprtiment.Core.DataTransferObjects;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace ASP.NET.MVC_Exprtiment.Core.Abstractions
         Task<List<BandDto>> GetBandsByPageNumberAndPageSizeAsync(int pageNumber, int pageSize);
         Task<BandDto> GetBandByIdAsync(Guid id);
         Task<LabelDto> GetLabelByNameAsync(string name);
-        Task<int> AddBandAsync(BandDto bandDto);
+        Task AddBandAsync(BandDto bandDto);
         Task<int> EditBandAsync(BandDto bandDto);
         Task<bool> IsBandAlreadyExistAsync(string name);
         Task<int> DeleteBandAsync(Guid id);

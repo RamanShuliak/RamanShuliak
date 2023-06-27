@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ASP.NET.MVC-Exprtiment.Data.Abstractions\ASP.NET.MVC-Exprtiment.Data.Abstractions.csproj" />
   </ItemGroup>
 

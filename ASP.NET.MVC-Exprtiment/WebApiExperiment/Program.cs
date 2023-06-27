@@ -15,6 +15,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using WebApiExperiment.Utils;
+using MediatR;
+using System.Net.NetworkInformation;
+using ASP.NET.MVC_Exprtiment.Data.CQS.Commands;
+using ASP.NET.MVC_Exprtiment.Data.CQS.Handlers.CommandHandlers;
+using ASP.NET.MVC_Exprtiment.Data.CQS.Queries;
+using ASP.NET.MVC_Exprtiment.Data.CQS.Handlers.QueryHandlers;
+using System.Reflection;
+using Microsoft.AspNetCore.Hosting;
 
 namespace WebApiExperiment
 {
@@ -58,6 +66,15 @@ namespace WebApiExperiment
             builder.Services.AddScoped<IRepository<Role>, Repository<Role>>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped<IJwtUtil, JwtUtil>();
+
+            // Add MediatR services
+            builder.Services
+                .AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
+            builder.Services
+                .AddScoped<IRequestHandler<AddBandAsyncCommand>, AddBandAsyncCommandHandler>();
+            builder.Services
+                .AddScoped<IRequestHandler<GetBandByIdQuery, Band>, GetBandByIdQueryHandler>();
+
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

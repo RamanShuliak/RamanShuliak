@@ -2,9 +2,12 @@
 using ASP.NET.MVC_Exprtiment.Core.Abstractions;
 using ASP.NET.MVC_Exprtiment.Core.DataTransferObjects;
 using ASP.NET.MVC_Exprtiment.Data.Abstractions;
+using ASP.NET.MVC_Exprtiment.Data.CQS.Commands;
+using ASP.NET.MVC_Exprtiment.Data.CQS.Queries;
 using ASP.NET.MVC_Exprtiment.DataBase;
 using ASP.NET.MVC_Exprtiment.DataBase.Entities;
 using AutoMapper;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -16,14 +19,17 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
+        private readonly IMediator _mediator;
 
-        public BandService(MusicBandsContext musicBandsContext, 
-            IMapper mapper, IConfiguration configuration, IUnitOfWork unitOfWork)
+        public BandService(MusicBandsContext musicBandsContext,
+            IMapper mapper, IConfiguration configuration, 
+            IUnitOfWork unitOfWork, IMediator mediator)
         {
             _musicBandsContext = musicBandsContext;
             _mapper = mapper;
             _configuration = configuration;
             _unitOfWork = unitOfWork;
+            _mediator = mediator;
         }
 
         public async Task<List<BandDto>> GetBandsByPageNumberAndPageSizeAsync(int pageNumber, int pageSize)
@@ -41,7 +47,10 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
         public async Task<BandDto> GetBandByIdAsync(Guid id)
         {
 
-            var band = await _unitOfWork.Bands.GetByIdAsync(id);
+            var band = await _mediator.Send(new GetBandByIdQuery()
+            {
+                BnadId = id
+            });
 
             var bandDto = _mapper.Map<BandDto>(band);
 
@@ -68,19 +77,12 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
 
         }
 
-        public async Task<int> AddBandAsync(BandDto bandDto)
+        public async Task AddBandAsync(BandDto bandDto)
         {
-            var bandEntity = _mapper.Map<Band>(bandDto);
-
-            if (bandEntity != null)
+            await _mediator.Send(new AddBandAsyncCommand()
             {
-                await _unitOfWork.Bands.AddAsync(bandEntity);
-                return await _unitOfWork.CommitAsync();
-            }
-            else 
-            {
-                throw new ArgumentException(nameof(bandDto));
-            }
+                Band = bandDto
+            });
         }
 
         public async Task<int> EditBandAsync(BandDto bandDto)

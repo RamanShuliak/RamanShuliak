@@ -1,8 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>ASP.NET.MVC_Exprtiment.Business</RootNamespace>
+    <RootNamespace>ASP.NET.MVC_Exprtiment.Data.CQS</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -15,8 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ASP.NET.MVC-Exprtiment.Core\ASP.NET.MVC-Exprtiment.Core.csproj" />
-    <ProjectReference Include="..\ASP.NET.MVC-Exprtiment.Data.Abstractions\ASP.NET.MVC-Exprtiment.Data.Abstractions.csproj" />
-    <ProjectReference Include="..\ASP.NET.MVC-Exprtiment.Data.CQS\ASP.NET.MVC-Exprtiment.Data.CQS.csproj" />
     <ProjectReference Include="..\ASP.NET.MVC-Exprtiment.DataBase\ASP.NET.MVC-Exprtiment.DataBase.csproj" />
   </ItemGroup>
 

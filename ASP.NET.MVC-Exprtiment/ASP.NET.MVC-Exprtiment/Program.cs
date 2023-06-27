@@ -3,15 +3,20 @@ using ASP.NET.MVC_Exprtiment.Core;
 using ASP.NET.MVC_Exprtiment.Core.Abstractions;
 using ASP.NET.MVC_Exprtiment.Data.Abstractions;
 using ASP.NET.MVC_Exprtiment.Data.Abstractions.Repositories;
+using ASP.NET.MVC_Exprtiment.Data.CQS.Commands;
+using ASP.NET.MVC_Exprtiment.Data.CQS.Handlers.CommandHandlers;
 using ASP.NET.MVC_Exprtiment.Data.Repositories;
 using ASP.NET.MVC_Exprtiment.DataBase;
 using ASP.NET.MVC_Exprtiment.DataBase.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol.Core.Types;
 using Serilog;
 using Serilog.Events;
+using System.Net.NetworkInformation;
+using System.Reflection;
 
 namespace ASP.NET.MVC_Exprtiment
 {
@@ -44,6 +49,12 @@ namespace ASP.NET.MVC_Exprtiment
                     options.LoginPath = new PathString(@"/Account/Login");
                 });
 
+
+            builder.Services
+                .AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+
+            var app = builder.Build();
+
             // Add services to the container.
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddTransient<IBandService, BandService>();
@@ -56,7 +67,7 @@ namespace ASP.NET.MVC_Exprtiment
             builder.Services.AddScoped<IRepository<Role>, Repository<Role>>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-            var app = builder.Build();
+
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

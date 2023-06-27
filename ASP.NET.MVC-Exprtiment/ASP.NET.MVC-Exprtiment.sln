@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NET.MVC-Exprtiment.Data
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NET.MVC-Exprtiment.Data.Repositories", "ASP.NET.MVC-Exprtiment.Data.Repositories\ASP.NET.MVC-Exprtiment.Data.Repositories.csproj", "{608ED0F9-4C98-492E-B586-C4A3B08837EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiExperiment", "WebApiExperiment\WebApiExperiment.csproj", "{592E7DD6-E2C8-4D53-86DE-73D3C4E5B158}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiExperiment", "WebApiExperiment\WebApiExperiment.csproj", "{592E7DD6-E2C8-4D53-86DE-73D3C4E5B158}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP.NET.MVC-Exprtiment.Data.CQS", "ASP.NET.MVC-Exprtiment.Data.CQS\ASP.NET.MVC-Exprtiment.Data.CQS.csproj", "{323A00CA-E8DC-4204-90DA-E20A63311495}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{592E7DD6-E2C8-4D53-86DE-73D3C4E5B158}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{592E7DD6-E2C8-4D53-86DE-73D3C4E5B158}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{592E7DD6-E2C8-4D53-86DE-73D3C4E5B158}.Release|Any CPU.Build.0 = Release|Any CPU
+		{323A00CA-E8DC-4204-90DA-E20A63311495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{323A00CA-E8DC-4204-90DA-E20A63311495}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{323A00CA-E8DC-4204-90DA-E20A63311495}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{323A00CA-E8DC-4204-90DA-E20A63311495}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

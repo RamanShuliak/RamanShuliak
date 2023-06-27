@@ -35,7 +35,8 @@ namespace WebApiExperiment.Utils
             var jwtToken = new JwtSecurityToken(_configuration["Token:Issuer"], 
                 _configuration["Token:Issuer"], 
                 claims, 
-                expires: expires);
+                expires: expires,
+                signingCredentials: credentials);
 
             var accessToken = new JwtSecurityTokenHandler().WriteToken(jwtToken);
 
