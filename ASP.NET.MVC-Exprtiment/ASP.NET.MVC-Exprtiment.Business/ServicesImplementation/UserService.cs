@@ -1,8 +1,10 @@
 ﻿using ASP.NET.MVC_Exprtiment.Core.Abstractions;
 using ASP.NET.MVC_Exprtiment.Core.DataTransferObjects;
 using ASP.NET.MVC_Exprtiment.Data.Abstractions;
+using ASP.NET.MVC_Exprtiment.Data.CQS.Queries;
 using ASP.NET.MVC_Exprtiment.DataBase.Entities;
 using AutoMapper;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -18,12 +20,14 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
+        private readonly IMediator _mediator;
 
-        public UserService(IUnitOfWork unitOfWork, IMapper mapper, IConfiguration configuration)
+        public UserService(IUnitOfWork unitOfWork, IMapper mapper, IConfiguration configuration, IMediator mediator)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _configuration = configuration;
+            _mediator = mediator;
         }
 
         public async Task<bool> ChekUserPasswordByIdAsync(Guid userId, string password)
@@ -107,6 +111,15 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
 
 
             return userDto;
+        }        
+        public async Task<UserDto?> GetUserByRefreshTokenAsync(Guid token)
+        {
+            var userDto = await _mediator.Send(new GetUserByRefreshTokenQuery()
+            {
+                RefreshToken = token
+            });
+
+            return userDto != null ? userDto : null;
         }
 
         public async Task<IEnumerable<UserDto>> GetAllUsersAsync()

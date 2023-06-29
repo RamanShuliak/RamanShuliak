@@ -4,6 +4,7 @@ using ASP.NET.MVC_Exprtiment.DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ASP.NET.MVC_Exprtiment.DataBase.Migrations
 {
     [DbContext(typeof(MusicBandsContext))]
-    partial class MusicBandsContextModelSnapshot : ModelSnapshot
+    [Migration("20230628063013_AddRefreshTokensForDb")]
+    partial class AddRefreshTokensForDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -107,10 +110,10 @@ namespace ASP.NET.MVC_Exprtiment.DataBase.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid>("Body")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("Value")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");

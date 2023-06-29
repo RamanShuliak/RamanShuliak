@@ -23,6 +23,7 @@ using ASP.NET.MVC_Exprtiment.Data.CQS.Queries;
 using ASP.NET.MVC_Exprtiment.Data.CQS.Handlers.QueryHandlers;
 using System.Reflection;
 using Microsoft.AspNetCore.Hosting;
+using ASP.NET.MVC_Exprtiment.Core.DataTransferObjects;
 
 namespace WebApiExperiment
 {
@@ -73,7 +74,14 @@ namespace WebApiExperiment
             builder.Services
                 .AddScoped<IRequestHandler<AddBandAsyncCommand>, AddBandAsyncCommandHandler>();
             builder.Services
+                .AddScoped<IRequestHandler<AddRefreshTokenCommand>, AddRefreshTokenCommandHandler>();
+            builder.Services
                 .AddScoped<IRequestHandler<GetBandByIdQuery, Band>, GetBandByIdQueryHandler>();
+            builder.Services
+                .AddScoped<IRequestHandler<GetUserByRefreshTokenQuery, UserDto?>, GetUserByRefreshTokenQueryHandler>();
+            builder.Services
+                .AddScoped<IRequestHandler<RemoveRefreshTokenCommand>, RemoveRefreshTokenCommandHandler>();
+
 
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

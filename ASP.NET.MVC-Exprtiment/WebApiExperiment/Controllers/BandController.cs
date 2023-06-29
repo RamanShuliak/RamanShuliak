@@ -12,7 +12,7 @@ namespace WebApiExperiment.Controllers
     /// <summary>
     /// Controller for work with bands
     /// </summary>
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class BandController : ControllerBase
     {

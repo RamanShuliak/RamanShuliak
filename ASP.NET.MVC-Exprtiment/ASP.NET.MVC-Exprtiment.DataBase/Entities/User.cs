@@ -12,5 +12,6 @@
         public virtual Role Role { get; set; }
 
         public virtual List<Comment>? Comments { get; set; }
+        public virtual List<RefreshToken>? RefreshTokens { get; set; }
     }
 }

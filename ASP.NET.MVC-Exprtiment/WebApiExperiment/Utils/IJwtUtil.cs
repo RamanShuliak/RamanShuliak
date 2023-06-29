@@ -5,6 +5,7 @@ namespace WebApiExperiment.Utils
 {
     public interface IJwtUtil
     {
-        TokenResponce GenerateToken(UserDto userDto);
+        Task<TokenResponce> GenerateTokenAsync(UserDto userDto);
+        Task RemoveRefreshTokenAsync(Guid requestRefreshToken);
     }
 }

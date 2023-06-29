@@ -65,7 +65,7 @@ namespace WebApiExperiment.Controllers
                     {
                         var userInDbDto = await _userService.GetUserByEmailAsync(userDto.Email);
 
-                        var responce = _jwtUtil.GenerateToken(userInDbDto);
+                        var responce = await _jwtUtil.GenerateTokenAsync(userInDbDto);
 
                         return Ok(responce);
                     }

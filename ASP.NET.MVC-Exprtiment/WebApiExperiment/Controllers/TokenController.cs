@@ -19,11 +19,12 @@ namespace WebApiExperiment.Controllers
         private readonly IMapper _mapper;
         private readonly IJwtUtil _jwtUtil;
 
-        public TokenController(IUserService userService, IRoleService roleService, IMapper mapper)
+        public TokenController(IUserService userService, IRoleService roleService, IMapper mapper, IJwtUtil jwtUtil)
         {
             _userService = userService;
             _roleService = roleService;
             _mapper = mapper;
+            _jwtUtil = jwtUtil;
         }
 
         [HttpPost]
@@ -49,7 +50,7 @@ namespace WebApiExperiment.Controllers
                     });
                 }
 
-                var responce = _jwtUtil.GenerateToken(userDto);
+                var responce = await _jwtUtil.GenerateTokenAsync(userDto);
                 return Ok(responce);
             }
             catch (Exception ex)
@@ -58,6 +59,46 @@ namespace WebApiExperiment.Controllers
                 return StatusCode(500);
             }
 
+        }
+
+        [HttpPost]
+        [Route("Refresh")]
+        public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequestModel refreshTokenModel)
+        {
+            try
+            {
+                var user = await _userService.GetUserByRefreshTokenAsync(refreshTokenModel.RefreshToken);
+
+                var responce = await _jwtUtil.GenerateTokenAsync(user);
+
+                await _jwtUtil.RemoveRefreshTokenAsync(refreshTokenModel.RefreshToken);
+
+                return Ok(responce);
+
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message);
+                return StatusCode(500);
+            }
+        }
+
+        [HttpPost]
+        [Route("Revoke")]
+        public async Task<IActionResult> RevokeToken([FromBody] RefreshTokenRequestModel refreshTokenModel)
+        {
+            try
+            {
+                await _jwtUtil.RemoveRefreshTokenAsync(refreshTokenModel.RefreshToken);
+
+                return Ok();
+
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message);
+                return StatusCode(500);
+            }
         }
     }
 }

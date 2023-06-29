@@ -92,7 +92,7 @@ namespace ASP.NET.MVC_Exprtiment.Controllers
 
                     addedDandDto.LabelId = label.Id;
 
-                    var resultOfAdding = await _bandService.AddBandAsync(addedDandDto);
+                    await _bandService.AddBandAsync(addedDandDto);
 
                     return RedirectToAction("Index", "Band");
                 }
