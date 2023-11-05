@@ -1,10 +1,13 @@
 using ASP.NET.MVC_Exprtiment.Business.ServicesImplementation;
 using ASP.NET.MVC_Exprtiment.Core;
 using ASP.NET.MVC_Exprtiment.Core.Abstractions;
+using ASP.NET.MVC_Exprtiment.Core.DataTransferObjects;
 using ASP.NET.MVC_Exprtiment.Data.Abstractions;
 using ASP.NET.MVC_Exprtiment.Data.Abstractions.Repositories;
 using ASP.NET.MVC_Exprtiment.Data.CQS.Commands;
 using ASP.NET.MVC_Exprtiment.Data.CQS.Handlers.CommandHandlers;
+using ASP.NET.MVC_Exprtiment.Data.CQS.Handlers.QueryHandlers;
+using ASP.NET.MVC_Exprtiment.Data.CQS.Queries;
 using ASP.NET.MVC_Exprtiment.Data.Repositories;
 using ASP.NET.MVC_Exprtiment.DataBase;
 using ASP.NET.MVC_Exprtiment.DataBase.Entities;
@@ -53,8 +56,6 @@ namespace ASP.NET.MVC_Exprtiment
             builder.Services
                 .AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
 
-            var app = builder.Build();
-
             // Add services to the container.
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddTransient<IBandService, BandService>();
@@ -67,7 +68,21 @@ namespace ASP.NET.MVC_Exprtiment
             builder.Services.AddScoped<IRepository<Role>, Repository<Role>>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+            // Add MediatR services
+            builder.Services
+                .AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
+            builder.Services
+                .AddScoped<IRequestHandler<AddBandAsyncCommand>, AddBandAsyncCommandHandler>();
+            builder.Services
+                .AddScoped<IRequestHandler<AddRefreshTokenCommand>, AddRefreshTokenCommandHandler>();
+            builder.Services
+                .AddScoped<IRequestHandler<GetBandByIdQuery, Band>, GetBandByIdQueryHandler>();
+            builder.Services
+                .AddScoped<IRequestHandler<GetUserByRefreshTokenQuery, UserDto?>, GetUserByRefreshTokenQueryHandler>();
+            builder.Services
+                .AddScoped<IRequestHandler<RemoveRefreshTokenCommand>, RemoveRefreshTokenCommandHandler>();
 
+            var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

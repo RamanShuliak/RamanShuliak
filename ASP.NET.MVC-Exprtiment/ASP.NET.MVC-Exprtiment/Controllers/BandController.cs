@@ -8,6 +8,7 @@ using Serilog;
 
 namespace ASP.NET.MVC_Exprtiment.Controllers
 {
+    
     public class BandController : Controller
     {
         private readonly IBandService _bandService;
@@ -19,6 +20,8 @@ namespace ASP.NET.MVC_Exprtiment.Controllers
             _bandService = bandService;
             _mapper = mapper;
         }
+
+        [Authorize]
         public async Task<IActionResult> Index(int pageNumber)
         {
             try

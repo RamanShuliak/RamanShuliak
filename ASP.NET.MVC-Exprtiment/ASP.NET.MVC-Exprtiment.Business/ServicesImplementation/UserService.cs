@@ -111,7 +111,7 @@ namespace ASP.NET.MVC_Exprtiment.Business.ServicesImplementation
 
 
             return userDto;
-        }        
+        }
         public async Task<UserDto?> GetUserByRefreshTokenAsync(Guid token)
         {
             var userDto = await _mediator.Send(new GetUserByRefreshTokenQuery()
