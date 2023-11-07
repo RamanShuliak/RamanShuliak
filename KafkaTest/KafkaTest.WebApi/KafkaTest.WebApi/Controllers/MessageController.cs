@@ -1,4 +1,5 @@
 ﻿using KafkaTest.KafkaConfig.Abstractions;
+using KafkaTest.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,11 +17,18 @@ namespace KafkaTest.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SendMessageToAnotherService(string message)
+        public async Task<IActionResult> SendMessageToAnotherService(string messageText)
         {
             try
             {
-                await _producer.SendMessageAsync("send-message", message);
+                var messageModel = new MessageModel()
+                {
+                    Id = Guid.NewGuid(),
+                    Text = messageText,
+                    DateOfCreation = DateTime.UtcNow,
+                };
+
+                await _producer.SendMessageAsync("send-message-1", messageModel);
 
                 return Ok();
             }

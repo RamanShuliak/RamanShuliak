@@ -31,7 +31,7 @@ namespace KafkaTest.MessageUpdateService
                 };
 
                 var consumer = new ConsumerBuilder<Ignore, string>(consumerConfig).Build();
-                consumer.Subscribe("send-message");
+                consumer.Subscribe("send-message-1");
                 return consumer;
             });
 

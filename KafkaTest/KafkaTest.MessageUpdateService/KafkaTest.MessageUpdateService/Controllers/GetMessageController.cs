@@ -22,9 +22,9 @@ namespace KafkaTest.MessageUpdateService.Controllers
         {
             try
             {
-                var message = _consumer.GetLastMessage("message-group", "send-message");
+                var messageModel = _consumer.GetLastMessage();
 
-                return Ok(message);
+                return Ok(messageModel);
             }
             catch (Exception)
             {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KafkaTest.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace KafkaTest.MessageUpdateService.KafkaConfig.Abstractions
 {
     public interface IConsumer
     {
-        string GetLastMessage(string group, string topic);
+        MessageModel GetLastMessage();
     }
 }
