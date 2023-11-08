@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\KafkaTest.MediatR\KafkaTest.MediatR.csproj" />
     <ProjectReference Include="..\KafkaTest.Models\KafkaTest.Models.csproj" />
   </ItemGroup>
 

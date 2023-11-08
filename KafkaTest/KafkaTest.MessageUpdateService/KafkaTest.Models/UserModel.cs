@@ -1,9 +1,9 @@
 ﻿namespace KafkaTest.Models
 {
-    public class MessageModel : IBaseMessage
+    public class UserModel
     {
         public Guid Id { get; set; }
-        public string Text { get; set; }
+        public string Name { get; set; }
         public DateTime DateOfCreation { get; set; }
     }
 }

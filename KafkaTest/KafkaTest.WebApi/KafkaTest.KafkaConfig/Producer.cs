@@ -1,4 +1,5 @@
 ﻿using Confluent.Kafka;
+using KafkaTest.Events;
 using KafkaTest.KafkaConfig.Abstractions;
 using KafkaTest.Models;
 using Newtonsoft.Json;
@@ -16,21 +17,21 @@ namespace KafkaTest.KafkaConfig
             _kafkaConfiguration = kafkaConfiguration;
         }
 
-        public async Task SendMessageAsync(string topic, IBaseMessage message)
+        public async Task PublishEventAsync(string topic, IEvent @event)
         {
             ProducerConfig config = new ProducerConfig
             {
                 BootstrapServers = _kafkaConfiguration.KafkaAddress
             };
 
-            var serializedMessage = JsonConvert.SerializeObject(message);
+            var serializedEvent = JsonConvert.SerializeObject(@event);
 
             using (var producer = new ProducerBuilder<Null, string>(config).Build())
             {
                 var result = await producer.ProduceAsync
                 (topic, new Message<Null, string>
                 {
-                    Value = serializedMessage
+                    Value = serializedEvent
                 });
             }
         }

@@ -1,6 +1,11 @@
 using Confluent.Kafka;
+using KafkaTest.DataBase;
+using KafkaTest.MediatR.Commands;
+using KafkaTest.MediatR.Handlers.CommandHandlers;
 using KafkaTest.MessageUpdateService.KafkaConfig;
 using KafkaTest.MessageUpdateService.KafkaConfig.Abstractions;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace KafkaTest.MessageUpdateService
 {
@@ -10,9 +15,16 @@ namespace KafkaTest.MessageUpdateService
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            var connectionString = builder.Configuration.GetConnectionString("Default");
+
+            builder.Services.AddDbContext<KafkaTestDbContext>(
+                            optionBuilder => optionBuilder.UseSqlServer(connectionString));
+
             // Add services to the container.
 
             builder.Services.AddControllers();
+
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             builder.Services.AddTransient<IConsumer, Consumer>();
             builder.Services.AddSingleton<IConsumer<Ignore, string>>(sp =>
@@ -31,9 +43,15 @@ namespace KafkaTest.MessageUpdateService
                 };
 
                 var consumer = new ConsumerBuilder<Ignore, string>(consumerConfig).Build();
-                consumer.Subscribe("send-message-1");
+                consumer.Subscribe("publish-event-2");
                 return consumer;
             });
+
+            // Add MediatR services
+            builder.Services
+                .AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
+            builder.Services
+                .AddScoped<IRequestHandler<CreateUserCommand>, CreateUserCommandHandler>();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

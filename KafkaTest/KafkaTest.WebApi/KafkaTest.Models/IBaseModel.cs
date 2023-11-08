@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KafkaTest.Models
 {
-    public interface IBaseMessage
+    public interface IBaseModel
     {
         public Guid Id { get; set; }
     }

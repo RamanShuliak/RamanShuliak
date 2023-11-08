@@ -1,4 +1,5 @@
-﻿using KafkaTest.Models;
+﻿using KafkaTest.Events;
+using KafkaTest.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace KafkaTest.KafkaConfig.Abstractions
 {
     public interface IProducer
     {
-        Task SendMessageAsync(string topic, IBaseMessage message);
+        Task PublishEventAsync(string topic, IEvent @event);
     }
 }

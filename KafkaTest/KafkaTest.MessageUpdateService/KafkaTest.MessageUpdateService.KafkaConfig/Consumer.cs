@@ -1,4 +1,5 @@
 ﻿using Confluent.Kafka;
+using KafkaTest.MediatR.Commands;
 using KafkaTest.MessageUpdateService.KafkaConfig.Abstractions;
 using KafkaTest.Models;
 using Newtonsoft.Json;
@@ -14,7 +15,7 @@ namespace KafkaTest.MessageUpdateService.KafkaConfig
             _consumer = consumer;
         }
 
-        public MessageModel GetLastMessage()
+        public UserModel GetLastMessage()
         {
             var cr = _consumer.Consume();
 
@@ -23,9 +24,9 @@ namespace KafkaTest.MessageUpdateService.KafkaConfig
                 throw new Exception("The are no messages yet.");
             }
 
-            var messageModel = JsonConvert.DeserializeObject<MessageModel>(cr.Value);
+            var userModel = JsonConvert.DeserializeObject<UserModel>(cr.Message.Value);
 
-            return messageModel;
+            return userModel;
         }
     }
 }

@@ -7,7 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KafkaTest.WebApi", "KafkaTe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KafkaTest.KafkaConfig", "KafkaTest.KafkaConfig\KafkaTest.KafkaConfig.csproj", "{1EA00E7F-47E6-4D4A-B065-FBD948668240}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KafkaTest.Models", "KafkaTest.Models\KafkaTest.Models.csproj", "{91795B56-19DE-4C65-BAB7-D9D349D06504}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KafkaTest.Models", "KafkaTest.Models\KafkaTest.Models.csproj", "{91795B56-19DE-4C65-BAB7-D9D349D06504}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KafkaTest.MediatR", "KafkaTest.MediatR\KafkaTest.MediatR.csproj", "{764C22B1-5B6F-4776-B98B-1014DF9F0B5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KafkaTest.MessageBus", "KafkaTest.MessageBus\KafkaTest.MessageBus.csproj", "{43029893-3CAB-4662-A925-1DBE91DCBADB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KafkaTest.DataBase", "KafkaTest.DataBase\KafkaTest.DataBase.csproj", "{219EE828-973E-41E2-BA31-F319A3F0033B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KafkaTest.Events", "KafkaTest.Events\KafkaTest.Events.csproj", "{1FD177D8-08DB-4A70-9AC4-35D7B116DDA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +35,22 @@ Global
 		{91795B56-19DE-4C65-BAB7-D9D349D06504}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91795B56-19DE-4C65-BAB7-D9D349D06504}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91795B56-19DE-4C65-BAB7-D9D349D06504}.Release|Any CPU.Build.0 = Release|Any CPU
+		{764C22B1-5B6F-4776-B98B-1014DF9F0B5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{764C22B1-5B6F-4776-B98B-1014DF9F0B5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{764C22B1-5B6F-4776-B98B-1014DF9F0B5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{764C22B1-5B6F-4776-B98B-1014DF9F0B5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43029893-3CAB-4662-A925-1DBE91DCBADB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43029893-3CAB-4662-A925-1DBE91DCBADB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43029893-3CAB-4662-A925-1DBE91DCBADB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43029893-3CAB-4662-A925-1DBE91DCBADB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{219EE828-973E-41E2-BA31-F319A3F0033B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{219EE828-973E-41E2-BA31-F319A3F0033B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{219EE828-973E-41E2-BA31-F319A3F0033B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{219EE828-973E-41E2-BA31-F319A3F0033B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FD177D8-08DB-4A70-9AC4-35D7B116DDA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FD177D8-08DB-4A70-9AC4-35D7B116DDA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FD177D8-08DB-4A70-9AC4-35D7B116DDA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FD177D8-08DB-4A70-9AC4-35D7B116DDA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
