@@ -2,29 +2,40 @@
 using KafkaTest.MediatR.Commands;
 using KafkaTest.MessageUpdateService.KafkaConfig.Abstractions;
 using KafkaTest.Models;
+using KafkaTest.Models.Models;
 using Newtonsoft.Json;
 
 namespace KafkaTest.MessageUpdateService.KafkaConfig
 {
     public class Consumer : IConsumer
     {
-        private readonly IConsumer<Ignore, string> _consumer;
+        private readonly IConsumer<string, string> consumer;
+        private readonly ModelDictionary modelDictionary;
 
-        public Consumer(IConsumer<Ignore, string> consumer)
+        public Consumer(IConsumer<string, string> consumer, ModelDictionary modelDictionary)
         {
-            _consumer = consumer;
+            this.consumer = consumer;
+            this.modelDictionary = modelDictionary;
         }
 
-        public UserModel GetLastMessage()
+        public CreateUserModel GetLastMessage()
         {
-            var cr = _consumer.Consume();
+            var cr = consumer.Consume();
 
             if (cr.Message == null)
             {
                 throw new Exception("The are no messages yet.");
             }
 
-            var userModel = JsonConvert.DeserializeObject<UserModel>(cr.Message.Value);
+            var modelType = modelDictionary.GetModelType(cr.Key);
+
+            var userModel = JsonConvert.DeserializeObject<modelType>(cr.Message.Value);
+
+            //var deserializeMethod = typeof(JsonConvert)
+            //    .GetMethod("DeserializeObject")
+            //    .MakeGenericMethod(modelType);
+
+            //var userModel = deserializeMethod.Invoke(null, new[] { cr.Message.Value });
 
             return userModel;
         }

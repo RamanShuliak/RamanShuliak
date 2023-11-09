@@ -10,6 +10,6 @@ namespace KafkaTest.KafkaConfig.Abstractions
 {
     public interface IProducer
     {
-        Task PublishEventAsync(string topic, IEvent @event);
+        Task PublishEventAsync(string topic, IEvent @event, string modelName);
     }
 }

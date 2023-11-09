@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using KafkaTest.DataBase.Entities;
-using KafkaTest.Models;
+using KafkaTest.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ namespace KafkaTest.MediatR.MappingProfiles
     {
         public UserProfile()
         {
-            CreateMap<UserModel, User>();
+            CreateMap<CreateUserModel, User>();
         }
     }
 }

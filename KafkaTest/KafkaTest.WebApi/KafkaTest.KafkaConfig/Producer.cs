@@ -17,7 +17,7 @@ namespace KafkaTest.KafkaConfig
             _kafkaConfiguration = kafkaConfiguration;
         }
 
-        public async Task PublishEventAsync(string topic, IEvent @event)
+        public async Task PublishEventAsync(string topic, IEvent @event, string modelName)
         {
             ProducerConfig config = new ProducerConfig
             {
@@ -26,13 +26,14 @@ namespace KafkaTest.KafkaConfig
 
             var serializedEvent = JsonConvert.SerializeObject(@event);
 
-            using (var producer = new ProducerBuilder<Null, string>(config).Build())
+            using (var producer = new ProducerBuilder<string, string>(config).Build())
             {
                 var result = await producer.ProduceAsync
-                (topic, new Message<Null, string>
+                (topic, new Message<string, string>
                 {
-                    Value = serializedEvent
-                });
+                    Value = serializedEvent,
+                    Key = modelName
+                }) ;
             }
         }
     }

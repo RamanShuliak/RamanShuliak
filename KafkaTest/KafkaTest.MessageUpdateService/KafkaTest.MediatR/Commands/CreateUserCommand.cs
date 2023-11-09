@@ -1,4 +1,4 @@
-﻿using KafkaTest.Models;
+﻿using KafkaTest.Models.Models;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -11,6 +11,6 @@ namespace KafkaTest.MediatR.Commands
 {
     public class CreateUserCommand : IRequest
     {
-        public UserModel UserModel;
+        public CreateUserModel UserModel;
     }
 }

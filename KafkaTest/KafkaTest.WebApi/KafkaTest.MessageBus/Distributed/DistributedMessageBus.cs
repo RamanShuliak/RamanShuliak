@@ -19,9 +19,9 @@ namespace KafkaTest.MessageBus.Distributed
             _producer = producer;
         }
 
-        public async Task PublishEventAsync(IEvent @event)
+        public async Task PublishEventAsync(IEvent @event, string modelName)
         {
-            await _producer.PublishEventAsync("publish-event-2", @event);
+            await _producer.PublishEventAsync("publish-event-2", @event, modelName);
         }
     }
 }

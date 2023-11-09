@@ -9,6 +9,6 @@ namespace KafkaTest.MessageBus.Abstractions
 {
     public interface IDistributedMessageBus
     {
-        Task PublishEventAsync(IEvent @event);
+        Task PublishEventAsync(IEvent @event, string modelName);
     }
 }

@@ -11,6 +11,6 @@ namespace KafkaTest.MediatR.Commands
 {
     public class CreateUserCommand: ICommand
     {
-        public UserModel UserModel;
+        public CreateUserModel UserModel;
     }
 }
