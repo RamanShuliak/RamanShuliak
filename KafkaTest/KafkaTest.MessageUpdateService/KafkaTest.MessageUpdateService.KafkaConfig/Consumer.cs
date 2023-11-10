@@ -29,7 +29,9 @@ namespace KafkaTest.MessageUpdateService.KafkaConfig
 
             var modelType = modelDictionary.GetModelType(cr.Key);
 
-            var userModel = JsonConvert.DeserializeObject<modelType>(cr.Message.Value);
+            var userModel = new CreateUserModel();
+
+            //var userModel = JsonConvert.DeserializeObject<modelType>(cr.Message.Value);
 
             //var deserializeMethod = typeof(JsonConvert)
             //    .GetMethod("DeserializeObject")

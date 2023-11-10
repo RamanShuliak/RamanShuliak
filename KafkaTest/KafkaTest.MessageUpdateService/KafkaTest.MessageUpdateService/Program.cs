@@ -4,6 +4,7 @@ using KafkaTest.MediatR.Commands;
 using KafkaTest.MediatR.Handlers.CommandHandlers;
 using KafkaTest.MessageUpdateService.KafkaConfig;
 using KafkaTest.MessageUpdateService.KafkaConfig.Abstractions;
+using KafkaTest.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,7 +28,8 @@ namespace KafkaTest.MessageUpdateService
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             builder.Services.AddTransient<IConsumer, Consumer>();
-            builder.Services.AddSingleton<IConsumer<Ignore, string>>(sp =>
+            builder.Services.AddScoped<ModelDictionary>();
+            builder.Services.AddSingleton<IConsumer<string, string>>(sp =>
             {
                 var consumerConfig = new ConsumerConfig
                 {
@@ -42,8 +44,8 @@ namespace KafkaTest.MessageUpdateService
                     PartitionAssignmentStrategy = PartitionAssignmentStrategy.CooperativeSticky
                 };
 
-                var consumer = new ConsumerBuilder<Ignore, string>(consumerConfig).Build();
-                consumer.Subscribe("publish-event-2");
+                var consumer = new ConsumerBuilder<string, string>(consumerConfig).Build();
+                consumer.Subscribe("publish-event-3");
                 return consumer;
             });
 
