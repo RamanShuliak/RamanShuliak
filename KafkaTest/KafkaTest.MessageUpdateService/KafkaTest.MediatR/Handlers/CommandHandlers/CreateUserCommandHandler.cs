@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace KafkaTest.MediatR.Handlers.CommandHandlers
 {
-    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand>
+    public class CreateUserCommandHandler : IRequestHandler<CreateUserTargetModel>
     {
         private readonly KafkaTestDbContext context;
         private readonly IMapper mapper;
@@ -22,9 +22,9 @@ namespace KafkaTest.MediatR.Handlers.CommandHandlers
             this.mapper = mapper;
         }
 
-        public async Task Handle(CreateUserCommand command, CancellationToken cancellationToken)
+        public async Task Handle(CreateUserTargetModel command, CancellationToken cancellationToken)
         {
-            var newUser = mapper.Map<User>(command.UserModel);
+            var newUser = mapper.Map<User>(command);
 
             await context.Users.AddAsync(newUser);
 

@@ -33,7 +33,7 @@ namespace KafkaTest.WebApi.Controllers
         {
             try
             {
-                var userModel = new CreateUserModel()
+                var userModel = new CreateUserTargetModel()
                 {
                     Id = Guid.NewGuid(),
                     Name = userName,
@@ -69,7 +69,7 @@ namespace KafkaTest.WebApi.Controllers
                     Name = userName,
                     DateOfCreation = DateTime.UtcNow
                 },
-                "CreateUserModel"
+                "CreateUserTargetModel"
                 );
 
                 return Ok();

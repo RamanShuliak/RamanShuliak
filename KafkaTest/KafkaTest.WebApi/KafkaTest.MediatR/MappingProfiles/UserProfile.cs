@@ -13,7 +13,7 @@ namespace KafkaTest.MediatR.MappingProfiles
     {
         public UserProfile()
         {
-            CreateMap<CreateUserModel, User>().ReverseMap();
+            CreateMap<CreateUserTargetModel, User>().ReverseMap();
         }
     }
 }

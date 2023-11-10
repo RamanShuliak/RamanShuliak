@@ -1,8 +1,7 @@
 ﻿using Confluent.Kafka;
+using KafkaTest.MediatR;
 using KafkaTest.MediatR.Commands;
 using KafkaTest.MessageUpdateService.KafkaConfig.Abstractions;
-using KafkaTest.Models;
-using KafkaTest.Models.Models;
 using Newtonsoft.Json;
 
 namespace KafkaTest.MessageUpdateService.KafkaConfig
@@ -18,7 +17,7 @@ namespace KafkaTest.MessageUpdateService.KafkaConfig
             this.modelDictionary = modelDictionary;
         }
 
-        public CreateUserModel GetLastMessage()
+        public object GetLastMessage()
         {
             var cr = consumer.Consume();
 
@@ -29,15 +28,8 @@ namespace KafkaTest.MessageUpdateService.KafkaConfig
 
             var modelType = modelDictionary.GetModelType(cr.Key);
 
-            var userModel = new CreateUserModel();
 
-            //var userModel = JsonConvert.DeserializeObject<modelType>(cr.Message.Value);
-
-            //var deserializeMethod = typeof(JsonConvert)
-            //    .GetMethod("DeserializeObject")
-            //    .MakeGenericMethod(modelType);
-
-            //var userModel = deserializeMethod.Invoke(null, new[] { cr.Message.Value });
+            var userModel = JsonConvert.DeserializeObject(cr.Message.Value, modelType);
 
             return userModel;
         }

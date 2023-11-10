@@ -30,7 +30,7 @@ namespace KafkaTest.MediatR.Handlers.QueryHandlers
                 .Where(user => user.Id.Equals(query.UserId))
                 .FirstOrDefaultAsync();
 
-            var userModel = mapper.Map<CreateUserModel>(user);
+            var userModel = mapper.Map<CreateUserTargetModel>(user);
 
             return userModel;
         }

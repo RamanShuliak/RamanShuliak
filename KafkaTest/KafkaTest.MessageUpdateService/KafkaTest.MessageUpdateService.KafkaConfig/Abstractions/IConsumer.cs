@@ -1,5 +1,5 @@
 ﻿using KafkaTest.MediatR.Commands;
-using KafkaTest.Models.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +10,6 @@ namespace KafkaTest.MessageUpdateService.KafkaConfig.Abstractions
 {
     public interface IConsumer
     {
-        CreateUserModel GetLastMessage();
+        object GetLastMessage();
     }
 }

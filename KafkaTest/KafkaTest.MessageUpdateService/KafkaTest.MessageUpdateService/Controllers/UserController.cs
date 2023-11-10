@@ -1,4 +1,5 @@
-﻿using Confluent.Kafka;
+﻿using Azure;
+using Confluent.Kafka;
 using KafkaTest.MediatR.Commands;
 using KafkaTest.MessageUpdateService.KafkaConfig.Abstractions;
 using MediatR;
@@ -13,9 +14,9 @@ namespace KafkaTest.MessageUpdateService.Controllers
     public class UserController : ControllerBase
     {
         private readonly IConsumer consumer;
-        private readonly IMediator mediator;
+        private readonly ISender mediator;
 
-        public UserController(IConsumer consumer, IMediator mediator)
+        public UserController(IConsumer consumer, ISender mediator)
         {
             this.consumer = consumer;
             this.mediator = mediator;
@@ -28,10 +29,7 @@ namespace KafkaTest.MessageUpdateService.Controllers
             {
                 var userModel = consumer.GetLastMessage();
 
-                await mediator.Send(new CreateUserCommand()
-                {
-                    UserModel = userModel
-                });
+                await mediator.Send(userModel);
 
                 return Ok(userModel);
             }

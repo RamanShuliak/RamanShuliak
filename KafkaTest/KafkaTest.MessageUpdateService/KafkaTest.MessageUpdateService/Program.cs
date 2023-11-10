@@ -1,10 +1,10 @@
 using Confluent.Kafka;
 using KafkaTest.DataBase;
+using KafkaTest.MediatR;
 using KafkaTest.MediatR.Commands;
 using KafkaTest.MediatR.Handlers.CommandHandlers;
 using KafkaTest.MessageUpdateService.KafkaConfig;
 using KafkaTest.MessageUpdateService.KafkaConfig.Abstractions;
-using KafkaTest.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -45,7 +45,7 @@ namespace KafkaTest.MessageUpdateService
                 };
 
                 var consumer = new ConsumerBuilder<string, string>(consumerConfig).Build();
-                consumer.Subscribe("publish-event-3");
+                consumer.Subscribe("publish-event-4");
                 return consumer;
             });
 
@@ -53,7 +53,7 @@ namespace KafkaTest.MessageUpdateService
             builder.Services
                 .AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
             builder.Services
-                .AddScoped<IRequestHandler<CreateUserCommand>, CreateUserCommandHandler>();
+                .AddScoped<IRequestHandler<CreateUserTargetModel>, CreateUserCommandHandler>();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

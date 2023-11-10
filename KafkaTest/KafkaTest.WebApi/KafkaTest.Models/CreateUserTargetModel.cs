@@ -1,6 +1,6 @@
 ﻿namespace KafkaTest.Models
 {
-    public class CreateUserModel : IBaseModel
+    public class CreateUserTargetModel : IBaseModel
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
